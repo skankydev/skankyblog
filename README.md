@@ -1,4 +1,4 @@
-#SkankyDev framework
+#SkankyBlog
 
 ##########################################
     comming soon
