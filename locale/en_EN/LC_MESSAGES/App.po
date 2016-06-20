@@ -1,0 +1,48 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: skankydev\n"
+"POT-Creation-Date: 2016-01-23 18:14+0100\n"
+"PO-Revision-Date: 2016-01-23 21:22+0100\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language: en_EN\n"
+"X-Poedit-SearchPath-0: locale/en_EN\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: src/App/Template/view/home/index.ctp:8
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, "
+"numquam?"
+msgstr "et avec du text ca donne quoi"
+
+#: src/App/Template/view/home/index.ctp:10
+msgid "PHP version: "
+msgstr ""
+
+#: src/App/Template/view/home/index.ctp:11
+msgid "Mongodb driver: "
+msgstr ""
+
+#: src/App/Template/view/home/index.ctp:12
+msgid "GetText: "
+msgstr "youpi text"
+
+#: src/App/Template/view/home/index.ctp:13
+msgid "Intl: "
+msgstr "aze"
+
+#: src/App/Template/view/home/index.ctp:17
+msgid ""
+"Laborum repellendus ducimus earum. Libero labore ducimus nulla architecto "
+"sapiente."
+msgstr ""
+
+#: src/App/Template/view/home/index.ctp:20
+msgid "Expedita hic quas vel vero culpa molestias itaque, quidem saepe. "
+msgstr ""
