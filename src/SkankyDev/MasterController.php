@@ -24,7 +24,7 @@ class MasterController {
 	public $request;
 	public $viewModel = 'SkankyDev\View\HtmlView';
 	public $collection = 'default';
-	private $tools = [
+	public $tools = [
 		'Flash',
 	];
 

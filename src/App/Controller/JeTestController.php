@@ -16,12 +16,17 @@ use SkankyDev\Auth;
 use SkankyDev\Utilities\Session;
 use SkankyDev\MasterController;
 use SkankyDev\MasterModel;
+use SkankyDev\Config\Config;
 
 class JeTestController extends MasterController{
 
-	//public $collection = 'Task';
+	public $tools = [
+		'Flash','Mail'
+	];
 
-	private function index(){
+	public function index(){
+
+		debug(Config::get('smtp.default'));
 
 		$model = MasterModel::load('Task');
 		$result= $model->find();
@@ -40,4 +45,11 @@ class JeTestController extends MasterController{
 		$this->view->set(['result'=>$result]);
 	}
 
+
+	public function test(){
+		//$to,$subject,$template,$var = []
+		$this->Mail->creatMail('simon.schenck@gmail.com','test mail','test',['message'=>'j ai un message pour vous']);
+		$this->Mail->attachment(APP_FOLDER.DS."public".DS.'img'.DS.'Luisaile.jpg');
+		$this->Mail->sendMail();
+	}
 }

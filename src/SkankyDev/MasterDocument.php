@@ -23,7 +23,7 @@ class MasterDocument implements Persistable{
 
 	public $_id;
 
-	public function __construct($data){
+	public function __construct(array $data){
 		$properties = get_class_vars(get_class($this));
 		foreach ($properties as $key=>$value){
 			if(isset($data->{$key})){

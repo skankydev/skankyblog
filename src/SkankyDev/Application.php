@@ -43,8 +43,6 @@ class Application {
 			$view->render();
 		} catch (Exception $e) {
 			$this->controller = new ErrorController($e);
-			
 		}
 	}
-
 }

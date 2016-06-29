@@ -45,6 +45,9 @@ return [
 		],
 		'listener' => [
 			'Users' => 'App\Listener\UsersListener'
+		],
+		'tools' => [
+			'Mail' => 'App\Controller\Tools\MailTool',
 		]
 	],
 	'listener'=> [

@@ -2,7 +2,7 @@
 /**
  * congratulation you have found the master configuration file
  */
-return [
+$conf =  [
 	'db' => [
 		'MongoDB' =>[
 			'host'=>'localhost',
@@ -25,5 +25,22 @@ return [
 			'langue' =>'en_EN'
 		],
 	],
+	'smtp' => require 'smtp.config.php',
 	'debug' => 2,
 ];
+return $conf;
+
+/*
+smtp.config.php exemple
+return [
+	'default' => [
+		'host' => '***',
+		'username' => '***',
+		'password' => '***',
+		'secure' => 'ssl',
+		'port' => '465',
+		'sender' => 'no-reply@skankydev.com'
+	]
+];
+
+ */
