@@ -11,7 +11,7 @@ return [
 	'routes' =>[
 		'/' => [
 			'options'=>[
-				'controller' => 'Home',
+				'controller' => 'Post',
 				'action'     => 'index',
 				'namespace'  => 'App'
 			]
@@ -45,6 +45,9 @@ return [
 		],
 		'listener' => [
 			'Users' => 'App\Listener\UsersListener'
+		],
+		'tools' => [
+			'Mail' => 'App\Controller\Tools\MailTool',
 		]
 	],
 	'listener'=> [

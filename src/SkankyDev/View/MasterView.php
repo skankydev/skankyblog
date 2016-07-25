@@ -10,9 +10,10 @@
  * @copyright     Copyright (c) SCHENCK Simon
  *
  */
-namespace SkankyDev;
+namespace SkankyDev\View;
 
 use SkankyDev\Factory;
+use SkankyDev\EventManager;
 use SkankyDev\Config\Config;
 use SkankyDev\View\Helper\HtmlHelper;
 use SkankyDev\View\Helper\FormHelper;
@@ -62,7 +63,7 @@ class MasterView {
 	 * @return view element just say echo
 	 */
 	public function element($element,$option = []){
-		$fileName = Config::elementDir().DS.$element.'.ctp';
+		$fileName = Config::elementDir().DS.$element.'.php';
 		extract($option);
 		ob_start();
 		require($fileName);
@@ -73,14 +74,14 @@ class MasterView {
 	 * @return void 
 	 */
 	public function makePath(){
-		$this->layoutPath = Config::layoutDir().DS.$this->layout.'.ctp';
+		$this->layoutPath = Config::layoutDir().DS.$this->layout.'.php';
 		if(!file_exists($this->layoutPath)){
 			throw new \Exception("the layout file : {$this->layoutPath} does not exist", 601);
 		}
 		$viewFolder = str_replace('Controller','',$this->request->controller);
 		$viewFolder = $this->toDash($viewFolder);
 		$action = $this->toDash($this->request->action);
-		$this->viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.ctp';
+		$this->viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.php';
 		if(!file_exists($this->viewPath)){
 			throw new \Exception("the view file : {$this->viewPath} does not exist", 601);
 		}

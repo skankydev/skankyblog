@@ -14,6 +14,7 @@
 namespace App\Model;
 
 use SkankyDev\Model\NoSqlModel;
+use SkankyDev\Database\MongoClient;
 
 class PostModel extends NoSqlModel {
 	
@@ -36,6 +37,17 @@ class PostModel extends NoSqlModel {
 			throw new \Exception("page not found", 404);
 		}
 		return $post;
+	}
+
+	public function install(){
+		$client = MongoClient::getInstance();
+		$option = [];
+		$option['autoIndexId'] = true;
+		$client->createCollection('post',$option);
+		$index = [];
+		$index[0] = ['key'=>['slug'=>1],'name'=>'slug','unique'=>true];
+		$client->createIndex('post',$index);
+		return 'PostModel has been configured';
 	}
 
 }

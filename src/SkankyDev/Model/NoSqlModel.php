@@ -13,7 +13,7 @@
 
 namespace SkankyDev\Model;
 
-use SkankyDev\MasterModel;
+use SkankyDev\Model\MasterModel;
 use SkankyDev\Config\Config;
 use SkankyDev\Utilities\Paginator;
 use SkankyDev\Database\MongoClient;

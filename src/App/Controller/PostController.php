@@ -14,7 +14,7 @@
 
 namespace App\Controller;
 
-use SkankyDev\MasterController;
+use SkankyDev\Controller\MasterController;
 use SkankyDev\MasterModel;
 
 
@@ -25,11 +25,11 @@ class PostController extends MasterController {
 		$option = [
 			'limit'=> 5,
 			'query'=> [],
-			'sort' => ['updated'=>-1],
+			'sort' => ['updated'=> -1],
 			'page'=>(int)$page,
 		];
 		$posts = $this->Post->paginate($option);
-		$this->view->set(['posts' => $posts]);
+		$this->view->set( ['posts' => $posts] );
 	}
 
 	public function view($slug=''){

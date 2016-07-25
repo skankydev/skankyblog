@@ -37,6 +37,10 @@ class Config {
 		$name = self::getCurentNamespace();
 		return APP_FOLDER.DS."src".DS.$name.DS.'Template'.DS.'element';
 	}
+	static function mailDir(){
+		$name = self::getCurentNamespace();
+		return APP_FOLDER.DS."src".DS.$name.DS.'Template'.DS.'mail';
+	}
 	static function controllerDir(){
 		$name = self::getCurentNamespace();
 		return APP_FOLDER.DS."src".DS.$name.DS.'Controller';

@@ -14,6 +14,7 @@
 namespace App\Model;
 
 use SkankyDev\Model\NoSqlModel;
+use SkankyDev\Database\MongoClient;
 
 class UserModel extends NoSqlModel {
 
@@ -27,6 +28,19 @@ class UserModel extends NoSqlModel {
 		$validator->addRules(['password'],['minLength'=>['min'=>8]],'doit contenir au moins huit caractères');
 		$validator->addRules(['email'],['isEmail'],'doit être une adresse mail valide');
 		$validator->trimTag(['username','email']);
+	}
+
+	public function install(){
+		//debug($this);
+		$client = MongoClient::getInstance();
+		$option = [];
+		$option['autoIndexId'] = true;
+		$client->createCollection('user',$option);
+		$index = [];
+		$index[0] = ['key'=>['login'=>1],'name'=>'login','unique'=>true];
+		$index[1] = ['key'=>['email'=>1],'name'=>'email','unique'=>true];
+		$client->createIndex('user',$index);
+		return 'UserModel has been configured';
 	}
 
 }

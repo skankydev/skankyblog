@@ -63,4 +63,17 @@ class MongoClient {
 		return $this->manager;
 	}
 
+	public function createCollection($name,$option){
+		/*debug($this->dbName);
+		debug($name);
+		debug($option);*/
+		$database = new Database($this->manager,$this->dbName);
+		$result = $database->createCollection($name,$option);
+		return $result;
+	}
+
+	public function createIndex($name,$index){
+		$collection = $this->getCollection($name);
+		return $collection->createIndexes($index);
+	}
 }

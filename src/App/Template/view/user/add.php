@@ -7,7 +7,7 @@
 			'legend'  => ['content'=>'creat a new user','class'=>'legend-user'],
 			'input'   => [
 					'email'    => ['label'=>'E-mail','type'=>'email'],
-					'username' => ['label'=>'login'],
+					'login' => ['label'=>'login'],
 					'password' => ['label'=>'password','type'=>'password'],
 					'confirme' => ['label'=>'confirmer password','type'=>'password'],
 				]

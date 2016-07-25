@@ -13,7 +13,7 @@
 namespace SkankyDev\View;
 
 use SkankyDev\request;
-use SkankyDev\MasterView;
+use SkankyDev\View\MasterView;
 use SkankyDev\Config\Config;
 use SkankyDev\View\Helper\HtmlHelper;
 use SkankyDev\Router;

@@ -30,8 +30,8 @@ echo $this->elementFromView(['namespace'=>'App','controller'=>'Message','action'
 <script type="text/javascript">
 $(document).ready(function(){
 	var post_id = '<?php echo $post->_id ?>';
-
 	var curentPage = 1;
+
 	$('#Message-Form').on('click','button[type="submit"]',function(event){
 		event.stopPropagation();
 		var me = $(event.delegateTarget);
@@ -51,6 +51,7 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+
 	$('.btn-see-more').on('click',function(event){
 		var link = <?php echo '"'.$this->request->url(['controller'=>'message','action'=>'index']).'"'; ?>;
 		curentPage += 1;

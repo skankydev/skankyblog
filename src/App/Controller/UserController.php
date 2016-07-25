@@ -13,7 +13,7 @@
  */
 namespace App\Controller;
 
-use SkankyDev\MasterController;
+use SkankyDev\Controller\MasterController;
 use SkankyDev\EventManager;
 use SkankyDev\Auth;
 

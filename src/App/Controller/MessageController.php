@@ -13,8 +13,7 @@
  */
 namespace App\Controller;
 
-use SkankyDev\MasterController;
-use App\Entity\Message;
+use SkankyDev\Controller\MasterController;
 
 /**
 * 
