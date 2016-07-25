@@ -2,6 +2,7 @@
 /**
  * congratulation you have found the master configuration file
  */
+$smtp = require 'smtp.config.php';
 $conf =  [
 	'db' => [
 		'MongoDB' =>[
@@ -9,7 +10,7 @@ $conf =  [
 			'port'=>'27017',
 			'username'=>'',
 			'password'=>'',
-			'database'=>'skankydev'
+			'database'=>'skankyblog'
 		]
 	],
 	'Module'=>[
@@ -25,7 +26,7 @@ $conf =  [
 			'langue' =>'en_EN'
 		],
 	],
-	'smtp' => require 'smtp.config.php',
+	'smtp' => $smtp,
 	'debug' => 2,
 ];
 return $conf;
@@ -39,7 +40,7 @@ return [
 		'password' => '***',
 		'secure' => 'ssl',
 		'port' => '465',
-		'sender' => 'no-reply@skankydev.com'
+		'sender' => 'no-reply@mail.com'
 	]
 ];
 

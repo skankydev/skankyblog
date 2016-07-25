@@ -10,9 +10,10 @@
  * @copyright     Copyright (c) SCHENCK Simon
  *
  */
-namespace SkankyDev;
+namespace SkankyDev\View;
 
 use SkankyDev\Factory;
+use SkankyDev\EventManager;
 use SkankyDev\Config\Config;
 use SkankyDev\View\Helper\HtmlHelper;
 use SkankyDev\View\Helper\FormHelper;

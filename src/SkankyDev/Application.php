@@ -17,7 +17,7 @@ include_once 'Config'.DS.'Config.php';
 
 use SkankyDev\Request;
 use SkankyDev\Router;
-use SkankyDev\MasterController;
+use SkankyDev\Controller\MasterController;
 use SkankyDev\MasterView;
 use SkankyDev\EventManager;
 use SkankyDev\Config\Config;

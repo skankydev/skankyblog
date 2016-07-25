@@ -10,9 +10,11 @@
  * @copyright     Copyright (c) SCHENCK Simon
  *
  */
-namespace SkankyDev;
+namespace SkankyDev\Model;
 
 use SkankyDev\Config\Config;
+use SkankyDev\Factory;
+use SkankyDev\EventManager;
 
 class MasterModel
 {

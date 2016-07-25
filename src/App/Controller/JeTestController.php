@@ -14,8 +14,8 @@ namespace App\Controller;
 
 use SkankyDev\Auth;
 use SkankyDev\Utilities\Session;
-use SkankyDev\MasterController;
-use SkankyDev\MasterModel;
+use SkankyDev\Controller\MasterController;
+use SkankyDev\Model\MasterModel;
 use SkankyDev\Config\Config;
 
 class JeTestController extends MasterController{

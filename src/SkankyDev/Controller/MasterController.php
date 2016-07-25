@@ -10,12 +10,14 @@
  * @copyright     Copyright (c) SCHENCK Simon
  *
  */
-namespace SkankyDev;
+namespace SkankyDev\Controller;
 
 use SkankyDev\Config\Config;
+use SkankyDev\Model\MasterModel;
 use SkankyDev\MasterView;
-use SkankyDev\MasterCollection;
 use SkankyDev\Factory;
+use SkankyDev\Request;
+use SkankyDev\EventManager;
 /**
 * 
 */

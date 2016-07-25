@@ -11,7 +11,7 @@
  *
  */
 
-namespace SkankyDev;
+namespace SkankyDev\Model\Document;
 
 use MongoDB\BSON\Persistable;
 use MongoDB\BSON\UTCDateTime;
