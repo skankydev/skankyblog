@@ -8,7 +8,7 @@
 			<section class="users-content">
 				<header class="auteur">
 					<i class="fa fa-user success"></i>
-					<?php echo $user->username; ?>
+					<?php echo $user->login; ?>
 					
 				</header>
 				<article><?php echo $user->email; ?></article>

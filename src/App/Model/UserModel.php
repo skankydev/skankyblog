@@ -23,11 +23,11 @@ class UserModel extends NoSqlModel {
 	];
 
 	public function initValidator($validator){
-		$validator->addRules(['username','password','email'],['notEmpty'],'ne doit pas etre vide');
-		$validator->addRules(['username'],['regex'=>['preg'=>'/^[a-zA-Z0-9_-]{3,16}$/']],'doit contenir que des caractères alphanumériques');
+		$validator->addRules(['login','password','email'],['notEmpty'],'ne doit pas etre vide');
+		$validator->addRules(['login'],['regex'=>['preg'=>'/^[a-zA-Z0-9_-]{3,16}$/']],'doit contenir que des caractères alphanumériques');
 		$validator->addRules(['password'],['minLength'=>['min'=>8]],'doit contenir au moins huit caractères');
 		$validator->addRules(['email'],['isEmail'],'doit être une adresse mail valide');
-		$validator->trimTag(['username','email']);
+		$validator->trimTag(['login','email']);
 	}
 
 	public function install(){

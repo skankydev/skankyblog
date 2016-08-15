@@ -23,7 +23,7 @@ class MasterDocument implements Persistable{
 
 	public $_id;
 
-	public function __construct(array $data){
+	public function __construct($data){
 		$properties = get_class_vars(get_class($this));
 		foreach ($properties as $key=>$value){
 			if(isset($data->{$key})){
@@ -66,7 +66,7 @@ class MasterDocument implements Persistable{
 	 * @return void
 	 */
 	public function bsonUnserialize(array $data){
-		unset($data['__pclass']);
+		unset($data['__pclass']); 
 		foreach ($data as $key => $value) {
 			$this->{$key} = $value;
 			if($this->{$key} instanceof UTCDateTime ){

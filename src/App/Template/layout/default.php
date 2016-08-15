@@ -11,7 +11,7 @@
 		$this->addJs("/vendor/jquery/jquery-2.1.4.min.js");
 		$this->addJs("/js/skankydev.js");
 		$this->addCss("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
-		$this->addCss("http://dev.skankydev.com/css/skankydev.css");
+		$this->addCss("http://dev.skankyblog.com/css/skankydev.css");
 		echo $this->getHeader(); 
 	?>
 </head>

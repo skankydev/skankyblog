@@ -25,9 +25,6 @@ class JeTestController extends MasterController{
 	];
 
 	public function index(){
-
-		debug(Config::get('smtp.default'));
-
 		$model = MasterModel::load('Task');
 		$result= $model->find();
 		

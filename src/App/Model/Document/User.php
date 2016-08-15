@@ -20,5 +20,7 @@ class User extends MasterDocument {
 	public $login;
 	public $password;
 	public $email;
+	public $verifToken;
+	public $valid;
 
 }

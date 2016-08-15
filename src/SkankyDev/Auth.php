@@ -43,7 +43,6 @@ class Auth
 	}
 
 	function __construct() {
-		
 		$auth = Session::get('skankydev.auth');
 		if($auth){
 			$this->loged = true;

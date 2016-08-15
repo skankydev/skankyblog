@@ -103,7 +103,7 @@ fieldset legend {
 form div {
 	clear: both;
 	vertical-align: text-top;
-	margin:8px;
+	margin:8px 0px;
 }
 
 form .hidden{
@@ -374,7 +374,7 @@ input[type=submit] {
 
 }
 /*------fait mumuse avec flex---------*/
-div[class^='layout-']{
+div[class^="layout-"]{
 	display: flex;
 	flex-direction: row;
 }
@@ -433,7 +433,7 @@ div[class^='layout-']{
 /*-------------User-------------------*/
 #Login{
 	display: inline-block;
-	width: 33%;
+	width: 45%;
 }
 #Login .field{
 	display: block;
@@ -807,7 +807,7 @@ a.paging-disabled:hover{
 	text-align: right;
 	background-color:#000;
 }
-div[class*='trace-']{
+div[class*="trace-"]{
 	display: inline-block;
 	margin: 2px;
 }

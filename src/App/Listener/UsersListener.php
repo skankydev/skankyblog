@@ -24,15 +24,12 @@ class UsersListener extends MasterListener {
 	public function infoEvent(){
 		return [
 			'users.login'=>'trucdeouf',
-			'collection.query.find' => 'newFind'
 		];
 	}
 
 	public function trucdeouf($subject){
-		//debug('trucdeouf');
+		debug('trucdeouf');
 	}
 
-	public function newFind($subject){
-		//debug(get_class($this));
-	}
+
 }
