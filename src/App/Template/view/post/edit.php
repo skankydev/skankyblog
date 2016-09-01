@@ -1,3 +1,4 @@
+<?php $this->setTitle('edit post'); ?>
 <section>
 	<header><h1>Edit Post</h1></header>
 	<?php echo $this->Form->start($this->request->url(['action'=>'edit','params'=>['slug'=>$post->slug]])); ?>

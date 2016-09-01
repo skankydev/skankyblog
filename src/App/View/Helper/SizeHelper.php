@@ -7,7 +7,6 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) SCHENCK Simon
- * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  *
  */

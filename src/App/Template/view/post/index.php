@@ -1,4 +1,4 @@
-<?php $this->setTitle(' - articles'); ?>
+<?php $this->setTitle('articles'); ?>
 <section id='Posts'>
 	<?php foreach ($posts as $post): ?>
 	<section class='post-liste'>

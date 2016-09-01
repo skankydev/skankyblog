@@ -1,3 +1,4 @@
+<?php $this->setTitle('install'); ?>
 <section>
 	<header><h1>Install</h1></header>
 	<section>

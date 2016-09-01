@@ -1,13 +1,13 @@
-<?php $this->setTitle(' - login'); ?>
+<?php $this->setTitle('login'); ?>
 <div class="layout-login">
 	<section id="Login">
-		<header><h1>Login</h1></header>
+		<header><h1><?php echo _("Sign in"); ?></h1></header>
 		<?php echo $this->Form->start($this->request->url()); ?>
 		<section>
 			<?php echo $this->Form->fieldset([
 				'fieldset'=> ['class'=>'fieldset-user'],
 				'input'   => [
-						'username' => ['label'=>'login'],
+						'email' => ['label'=>'e-mail','type'=>'email'],
 						'password' => ['label'=>'password','type'=>'password'],
 					]
 			]); ?>

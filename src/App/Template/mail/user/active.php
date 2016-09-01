@@ -6,6 +6,6 @@
 		<?php echo $this->link('cliquez ici', ['controller'=>'user','action'=>'active','params'=>['login'=>$user->login,'token'=>$user->verifToken->value]],['class'=>'']);?>
 	</section>
 	<footer>
-		a bientot
+		À bientôt.
 	</footer>
 </section>

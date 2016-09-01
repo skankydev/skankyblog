@@ -54,6 +54,9 @@ class MasterController {
 
 	public function _iniView(){
 		$this->view = Factory::load($this->viewModel);
+		if( isset($this->helpers) && !empty($this->helpers)){
+			$this->view->addHelper($this->helpers);
+		}
 	}
 
 	/**

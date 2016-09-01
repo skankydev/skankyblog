@@ -32,7 +32,6 @@ class NoSqlModel extends MasterModel {
 		parent::__construct($name);
 		$name = strtolower($name);
 		$this->collection = MongoClient::getInstance()->getCollection($name);
-
 		$this->defineDocument();
 	}
 

@@ -1,15 +1,13 @@
-<?php $this->setTitle('sing up'); ?>
+<?php $this->setTitle('recovery password'); ?>
 <div class="layout-login">
 	<section id="Login">
-		<header><h1><?php echo _('Sign Up'); ?></h1></header>
-		<?php echo $this->Form->start($this->request->url(['action'=>'signUp'])); ?>
+		<header><h1><?php echo _("Forgot password"); ?></h1></header>
+		<?php echo $this->Form->start($this->request->url(['controller'=>'user','action'=>'recoveryPass','params'=>['login'=>$user->login,'token'=>$user->verifToken->value]])); ?>
 		<section>
 			<?php echo $this->Form->fieldset([
 				'fieldset'=> ['class'=>'fieldset-user'],
-				'legend'  => ['content'=>'creat a new user','class'=>'legend-user'],
+				'legend'  => ['content'=>$user->login.'<br>'.$user->email],
 				'input'   => [
-						'email'    => ['label'=>'E-mail','type'=>'email'],
-						'login'    => ['label'=>'login'],
 						'password' => ['label'=>'password','type'=>'password'],
 						'confirme' => ['label'=>'confirmer password','type'=>'password'],
 					]

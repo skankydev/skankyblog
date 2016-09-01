@@ -110,8 +110,20 @@ class MasterView {
 		}
 	}
 
-	public function addHelper($name){
-		$this->helpers[] = $name;		
+	public function addHelper($helpers){
+
+		if(is_array($helpers)){
+			foreach ($helpers as $key => $value) {
+				if(is_array($value)){
+					$this->helpers[$key] = $value;
+				}else{
+					$this->helpers[] = $value;
+				}
+			}
+		}else{
+			$key = count($this->helpers);
+			$this->helpers[$key] = $helpers;
+		}
 	}
 	
 	public function loadHelper(){
@@ -127,10 +139,11 @@ class MasterView {
 		}
 	}
 
-	/**
-	 * TODO tu a rien foutu mec fo retravailler ca !
-	 * on va rien dir mais c'est toujours pas ca :/
-	 * ha we ? t'est comme ca ?
-	 * ba we ecoute ca marche ;)
-	 */
+
 }
+/*
+else if(is_string($params)){
+				$className = $def[$params];
+				$this->{$params} = Factory::load($className);
+			}
+ */

@@ -1,1 +1,1 @@
-<?php debug($username); ?>
+<?php debug($user); ?>

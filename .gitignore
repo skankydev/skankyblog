@@ -41,5 +41,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+composer.lock
 /vendor/
 /config/smtp.config.php

@@ -15,6 +15,8 @@ namespace App\Model;
 
 use SkankyDev\Model\NoSqlModel;
 use SkankyDev\Database\MongoClient;
+use MongoDB\Driver\BulkWrite;
+use MongoDB\BSON\UTCDateTime;
 
 class UserModel extends NoSqlModel {
 
@@ -31,7 +33,6 @@ class UserModel extends NoSqlModel {
 	}
 
 	public function install(){
-		//debug($this);
 		$client = MongoClient::getInstance();
 		$option = [];
 		$option['autoIndexId'] = true;
@@ -43,4 +44,8 @@ class UserModel extends NoSqlModel {
 		return 'UserModel has been configured';
 	}
 
+	public function updateLogin($user){
+		$newDate = new UTCDateTime(time());
+		return $this->collection->updateOne(['_id'=>$user->_id],['$set'=>['lastLogin'=>$newDate]]);
+	}
 }

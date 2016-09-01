@@ -38,7 +38,8 @@ return [
 	],
 	'class' => [
 		'helper' => [
-			'Size' => 'App\View\Helper\SizeHelper'
+			'Size' => 'App\View\Helper\SizeHelper',
+			'Time' => 'App\View\Helper\TimeHelper',
 		],
 		'behavior' => [
 			'Owner' => 'App\Model\Behavior\OwnerBehavior'
@@ -52,5 +53,11 @@ return [
 	],
 	'listener'=> [
 		'Debug'
+	],
+	'app'=>[
+		'timehelper'=> [
+			'format'=>'H:i:s d/m/Y',
+			'timezone'=>'Europe/Paris'
+		],
 	]
 ];

@@ -1,4 +1,4 @@
-<?php $this->setTitle(' - '.$post->name); ?>
+<?php $this->setTitle($post->name); ?>
 <section id='Post'>
 	<header><h1><?php echo $post->name; ?></h1>
 		<?php echo $this->link('Edit Post',['action'=>'edit', 'params'=>['sulg'=>$post->slug]],['class'=>'btn-warning']); ?>

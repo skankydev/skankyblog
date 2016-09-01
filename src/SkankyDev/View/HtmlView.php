@@ -99,7 +99,7 @@ class HtmlView extends MasterView {
 
 			$viewFolder = $this->toDash($link['controller']);
 			$action = $this->toDash($link['action']);
-			$friend->viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.ctp';
+			$friend->viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.php';
 
 			$friend->loadHelper();
 			extract($friend->data);
