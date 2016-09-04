@@ -7,8 +7,9 @@
 			<?php echo $this->Form->fieldset([
 				'fieldset'=> ['class'=>'fieldset-user'],
 				'input'   => [
-						'email' => ['label'=>'e-mail','type'=>'email'],
+						'email'    => ['label'=>'e-mail','type'=>'email'],
 						'password' => ['label'=>'password','type'=>'password'],
+						'remember' => ['label'=>'Remember me','type'=>'checkbox'],
 					]
 			]); ?>
 		</section>

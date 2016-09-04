@@ -91,7 +91,7 @@ thead{
 }
 
 td, th {
-    border: 1px solid #e7e7e7;
+    border: 1px solid #7f7f7f;
     text-align: left;
     padding: 4px;
 }
@@ -525,7 +525,9 @@ div[class^="layout-"]{
 .checkbox-multiple{
 	display: inline-block;
 }
-
+.checkbox.not-valid > label {
+	margin-top: 20px;
+}
 .not-valid{
 	border: dashed 1px;
 	border-color : rgba(211,28,28,1);

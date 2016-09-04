@@ -44,8 +44,12 @@ class UserModel extends NoSqlModel {
 		return 'UserModel has been configured';
 	}
 
-	public function updateLogin($user){
+	public function updateLogin($user,$tokenCookie = ''){
 		$newDate = new UTCDateTime(time());
-		return $this->collection->updateOne(['_id'=>$user->_id],['$set'=>['lastLogin'=>$newDate]]);
+		$query = ['$set'=>['lastLogin'=>$newDate]];
+		if(!empty($tokenCookie)){
+			$query['$set']['cookie'] = $tokenCookie;
+		}
+		return $this->collection->updateOne(['_id'=>$user->_id],$query);
 	}
 }

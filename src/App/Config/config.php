@@ -52,7 +52,8 @@ return [
 		]
 	],
 	'listener'=> [
-		'Debug'
+		'Debug',
+		'Users',
 	],
 	'app'=>[
 		'timehelper'=> [

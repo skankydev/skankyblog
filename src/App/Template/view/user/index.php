@@ -2,7 +2,6 @@
 <section id='Users'>
 	<header>
 		<h1><?php echo _("Users"); ?></h1>
-		<?php echo $this->link('Add User',['action'=>'add']); ?>
 	</header>
 	<section class="liste-users">
 	<table>
@@ -13,6 +12,7 @@
 				<th><?php echo $this->link('valid', ['params'=>$users->sortParams('valid')]);?> </th>
 				<th><?php echo $this->link('last login', ['params'=>$users->sortParams('lastLogin')]);?> </th>
 				<th><?php echo $this->link('inscription', ['params'=>$users->sortParams('created')]);?> </th>
+				<th>actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,6 +23,7 @@
 				<td><?php echo $user->valid?'Yes':'No'; ?></td>
 				<td><?php echo $this->Time->since($user->lastLogin); ?></td>
 				<td><?php echo $this->Time->toHuman($user->created); ?></td>
+				<th><?php echo $this->link('<i class="fa fa-trash" aria-hidden="true"></i>', ['action'=>'delete','params'=>['_id'=>$user->_id]],['class'=>'btn-trash']);?></th>
 			</tr>
 		<?php endforeach ?>
 		</tbody>

@@ -13,7 +13,7 @@
 namespace App\Controller;
 
 use SkankyDev\Controller\MasterController;
-use Skankydev\Utilities\Token;
+use SkankyDev\Utilities\Token;
 use SkankyDev\EventManager;
 use SkankyDev\Auth;
 
@@ -38,6 +38,17 @@ class UserController extends MasterController {
 		$users = $this->User->paginate($option);
 
 		$this->view->set(['users' => $users]);
+	}
+
+	private function delete($_id){
+		if(!empty($_id)){
+			if($this->User->delete(['_id' => $_id])){
+				$this->Flash->set('ca marche',['class' => 'success']);
+			}else{
+				$this->Flash->set('ca marche pas',['class' => 'error']);
+			}
+			$this->request->redirect(['action'=>'index']);
+		}
 	}
 
 	private function view($login){
@@ -86,29 +97,36 @@ class UserController extends MasterController {
 		if($this->request->isPost()){
 			$data = $this->request->data;
 			$user = $this->User->createDocument($data);
-			if($data->password === $data->confirme){
-				if($this->User->isValid($user)){
-					$user->password = password_hash($data->password, PASSWORD_BCRYPT);
-					$user->verifToken = new token();
-					$user->lastLogin = false;
-					$user->valid = false;
-					if($this->User->save($user)){
-						$this->Mail->creatMail($user->email,'activation de votre compte','user.active',['user'=>$user]);
-						$this->Mail->sendMail();
-						$this->Flash->set('un mail de confirmation vous a été envoyé',['class' => 'success']);
-						$this->request->redirect('/');
+			if(isset($data->cgu)){
+				if($data->password === $data->confirme){
+					if($this->User->isValid($user)){
+						$user->password = password_hash($data->password, PASSWORD_BCRYPT);
+						$user->verifToken = new token();
+						$user->lastLogin = false;
+						$user->valid = false;
+						if($this->User->save($user)){
+							$this->Mail->creatMail($user->email,'activation de votre compte','user.active',['user'=>$user]);
+							$this->Mail->sendMail();
+							$this->Flash->set('un mail de confirmation vous a été envoyé',['class' => 'success']);
+							$this->request->redirect('/');
+						}else{
+							$this->Flash->set('oupse on a un problème (-_-)',['class' => 'warning']);
+							unset($user->password);
+							$this->request->data = $user;
+						}
 					}else{
 						$this->Flash->set('oupse on a un problème (-_-)',['class' => 'warning']);
 						unset($user->password);
 						$this->request->data = $user;
-					}
+					}				
 				}else{
-					$this->Flash->set('oupse on a un problème (-_-)',['class' => 'warning']);
-					unset($user->password);
-					$this->request->data = $user;
-				}				
+					$data->messageValidate['confirme'] = 'les mdp c\'est pas les meme (>_<) !';
+					unset($data->password);
+					unset($data->confirme);
+					$this->request->data = $data;
+				}
 			}else{
-				$data->messageValidate['confirme'] = 'les mdp c\'est pas les meme (>_<) !';
+				$data->messageValidate['cgu'] = 'merci d\'accepter les CGU';
 				unset($data->password);
 				unset($data->confirme);
 				$this->request->data = $data;
@@ -124,13 +142,11 @@ class UserController extends MasterController {
 				$user->valid = true;
 				$this->User->save($user);
 				$this->Flash->set('votre compte a bien etais activer',['class' => 'success']);
-				$user->_id = $user->_id->__toString();
-				$link = Auth::getInstance()->setAuth($user);
-				EventManager::getInstance()->event('users.login',$this);
 				$this->request->redirect('/');
 			}	
+		}else{
+			throw new \Exception("error user not found", 5102);
 		}
-		$this->Flash->set('oupse on a un problème (-_-)',['class' => 'warning']);
 	}
 
 	public function passwordLost(){
@@ -178,8 +194,8 @@ class UserController extends MasterController {
 		}else{
 			throw new \Exception("page not found", 404);
 		}
-
 	}
+
 
 	public function login(){
 		if($this->request->isPost()){
@@ -191,8 +207,14 @@ class UserController extends MasterController {
 						$this->Flash->set('votre compte n\'est pas activé',['class' => 'warning']);
 						$this->request->redirect('/');
 					}
-					$this->User->updateLogin($user);
+					$cookiToken = '';
 
+					if(isset($data->remember)){
+						$token = new token();
+						$cookiToken = $token->value;
+						Auth::getInstance()->setCookieTokent($user->email,$cookiToken);
+					}
+					$this->User->updateLogin($user,$cookiToken);
 					$user->_id = $user->_id->__toString();//MongoDB\BSON\ObjectID fatal error session
 					$link = Auth::getInstance()->setAuth($user);
 					EventManager::getInstance()->event('users.login',$this);

@@ -40,10 +40,13 @@ function debug($data,$message = ''){
 			echo 'debug : <span class="debug-keyword">'.$type.'</span> from '.$source;
 		}
 	
-
+		if(is_bool($data)){
+			$output = $data?'true':'false';
+		}else{
 ob_start();
 print_r($data);
 $output = ob_get_clean();
+		}
 
 		if(SkankyDev\Config\Config::getDebug()>1){
 			$output = preg_replace("/\n[ ]*\(/", " (", $output);

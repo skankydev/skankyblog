@@ -197,12 +197,14 @@ class NoSqlModel extends MasterModel {
 	public function delete($query = []){
 		if(!empty($query)){
 			EventManager::getInstance()->event('model.query.delete',$this,$query);
+			$this->convertId($query);
+			//debug($query);die();
 			return $this->collection->deleteOne($query);
 		}
 		return false;
 	}
 
-	public function convertId($data){
+	public function convertId(&$data){
 		foreach ($data as $key => $value) {
 			if(preg_match('/[a-zA-Z0-9_-]*_id/', $key)){
 				$data[$key] = new ObjectID($value);

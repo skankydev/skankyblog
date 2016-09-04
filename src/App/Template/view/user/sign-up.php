@@ -3,6 +3,7 @@
 	<section id="Login">
 		<header><h1><?php echo _('Sign Up'); ?></h1></header>
 		<?php echo $this->Form->start($this->request->url(['action'=>'signUp'])); ?>
+		<?php $cgu = 'J\'accepte les '.$this->link('Conditions Générales d\'Utilisation', ['controller'=>'page','action'=>'cgu']);?>
 		<section>
 			<?php echo $this->Form->fieldset([
 				'fieldset'=> ['class'=>'fieldset-user'],
@@ -12,6 +13,7 @@
 						'login'    => ['label'=>'login'],
 						'password' => ['label'=>'password','type'=>'password'],
 						'confirme' => ['label'=>'confirmer password','type'=>'password'],
+						'cgu'      => ['label'=>$cgu,'type'=>'checkbox'],
 					]
 			]); ?>
 		</section>

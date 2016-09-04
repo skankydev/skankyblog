@@ -20,15 +20,6 @@ class Session
 {
 	use ArrayPathable;
 	
-	private static $_instance = null;
-
-	public static function getInstance() {
-		if(is_null(self::$_instance)) {
-			self::$_instance = new Cookie();  
-		}
-		return self::$_instance;
-	}
-
 	/**
 	 * get value in session path
 	 * @param  string $path the path to the data separated by dot
@@ -63,6 +54,7 @@ class Session
 	static function start(){
 		session_start();
 	}
+
 	/**
 	 * destroy session
 	 */

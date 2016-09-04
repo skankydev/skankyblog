@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=<?php echo '"'.Skankydev\I18n\Localization::getLang().'"'; ?>>
+<html lang=<?php echo '"'.SkankyDev\I18n\Localization::getLang().'"'; ?>>
 <head>
 	<meta charset="UTF-8" />
 	<link rel="icon" type="image/png" href="/favicon.ico" />

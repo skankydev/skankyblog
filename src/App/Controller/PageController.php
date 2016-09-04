@@ -1,4 +1,5 @@
-<?php /**
+<?php
+/**
  * Copyright (c) 2015 SCHENCK Simon
  * 
  * Licensed under The MIT License
@@ -10,12 +11,14 @@
  *
  */
 
-namespace SkankyDev\View\Helper;
+namespace App\Controller;
 
-use SkankyDev\View\Helper\MasterHelper;
-/**
-* 
-*/
-class MasterHelper {
+use SkankyDev\Controller\MasterController;
+
+class PageController extends MasterController {
 	
+	public function cgu(){
+
+	}
+
 }

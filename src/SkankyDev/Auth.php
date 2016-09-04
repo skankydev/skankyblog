@@ -23,7 +23,7 @@ class Auth
 {
 	private static $_instance = null;
 
-	var $loged = false;
+	static $loged = false;
 
 	public static function getInstance() {
 		if(is_null(self::$_instance)) {
@@ -33,7 +33,7 @@ class Auth
 	}
 	public static function isAuthentified(){
 		if(!is_null(self::$_instance)) {
-			return self::$_instance->loged;
+			return self::$loged;
 		}
 		return false;
 	}
@@ -45,19 +45,18 @@ class Auth
 	function __construct() {
 		$auth = Session::get('skankydev.auth');
 		if($auth){
-			$this->loged = true;
+			self::$loged = true;
 		}
 		$this->historique = new Historique();
 		$this->userAgent = new UserAgent();
-		$this->cookie    = new Cookie('skankydev.auth',Config::get('Auth.cookieTimer'));
+		$this->cookie    = new Cookie('skankydev_auth',Config::get('Auth.cookieTimer'));
 		$this->historique->updateHistorique();
 		$current = $this->historique->getCurrent();
 		$controller = Config::get('Auth.redirectAction.controller');
 		if($current['link']['controller']!==$controller){
 			Session::delete('skankydev.backlink');
 		}
-		//$this->cookie->set('test.truc',['test1'=>'youpi1','test2'=>'youpi2']);
-		if(empty($_COOKIE)){
+		if(empty($_COOKIE)||($this->historique->pageCount()==1)){
 			$this->firstStep();
 		}
 		EventManager::getInstance()->event('auth.construct',$this);
@@ -82,7 +81,7 @@ class Auth
 	public function setAuth($auth){
 
 		Session::set('skankydev.auth',$auth);
-		$this->loged = true;
+		self::$loged = true;
 		$link = Session::get('skankydev.backlink');
 		Session::delete('skankydev.backlink');
 		return $link['link'];
@@ -91,7 +90,9 @@ class Auth
 	public function unsetAuth(){
 		$link = $this->historique->comeFrom();
 		Session::delete('skankydev.auth');
-		$this->loged = false;
+		self::$loged = false;
+		$this->deleteCookieTokent();
+
 		return $link['link'];
 	}
 
@@ -104,5 +105,17 @@ class Auth
 		if(!Session::get('skankydev.backlink')){
 			Session::set('skankydev.backlink',$this->historique->comeFrom());
 		}
+	}
+
+	public function setCookieTokent($email,$token){
+		return $this->cookie->set('user',['email'=>$email,'token'=>$token]);
+	}
+	
+	public function getCookieToken(){
+		return $this->cookie->get('user');
+	}
+
+	public function deleteCookieTokent(){
+		return $this->cookie->delete('user');
 	}
 }

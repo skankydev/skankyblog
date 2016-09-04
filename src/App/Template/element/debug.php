@@ -8,7 +8,7 @@
 				<button class="btn-debug hideaway-btn">Historique</button>
 			</header>
 			<section class="widget-debug-content">
-				<?php echo $this->element('histories',Skankydev\Auth::getInstance()->getHistories()); ?>
+				<?php echo $this->element('histories',SkankyDev\Auth::getInstance()->getHistories()); ?>
 			</section>
 		</div>
 		<div class="widget-debug hideaway">
@@ -28,7 +28,7 @@
 				<button class="btn-debug hideaway-btn">Debug Listener</button>
 			</header>
 			<section class="widget-debug-content">
-				<?php debug(Skankydev\EventManager::getInstance()->getListener('Debug')); ?>
+				<?php debug(SkankyDev\EventManager::getInstance()->getListener('Debug')); ?>
 			</section>
 		</div>
 		<div class="widget-debug hideaway">
@@ -36,7 +36,7 @@
 				<button class="btn-debug hideaway-btn">Event Mapping</button>
 			</header>
 			<section class="widget-debug-content">
-				<?php debug(Skankydev\EventManager::getInstance()->getEventMapping()); ?>
+				<?php debug(SkankyDev\EventManager::getInstance()->getEventMapping()); ?>
 			</section>
 		</div>
 		<div class="widget-debug hideaway">
@@ -44,7 +44,7 @@
 				<button class="btn-debug hideaway-btn">Listener</button>
 			</header>
 			<section class="widget-debug-content">
-				<?php debug(Skankydev\EventManager::getInstance()->getListenerListe()); ?>
+				<?php debug(SkankyDev\EventManager::getInstance()->getListenerListe()); ?>
 			</section>
 		</div>
 		<div class="widget-debug debug-time">
