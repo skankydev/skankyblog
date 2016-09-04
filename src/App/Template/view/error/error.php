@@ -1,3 +1,4 @@
+<?php $this->setTitle('error'); ?>
 <section>
 	<header>
 		<h1>Error</h1>

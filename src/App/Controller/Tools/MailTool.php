@@ -14,18 +14,23 @@
 namespace App\Controller\Tools;
 
 use SkankyDev\Controller\Tools\MasterTool;
+use SkankyDev\Request;
 use SkankyDev\Config\Config;
+use SkankyDev\View\Helper\HtmlHelper;
 
 use Nette\Mail\Message;
 use Nette\Mail\SmtpMailer;
 
 class MailTool extends MasterTool {
 	
+	use HtmlHelper;
+
 	public $conf;
 	public $sender;
 	public $mail;
 
 	public function __construct(){
+		$this->request = Request::getInstance();
 		$this->conf = Config::get('smtp.default');
 		$this->sender = $this->conf['sender'];
 		unset($this->conf['sender']);
@@ -57,6 +62,7 @@ class MailTool extends MasterTool {
 	}
 
 	public function getBody($template,$var = []){
+		$template = join(DS,explode('.', $template));
 		$fileName = Config::mailDir().DS.$template.'.php';
 		extract($var);
 		ob_start();

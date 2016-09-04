@@ -26,4 +26,12 @@ class MessageModel extends NoSqlModel {
 		$validator->addRules(['message'],['notEmpty'],'ne doit pas etre vide');
 	}
 
+	public function install(){
+		//debug($this);
+		$client = MongoClient::getInstance();
+		$option = [];
+		$option['autoIndexId'] = true;
+		$client->createCollection('message',$option);
+		return 'les messages c\'est bon aussi ';
+	}
 }

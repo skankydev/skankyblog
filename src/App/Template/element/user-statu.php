@@ -4,8 +4,8 @@
 	<?php if (empty($user)): ?>
 		<li><?php echo $this->link('login', ['controller'=>'user','action'=>'login']);?></li>
 	<?php else: ?>
-		<li><?php echo $this->link($user->username, ['controller'=>'user','action'=>'view','params'=>[$user->username]]);?></li>
-		<li><?php echo $this->link('logout', ['controller'=>'user','action'=>'logout']);?> </li>
+		<li><?php echo $this->link($user->login, ['controller'=>'user','action'=>'profil']);?></li>
+		<li><?php echo $this->link('&hksearow;', ['controller'=>'user','action'=>'logout']);?> </li>
 	<?php endif ?>
 	</ul>
 </nav>

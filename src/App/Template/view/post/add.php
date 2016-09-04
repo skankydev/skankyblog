@@ -1,3 +1,4 @@
+<?php $this->setTitle('add post'); ?>
 <section>
 	<header><h1>Add Post</h1></header>
 	<?php echo $this->Form->start($this->request->url(['action'=>'add'])); ?>

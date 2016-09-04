@@ -82,7 +82,33 @@ a img{
 pre{
 	tab-size: 2;
 }
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+thead{
+	background: #e7e7e7
+}
 
+td, th {
+    border: 1px solid #7f7f7f;
+    text-align: left;
+    padding: 4px;
+}
+th>a,
+th>a:visited{
+	text-decoration: none;
+	color:#000;
+}
+
+th>a:hover{
+	text-decoration: underline;
+	color:blue;
+}
+
+tr:nth-child(even) {
+    background-color: #EFEFEF;
+}
 /*---------------Form------------------*/
 
 form {
@@ -103,7 +129,7 @@ fieldset legend {
 form div {
 	clear: both;
 	vertical-align: text-top;
-	margin:8px;
+	margin:8px 0px;
 }
 
 form .hidden{
@@ -374,7 +400,7 @@ input[type=submit] {
 
 }
 /*------fait mumuse avec flex---------*/
-div[class^='layout-']{
+div[class^="layout-"]{
 	display: flex;
 	flex-direction: row;
 }
@@ -424,6 +450,7 @@ div[class^='layout-']{
 	text-align: right;
 	color: #04B431;
 	width: 100%;
+	margin-left: 10%;
 }
 
 .sit-title-icone{
@@ -433,7 +460,7 @@ div[class^='layout-']{
 /*-------------User-------------------*/
 #Login{
 	display: inline-block;
-	width: 33%;
+	width: 45%;
 }
 #Login .field{
 	display: block;
@@ -498,7 +525,9 @@ div[class^='layout-']{
 .checkbox-multiple{
 	display: inline-block;
 }
-
+.checkbox.not-valid > label {
+	margin-top: 20px;
+}
 .not-valid{
 	border: dashed 1px;
 	border-color : rgba(211,28,28,1);
@@ -757,13 +786,14 @@ a[class^="btn-"]:visited {
 }
 .paging-current,
 .paging-current:hover{
-}
-a.paging-disabled,
-a.paging-disabled:hover{
 	background: none;
 	color: #303030;
 	font-size: 0.8em;
 	font-style: italic;
+}
+a.paging-disabled,
+a.paging-disabled:hover{
+	display: none;
 }
 
 
@@ -807,7 +837,7 @@ a.paging-disabled:hover{
 	text-align: right;
 	background-color:#000;
 }
-div[class*='trace-']{
+div[class*="trace-"]{
 	display: inline-block;
 	margin: 2px;
 }

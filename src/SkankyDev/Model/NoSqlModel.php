@@ -32,7 +32,6 @@ class NoSqlModel extends MasterModel {
 		parent::__construct($name);
 		$name = strtolower($name);
 		$this->collection = MongoClient::getInstance()->getCollection($name);
-
 		$this->defineDocument();
 	}
 
@@ -64,7 +63,6 @@ class NoSqlModel extends MasterModel {
 				$var = explode(':', $tmp->getMessage());
 				$var = explode(' ', $var[2]);
 				$var = $var[1];
-				debug($var);
 				$document->messageValidate[$var] = _('is already used');
 				return false;
 			}
@@ -199,12 +197,14 @@ class NoSqlModel extends MasterModel {
 	public function delete($query = []){
 		if(!empty($query)){
 			EventManager::getInstance()->event('model.query.delete',$this,$query);
+			$this->convertId($query);
+			//debug($query);die();
 			return $this->collection->deleteOne($query);
 		}
 		return false;
 	}
 
-	public function convertId($data){
+	public function convertId(&$data){
 		foreach ($data as $key => $value) {
 			if(preg_match('/[a-zA-Z0-9_-]*_id/', $key)){
 				$data[$key] = new ObjectID($value);

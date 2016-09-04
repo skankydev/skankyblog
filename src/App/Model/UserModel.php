@@ -15,6 +15,8 @@ namespace App\Model;
 
 use SkankyDev\Model\NoSqlModel;
 use SkankyDev\Database\MongoClient;
+use MongoDB\Driver\BulkWrite;
+use MongoDB\BSON\UTCDateTime;
 
 class UserModel extends NoSqlModel {
 
@@ -23,15 +25,14 @@ class UserModel extends NoSqlModel {
 	];
 
 	public function initValidator($validator){
-		$validator->addRules(['username','password','email'],['notEmpty'],'ne doit pas etre vide');
-		$validator->addRules(['username'],['regex'=>['preg'=>'/^[a-zA-Z0-9_-]{3,16}$/']],'doit contenir que des caractères alphanumériques');
+		$validator->addRules(['login','password','email'],['notEmpty'],'ne doit pas etre vide');
+		$validator->addRules(['login'],['regex'=>['preg'=>'/^[a-zA-Z0-9_-]{3,16}$/']],'doit contenir que des caractères alphanumériques');
 		$validator->addRules(['password'],['minLength'=>['min'=>8]],'doit contenir au moins huit caractères');
 		$validator->addRules(['email'],['isEmail'],'doit être une adresse mail valide');
-		$validator->trimTag(['username','email']);
+		$validator->trimTag(['login','email']);
 	}
 
 	public function install(){
-		//debug($this);
 		$client = MongoClient::getInstance();
 		$option = [];
 		$option['autoIndexId'] = true;
@@ -43,4 +44,12 @@ class UserModel extends NoSqlModel {
 		return 'UserModel has been configured';
 	}
 
+	public function updateLogin($user,$tokenCookie = ''){
+		$newDate = new UTCDateTime(time());
+		$query = ['$set'=>['lastLogin'=>$newDate]];
+		if(!empty($tokenCookie)){
+			$query['$set']['cookie'] = $tokenCookie;
+		}
+		return $this->collection->updateOne(['_id'=>$user->_id],$query);
+	}
 }

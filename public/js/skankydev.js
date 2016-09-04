@@ -80,6 +80,7 @@ $(document).ready(function(){
 			}
 			me.removeClass('field-focus');
 		});
+
 	}
 	$(document).initForm();
 });

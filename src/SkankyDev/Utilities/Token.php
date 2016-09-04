@@ -13,7 +13,8 @@
 
 namespace SkankyDev\Utilities;
 
-class Token {
+
+class Token{
 	
 	public $value;
 	public $time;
@@ -32,6 +33,7 @@ class Token {
 	public function checkValue($value){
 		return ($this->value === $value);
 	}
+
 
 }
 

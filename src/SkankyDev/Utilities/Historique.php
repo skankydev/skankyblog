@@ -84,25 +84,28 @@ class Historique
 	 * @return array the last request
 	 */
 	function getLastDirect(){
+		$history = Session::get('skankydev.historique');
 		$retour = false;
 		$i = 1;
-		$c = count($this->history);
-		while ( ($i<$c) && ($this->history[$i]['direct'] == false) ){$i++;}
+		$c = count($history);
+		while ( ($i<$c) && ($history[$i]['direct'] == false) ){$i++;}
 		if($i<$c){
-			$retour = $this->history[$i];
+			$retour = $history[$i];
 		}
 		return $retour;
 	}
-
 
 	/**
 	 * set the last
 	 * @return [type] [description]
 	 */
 	function notDirect(){
-		$this->history[0]['direct'] = false;
+		//$this->history[0]['direct'] = false;
 		Session::set('skankydev.historique.0.direct',false);
 	}
 
-	
+	function pageCount(){
+		$history = Session::get('skankydev.historique');
+		return count($history);
+	}
 }

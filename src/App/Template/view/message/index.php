@@ -8,6 +8,7 @@
 			<footer>
 			<?php 
 				//TO DO un helper pour les date
+				//le helper ne poura surment pas etre appeler va faloir tester
 				/*$date = $message->created;
 				$myDate = new DateTime();
 				$ts = (int)$date->__toString();

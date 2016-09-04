@@ -1,19 +1,35 @@
+<?php $this->setTitle('users'); ?>
 <section id='Users'>
 	<header>
-		<h1>Users</h1>
-		<?php echo $this->link('Add User',['action'=>'add']); ?>
+		<h1><?php echo _("Users"); ?></h1>
 	</header>
 	<section class="liste-users">
+	<table>
+		<thead>
+			<tr>
+				<th><?php echo $this->link('login', ['params'=>$users->sortParams('login')]);?> </th>
+				<th><?php echo $this->link('e-mail', ['params'=>$users->sortParams('email')]);?> </th>
+				<th><?php echo $this->link('valid', ['params'=>$users->sortParams('valid')]);?> </th>
+				<th><?php echo $this->link('last login', ['params'=>$users->sortParams('lastLogin')]);?> </th>
+				<th><?php echo $this->link('inscription', ['params'=>$users->sortParams('created')]);?> </th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
 		<?php foreach ($users as $user): ?>
-			<section class="users-content">
-				<header class="auteur">
-					<i class="fa fa-user success"></i>
-					<?php echo $user->username; ?>
-					
-				</header>
-				<article><?php echo $user->email; ?></article>
-			</section>
+			<tr>
+				<td><?php echo $this->link($user->login, ['action'=>'view','params'=>['login'=>$user->login]]);?></td>
+				<td><?php echo $user->email; ?></td>
+				<td><?php echo $user->valid?'Yes':'No'; ?></td>
+				<td><?php echo $this->Time->since($user->lastLogin); ?></td>
+				<td><?php echo $this->Time->toHuman($user->created); ?></td>
+				<th><?php echo $this->link('<i class="fa fa-trash" aria-hidden="true"></i>', ['action'=>'delete','params'=>['_id'=>$user->_id]],['class'=>'btn-trash']);?></th>
+			</tr>
 		<?php endforeach ?>
+		</tbody>
+	</table>
 	</section>
-
+	<footer>
+		<?php echo $this->element('paginator',$users->getOption()); ?>
+	</footer>
 </section>

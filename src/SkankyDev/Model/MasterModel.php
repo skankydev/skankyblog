@@ -67,12 +67,20 @@ class MasterModel
 	}
 
 	/**
-	 * load a Collection 
-	 * @param  string $name the name
+	 * load a Model 
+	 * @param  string $name the shor name of the model (ex: Data is for App\Model\DataModel)
+	 * @param  bool   $full if the class name is full (default not full)
 	 * @return mixed        a collection
 	 */
-	static function load($name){
-		$cName = Config::getCurentNamespace().'\\Model\\'.$name.'Model';
+	static function load($name,$full = false){
+		if(!$full){
+			$cName = Config::getCurentNamespace().'\\Model\\'.$name.'Model';
+		}else{
+			$cName = $name;
+			$name = explode('\\', $name);
+			$name = end($name);
+			$name = str_replace('Model', '', $name);
+		}
 		return Factory::load($cName,['name'=>$name],false);
 	}
 

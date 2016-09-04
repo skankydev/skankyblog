@@ -28,6 +28,7 @@ $conf =  [
 	],
 	'smtp' => $smtp,
 	'debug' => 2,
+	
 ];
 return $conf;
 

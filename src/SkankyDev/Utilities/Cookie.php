@@ -34,6 +34,7 @@ class Cookie {
 			$this->data = unserialize($_COOKIE[$this->name]);
 		}
 	}
+
 	/**
 	 * set cookie
 	 */
@@ -70,6 +71,7 @@ class Cookie {
 	 * @return void
 	 */
 	public function delete($path = ''){
-		return $this->arrayDelete($path,$_SESSION);
+		$this->arrayDelete($path,$this->data);
+		return $this->setCookie();
 	}
 }

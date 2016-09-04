@@ -21,7 +21,7 @@ class OwnerBehavior extends MasterBehavior {
 	public function beforeInsert($data,$entity=null){
 		//debug($data);die();
 		$auth = Auth::getInstance()->getAuth();
-		$data->author = $auth->username;
+		$data->author = $auth->login;
 	}
 
 	public function afterInsert($data,$entity=null){

@@ -32,7 +32,6 @@ class Paginator implements Iterator {
 	 */
 	function __construct($data){
 		$this->data = $data;
-		
 	}
 
 	/**
@@ -68,5 +67,25 @@ class Paginator implements Iterator {
 		$this->option['start'] = ($start<$this->option['first'])?$this->option['first'] : $start;
 		$stop = floor($this->option['range']/2) + $this->option['page'] + ($this->option['range']%2);
 		$this->option['stop'] = ($stop>$this->option['last'])?($this->option['last']+1):$stop;
+	}
+
+	/**
+	 * get param array for sort link
+	 * @param  string $field the field
+	 * @return array         the params for sort link
+	 */
+	public function sortParams($field){
+		$sort = $this->option['sort'];
+		$key = array_keys($sort);
+		$params['page'] = 1;
+		$params['field'] = $field;
+		if(in_array($field, $key)){
+			$this->option['params'] = $params;
+			$this->option['params']['order'] = $sort[$field];
+			$params['order'] = $sort[$field]*-1;
+		}else{
+			$params['order'] = 1;
+		}
+		return $params;
 	}
 }

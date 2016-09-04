@@ -71,6 +71,7 @@ class Request {
 				if(!$csrf->checkValue($token) || !$csrf->checkTime()){
 					throw new Exception("CRSF error", 500);
 				}else{
+					//Session::delete('skankydev.form.csrf');
 					unset($this->data->_token);
 				}
 			}
@@ -94,9 +95,9 @@ class Request {
 	}
 
 	/**
-	 * get value form $_POST
+	 * get value form $_GET
 	 * @param  string $name value
-	 * @return mixed       $_POST | $_POST[$value]
+	 * @return mixed       $_GET | $_GET[$value]
 	 */
 	public function getGet($name = ''){
 		if($this->isPost()){

@@ -1,4 +1,3 @@
-<?php $this->setTitle(' - framework'); ?>
 <section id="Index">
 	<header>
 		
