@@ -21,6 +21,7 @@ use SkankyDev\MasterModel;
 class PostController extends MasterController {
 	
 	public function index($page=1){
+		//c'est mon tour ?
 		$option = [
 			'limit'=> 5,
 			'query'=> [],
