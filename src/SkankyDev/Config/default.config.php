@@ -29,13 +29,16 @@ return [
 		'Collection' => 'Model',
 		'Behavior'   => 'Model',
 	],
-	'skankydev'  => ['version'=>'0.0.2'],
+	'skankydev'  => [
+		'version'=>'0.0.1'
+	],
 	'debug' => false,
 	'class' => [
 		'helper' => [
 			'Flash' => 'SkankyDev\View\Helper\FlashMessagesHelper',
 			'Form'  => 'SkankyDev\View\Helper\FormHelper',
 			'Auth'  => 'SkankyDev\View\Helper\AuthHelper',
+			'Time'  => 'SkankyDev\View\Helper\TimeHelper',
 		],
 		'behavior' => [
 			'Timed' => 'SkankyDev\Model\Behavior\TimedBehavior',
@@ -46,5 +49,10 @@ return [
 		'listener' => [ 
 			'Debug' => 'SkankyDev\Listener\DebugListener',
 		]
-	]
+	],
+	'timehelper'=> [
+		'format'=>'Y-m-d H:i:s',
+		'timezone'=>'UTC'
+	],
+
 ];

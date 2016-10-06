@@ -22,7 +22,7 @@ class HtmlView extends MasterView {
 	
 	use HtmlHelper;
 
-	public $helpers = ['Form','Flash','Auth'];
+	public $helpers = ['Form','Flash','Auth','Time'];
 
 	public $keywords = '';
 	public $title = '';

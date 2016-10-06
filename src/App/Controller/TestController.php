@@ -14,24 +14,30 @@
 namespace App\Controller;
 
 use SkankyDev\Controller\MasterController;
-use SkankyDev\Utilities\Session;
-use SkankyDev\Utilities\Token;
-use SkankyDev\Auth;
 
 class TestController extends MasterController {
 	
-	public function index(){
-		Session::destroy();
-		//$token = new Token();
-		//$Auth = Auth::getInstance();
-		//debug($token);'skankydev.historique'
-		//debug(Session::get('skankydev.historique'));
-		//debug(Session::get('test.token'));
-		//debug($Auth->cookie->get('user.token'));
-		//$Auth->cookie->set('user.token',$token->value);
-		//$data = $Auth->cookie->get();
-		//debug($data);
-		//debug($_COOKIE);
+	public function upload(){
+		//petit exemple d upload qui marche
+		if ($this->request->isPost()) {
+			$files = $this->request->getFiles();
+			if($files['img']['error']==UPLOAD_ERR_OK){
+				$dir = PUBLIC_FOLDER.DS.'img'.DS.'uploads'.DS;
+				if(!file_exists($dir)){
+					mkdir($dir,0755,true);
+				}
+				$exv = ['jpg','jpeg','gif','png'];
+				$ex = explode('.', $files['img']['name']);
+				$ex = end($ex);
+				if(in_array($ex, $exv)){//peux etre faire une limite de taille: && $files['img']['size'] < 3000000
+					if(move_uploaded_file($files['img']['tmp_name'] , $dir.$files['img']['name'])){
+						$this->Flash->set('ca marche',['class' => 'success']);
+					}else{
+						$this->Flash->set('ca marche pas',['class' => 'error']);
+					}
+				}
+			}
+		}
 	}
 
 }

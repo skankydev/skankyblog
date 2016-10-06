@@ -5,7 +5,7 @@ return [
 		'action'   =>'index'
 	],
 	'paginator'=>[
-		'limit'=>3,
+		'limit'=>25,
 		'range'=>5
 	],
 	'routes' =>[
@@ -39,7 +39,7 @@ return [
 	'class' => [
 		'helper' => [
 			'Size' => 'App\View\Helper\SizeHelper',
-			'Time' => 'App\View\Helper\TimeHelper',
+
 		],
 		'behavior' => [
 			'Owner' => 'App\Model\Behavior\OwnerBehavior'
@@ -49,16 +49,18 @@ return [
 		],
 		'tools' => [
 			'Mail' => 'App\Controller\Tools\MailTool',
+		],
+		'formElement' => [
+			'Wysiwyg' => 'App\View\FormElement\WysiwygElement'
 		]
 	],
 	'listener'=> [
 		'Debug',
 		'Users',
 	],
-	'app'=>[
-		'timehelper'=> [
-			'format'=>'H:i:s d/m/Y',
-			'timezone'=>'Europe/Paris'
-		],
-	]
+	'timehelper'=> [
+		'format'=>'H:i:s d/m/Y',
+		'timezone'=>'Europe/Paris'
+	],
+
 ];

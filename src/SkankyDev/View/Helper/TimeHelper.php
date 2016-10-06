@@ -27,7 +27,7 @@ class TimeHelper extends MasterHelper
 
 	function __construct($conf = []){
 		if(empty($conf)){
-			$conf = Config::get('app.timehelper');;
+			$conf = Config::get('timehelper');;
 		}
 		$this->timezone = new DateTimeZone($conf['timezone']);
 		$this->format = $conf['format'];
@@ -78,7 +78,7 @@ class TimeHelper extends MasterHelper
 		if(!$full){
 			$string = array_slice($string, 0, 1);
 		}
-		return $string ? implode(', ', $string) : 'just now';	
+		return $string ? implode(', ', $string) : _('just now');	
 	}
 
 }

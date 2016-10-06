@@ -17,11 +17,11 @@ include_once 'Config'.DS.'Config.php';
 
 use SkankyDev\Request;
 use SkankyDev\Router;
-use SkankyDev\Controller\MasterController;
 use SkankyDev\MasterView;
 use SkankyDev\EventManager;
 use SkankyDev\Config\Config;
 use SkankyDev\Utilities\Session;
+use SkankyDev\Controller\MasterController;
 use SkankyDev\Controller\ErrorController;
 use Exception;
 
@@ -36,6 +36,7 @@ class Application {
 			$this->request = Request::getInstance();
 			$this->router = Router::getInstance();
 			$this->auth = Auth::getInstance();
+			$this->auth->checkFirstStep();
 			include_once APP_FOLDER.DS.'config'.DS.'bootstrap.php';
 			$this->request->securePost();
 

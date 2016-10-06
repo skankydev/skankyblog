@@ -23,9 +23,6 @@ class UserController extends MasterController {
 		'Flash','Mail'
 	];
 
-	public $helpers = [
-		'Time'
-	];
 
 	private function index($page = 1,$field = 'login',$order = 1){
 		$option = [
@@ -47,8 +44,8 @@ class UserController extends MasterController {
 			}else{
 				$this->Flash->set('ca marche pas',['class' => 'error']);
 			}
-			$this->request->redirect(['action'=>'index']);
 		}
+		$this->request->redirect(['action'=>'index']);
 	}
 
 	private function view($login){
@@ -138,8 +135,9 @@ class UserController extends MasterController {
 	public function active($login,$token){
 		$user = $this->User->findOne(['login'=>$login,'valid'=>false]);
 		if(!empty($user)){
-			if( ($user->verifToken->value === $token) && (time() < ($user->verifToken->time+WEEK) )){
+			if( ($user->verifToken) && ($user->verifToken->value === $token) && (time() < ($user->verifToken->time+WEEK)) ){
 				$user->valid = true;
+				$user->verifToken = false;
 				$this->User->save($user);
 				$this->Flash->set('votre compte a bien etais activer',['class' => 'success']);
 				$this->request->redirect('/');
@@ -167,7 +165,7 @@ class UserController extends MasterController {
 	public function recoveryPass($login,$token){
 		$user = $this->User->findOne(['login'=>$login,'valid'=>true]);
 		if(!empty($user)){
-			if( !($user->verifToken->value === $token) || !(time() < ($user->verifToken->time+DAY) ) ){
+			if( !($user->verifToken) || !($user->verifToken->value === $token) || !(time() < ($user->verifToken->time+DAY)) ){
 				//token pas valide
 				throw new \Exception("error invalide token recoveryPass", 5101);
 			}
@@ -176,6 +174,7 @@ class UserController extends MasterController {
 				$data = $this->request->data;
 				if($data->password === $data->confirme){
 					$user->password = password_hash($data->password, PASSWORD_BCRYPT);
+					$user->verifToken = false;
 					if($this->User->save($user)){
 						$this->Flash->set('votre mot de passe a bien etais changer',['class' => 'success']);
 						$this->request->redirect('/');
@@ -218,7 +217,7 @@ class UserController extends MasterController {
 					$user->_id = $user->_id->__toString();//MongoDB\BSON\ObjectID fatal error session
 					$link = Auth::getInstance()->setAuth($user);
 					EventManager::getInstance()->event('users.login',$this);
-					$this->Flash->set('bienvenu '.$user->login,['class' => 'success']);
+					$this->Flash->set('bienvenu '.$user->login.'.',['class' => 'success']);
 					$this->request->redirect($link);
 				}
 			}
@@ -228,8 +227,9 @@ class UserController extends MasterController {
 	}
 
 	public function logout(){
+		$user = Auth::getInstance()->getAuth();
 		$link = Auth::getInstance()->unsetAuth();
-		$this->Flash->set('success',['class' => 'success']);
+		$this->Flash->set('À bientôt '.$user->login.'.',['class' => 'success']);
 		$this->request->redirect($link);
 	}
 }

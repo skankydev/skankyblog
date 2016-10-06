@@ -15,9 +15,10 @@ namespace SkankyDev\View\Helper;
 use SkankyDev\View\Helper\MasterHelper;
 use SkankyDev\View\Helper\Htmlhelper;
 use SkankyDev\Config\Config;
-use SkankyDev\Request;
 use SkankyDev\Utilities\Session;
 use SkankyDev\Utilities\Token;
+use SkankyDev\Factory;
+use SkankyDev\Request;
 /**
 * 
 */
@@ -29,6 +30,10 @@ class FormHelper extends MasterHelper {
 	private $dClass;
 	private $formAttr = ['accept-charset'=>"UTF-8"];
 	private $submitBtn = false;
+	private $calledElement = [];
+	private $script = '';
+	private $scriptFile = [];
+	private $cssFile = [];
 
 	/**
 	 * create the form object 
@@ -38,6 +43,9 @@ class FormHelper extends MasterHelper {
 		$request = Request::getInstance();
 		$this->data = $request->data;
 		$this->dClass = Config::get('form.class');
+		$this->elementList = Config::get('class.formElement');
+		$this->elementName = array_keys($this->elementList);
+
 	}
 
 	/**
@@ -185,10 +193,13 @@ class FormHelper extends MasterHelper {
 				$label .= $this->label($value['label'],$lAttr);
 				unset($value['label']);
 			}
+	
 			$input ='';
 			if(in_array($value['type'],$methods)){
 				$name = $value['type'];
 				$input .= $this->{$name}($key,$value);
+			}else if (in_array($value['type'],$this->elementName)) {
+				$input .= $this->callElement($key,$value);
 			}else{
 				$input .= $this->input($key,$value);
 			}
@@ -391,5 +402,38 @@ class FormHelper extends MasterHelper {
 		$attr['type'] = 'submit';
 		$retour = $this->surround($content,'button',$attr);
 		return $this->surround($retour,'div',['class'=>'submit'],false);
+	}
+
+	public function callElement($name,$attr){
+		$obj = $attr['type'];
+		$params = isset($attr['construct'])?$attr['construct']:[];
+		$value = $this->checkValue($name);
+		$elem = Factory::load($this->elementList[$obj],['form'=>&$this,'param'=>$params]);
+
+		return $elem->input($name,$attr,$value);
+	}
+
+	public function addScript($script){
+		$this->script .= $script;
+	}
+
+	public function getScript(){
+		return $this->script;
+	}
+
+	public function addScriptFile($file){
+		$this->scriptFile[]=$file;
+	}
+
+	public function getScriptFile(){
+		return $this->scriptFile;
+	}
+
+	public function addCssFile($file){
+		$this->cssFile[]=$file;
+	}
+
+	public function getCssFile(){
+		return $this->cssFile;
 	}
 }

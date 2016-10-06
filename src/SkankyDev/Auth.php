@@ -56,14 +56,14 @@ class Auth
 		if($current['link']['controller']!==$controller){
 			Session::delete('skankydev.backlink');
 		}
-		if(empty($_COOKIE)||($this->historique->pageCount()==1)){
-			$this->firstStep();
-		}
+		
 		EventManager::getInstance()->event('auth.construct',$this);
 	}
 
-	function firstStep(){
-		EventManager::getInstance()->event('auth.firstStep',$this);
+	public function checkFirstStep(){
+		if(empty($_COOKIE)||($this->historique->pageCount()==1)){
+			EventManager::getInstance()->event('auth.firstStep',$this);
+		}
 	}
 	
 	/**
@@ -118,4 +118,5 @@ class Auth
 	public function deleteCookieTokent(){
 		return $this->cookie->delete('user');
 	}
+
 }

@@ -26,5 +26,5 @@
 	<footer>
 		<?php echo $this->element('paginator',$posts->getOption()); ?>
 	</footer>
-	<?php echo $this->link('Add Post',['action'=>'add']); ?>
+	<?php echo $this->link('Add Post',['action'=>'add'],['class'=>'btn-default']); ?>
 </section>

@@ -1,0 +1,59 @@
+*{
+	margin : 0;
+	padding :0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box; 
+}
+
+body{
+	font-family: "Consolas";
+	width: 100%;
+	background : #E7E7E7;
+	scroll-behavior: smooth;
+	padding: 4px;
+}
+
+h1{
+	display: block;
+	font-size: 2em;
+	font-weight: bold;
+}
+h1,h2,h3,h4,h5,p{
+	padding: 4px;
+}
+
+.text-color-black{
+	color:black;
+}
+.text-color-gray{
+	color:gray;
+}
+.text-color-green{
+	color:green;
+}
+.text-color-red{
+	color:red;
+}
+.text-color-blue{
+	color:blue;
+}
+
+.post-img-left,
+.post-img-default,
+.post-img-right{
+	display: inline-block;
+	text-align: top;
+	margin: 8px;
+	border-radius: 10px;
+	border: 1px solid #EEE;
+	vertical-align: top;
+}
+
+.post-img-left{
+	float: left;
+
+}
+.post-img-right{
+	float: right;
+}

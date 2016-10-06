@@ -9,11 +9,11 @@
 			'input'   => [
 					'name'       => ['label'=>'name'],
 					'slug'       => ['label'=>'slug'],
-					'content'    => ['label'=>'content','type'=>'textarea','rows'=>'8','cols'=>'50'],
-					'tags'       => ['label'=>'tags','type'=>'select','option'=>['joli', 'test', 'machin','youpi','marche'],'multiple'=>'checkbox'],
+					'content'    => ['label'=>'content','type'=>'Wysiwyg'],
+					'tags'       => ['label'=>'tags','type'=>'select','option'=>$tags,'multiple'=>'checkbox'],
 					'online'     => ['label'=>'online','type'=>'checkbox'],
 					'categories' => ['label'=>'category','type'=>'select','option'=>['','html','css','php','js','MongoDB'],'class'=>'select-post']
-				]
+			]
 		]); ?>
 	</section>
 	<footer>
@@ -21,3 +21,12 @@
 	</footer>
 	<?php echo $this->Form->end(); ?>
 </section>
+<?php 
+	$files = $this->Form->getScriptFile();
+	foreach ($files as $file) {
+		$this->addJs($file);
+	}
+?>
+<?php $this->startScript(); ?>
+	<?php echo $this->Form->getScript(); ?>
+<?php $this->stopScript(); ?>

@@ -16,16 +16,15 @@ namespace App\Controller;
 use SkankyDev\Controller\MasterController;
 use SkankyDev\MasterModel;
 
-
-
 class PostController extends MasterController {
 	
 	public function index($page=1){
 		//c'est mon tour ?
+		//we ca vien
 		$option = [
 			'limit'=> 5,
 			'query'=> [],
-			'sort' => ['updated'=> -1],
+			'sort' => ['created'=> -1],
 			'page'=>(int)$page,
 		];
 		$posts = $this->Post->paginate($option);
@@ -38,10 +37,13 @@ class PostController extends MasterController {
 	}
 
 	private function add(){
+
 		if($this->request->isPost()){
 
 			$post = $this->Post->createDocument($this->request->data);
-			$post->slug = str_replace(' ', '-', $post->name);
+			if(empty($post->slug)){
+				$post->slug = str_replace(' ', '-', $post->name);				
+			}
 			if($this->Post->isValid($post)){
 				if($this->Post->save($post)){
 					$this->Flash->set('ca marche',['class' => 'success']);
@@ -55,6 +57,8 @@ class PostController extends MasterController {
 				$this->request->data = $post;
 			}
 		}
+		$tags = $this->_loadModel('taxonomie')->getList();
+		$this->view->set(['tags'=>$tags]);
 	}
 
 	private function edit($slug = ''){
@@ -74,7 +78,8 @@ class PostController extends MasterController {
 			}
 		}
 		$this->request->data = $post;
-		$this->view->set(['post' => $post]);
+		$tags = $this->_loadModel('taxonomie')->getList();
+		$this->view->set(['post' => $post,'tags'=>$tags]);
 	}
 
 	private function delete($slug = ''){
