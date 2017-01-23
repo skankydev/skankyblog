@@ -33,15 +33,21 @@ class UserModel extends NoSqlModel {
 	}
 
 	public function install(){
-		$client = MongoClient::getInstance();
-		$option = [];
-		$option['autoIndexId'] = true;
-		$client->createCollection('user',$option);
-		$index = [];
-		$index[0] = ['key'=>['login'=>1],'name'=>'login','unique'=>true];
-		$index[1] = ['key'=>['email'=>1],'name'=>'email','unique'=>true];
-		$client->createIndex('user',$index);
-		return 'UserModel has been configured';
+		try {
+			$client = MongoClient::getInstance();
+			$option = [];
+			$option['autoIndexId'] = true;
+			$client->createCollection('user',$option);
+			$index = [];
+			$index[0] = ['key'=>['login'=>1],'name'=>'login','unique'=>true];
+			$index[1] = ['key'=>['email'=>1],'name'=>'email','unique'=>true];
+			$client->createIndex('user',$index);
+			return 'UserModel has been configured';			
+		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
+			return 'UserModel already exists';			
+			
+		}
+
 	}
 
 	public function updateLogin($user,$tokenCookie = ''){

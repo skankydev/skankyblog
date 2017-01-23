@@ -4,6 +4,7 @@
 		<?php echo $this->link('Edit Post',['action'=>'edit', 'params'=>['sulg'=>$post->slug]],['class'=>'btn-warning']); ?>
 	</header>
 	<section><?php echo $post->content; ?></section>
+	<div class="clear"></div>
 	<footer>
 		<?php if (isset($post->tags)): ?>
 			<div class='tags'>
@@ -14,6 +15,7 @@
 		<?php endif ?>
 	</footer>
 </section>
+
 <section id="Message">
 <?php
 $post_id = $post->_id->__toString();

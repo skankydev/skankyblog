@@ -18,4 +18,56 @@ use SkankyDev\View\Helper\MasterHelper;
 */
 class MasterHelper {
 	
+	protected $script = '';
+	protected $scriptFile = [];
+	protected $cssFile = [];
+
+	/**
+	 * add script for htmlView
+	 * @param string $script some script
+	 */
+	public function addScript($script){
+		$this->script .= $script;
+	}
+
+	/**
+	 * get script added
+	 * @return string the script
+	 */	
+	public function getScript(){
+		return $this->script;
+	}
+
+	/**
+	 * add script file
+	 * @param string $file url of script
+	 */
+	public function addScriptFile($file){
+		$this->scriptFile[]=$file;
+	}
+
+	/**
+	 * get liste of script file
+	 * @return array a liste of script file
+	 */
+	public function getScriptFile(){
+		return $this->scriptFile;
+	}
+
+	/**
+	 * add css file
+	 * @param string $file url of css
+	 */
+	public function addCssFile($file){
+		$this->cssFile[]=$file;
+	}
+
+	/**
+	 * get liste of css file
+	 * @return array a liste of css file
+	 */
+	public function getCssFile(){
+		return $this->cssFile;
+	}
+	
 }

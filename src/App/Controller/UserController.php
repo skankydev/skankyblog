@@ -16,6 +16,7 @@ use SkankyDev\Controller\MasterController;
 use SkankyDev\Utilities\Token;
 use SkankyDev\EventManager;
 use SkankyDev\Auth;
+use SkankyDev\Config\Config;
 
 class UserController extends MasterController {
 
@@ -53,12 +54,12 @@ class UserController extends MasterController {
 		$this->view->set(['user'=>$user]);
 	}
 	
-	protected function profil(){
+	private function profil(){
 		$user = Auth::getInstance()->getAuth();
 		$this->view->set(['user'=>$user]);
 	}
 
-	protected function changePass(){
+	private function changePass(){
 		$user = Auth::getInstance()->getAuth();
 		if($this->request->isPost()){
 			$user = $this->User->findOne(['login'=>$user->login]);
@@ -101,6 +102,7 @@ class UserController extends MasterController {
 						$user->verifToken = new token();
 						$user->lastLogin = false;
 						$user->valid = false;
+						$user->role = Config::get('Auth.defaultRole');
 						if($this->User->save($user)){
 							$this->Mail->creatMail($user->email,'activation de votre compte','user.active',['user'=>$user]);
 							$this->Mail->sendMail();
@@ -140,6 +142,7 @@ class UserController extends MasterController {
 				$user->verifToken = false;
 				$this->User->save($user);
 				$this->Flash->set('votre compte a bien etais activer',['class' => 'success']);
+
 				$this->request->redirect('/');
 			}	
 		}else{
@@ -229,7 +232,9 @@ class UserController extends MasterController {
 	public function logout(){
 		$user = Auth::getInstance()->getAuth();
 		$link = Auth::getInstance()->unsetAuth();
+		EventManager::getInstance()->event('users.logout',$this);
 		$this->Flash->set('À bientôt '.$user->login.'.',['class' => 'success']);
-		$this->request->redirect($link);
+		$this->request->redirect('/');
 	}
+
 }

@@ -21,7 +21,7 @@
 				<td><?php echo $this->link($user->login, ['action'=>'view','params'=>['login'=>$user->login]]);?></td>
 				<td><?php echo $user->email; ?></td>
 				<td><?php echo $user->valid?'Yes':'No'; ?></td>
-				<td><?php echo $this->Time->since($user->lastLogin); ?></td>
+				<td><?php echo $user->lastLogin?$this->Time->since($user->lastLogin):'No'; ?></td>
 				<td><?php echo $this->Time->toHuman($user->created); ?></td>
 				<th><?php echo $this->link('<i class="fa fa-trash" aria-hidden="true"></i>', ['action'=>'delete','params'=>['_id'=>$user->_id]],['class'=>'btn-trash']);?></th>
 			</tr>

@@ -15,14 +15,12 @@ namespace App\Model\Document;
 
 use SkankyDev\Model\Document\MasterDocument;
 
-class Post extends MasterDocument {
+class Product extends MasterDocument {
 	
+	public $ref;
 	public $name;
-	public $slug;
-	public $content;
-	public $tags;
-	public $online;
-	public $categories;
+	public $description;
 	public $media;
-	
+	public $prixTTC;
+
 }

@@ -11,34 +11,36 @@
  *
  */
 
-
 namespace App\Model;
 
 use SkankyDev\Model\NoSqlModel;
 use SkankyDev\Database\MongoClient;
 
-class MessageModel extends NoSqlModel {
+
+class ProductModel extends NoSqlModel {
 
 	protected $behavior = [
-		'Timed','Owner'
+		'Timed'
 	];
 
 	public function initValidator($validator){
-		$validator->addRules(['message'],['notEmpty'],'ne doit pas etre vide');
+		$validator->addRules(['name','ref','prix'],['notEmpty'],'ne doit pas etre vide');
+		$validator->addRules(['prix'],['isNum'],'doit etre un nombre');
+		$validator->trimTag(['name','ref']);
 	}
 
 	public function install(){
-		//debug($this);
 		try {
 			$client = MongoClient::getInstance();
 			$option = [];
 			$option['autoIndexId'] = true;
-			$client->createCollection('message',$option);
-			return 'MessageModel has been configured';			
+			$client->createCollection('product',$option);
+			$index = [];
+			$index[0] = ['key'=>['ref'=>1],'name'=>'ref','unique'=>true];
+			$client->createIndex('post',$index);
+			return 'ProductModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'MessageModel already exists';			
-			
+			return 'ProductModel already exists';
 		}
-
 	}
 }

@@ -30,7 +30,7 @@ var wysihtmlParserRules = {
 		"a": {
 			"check_attributes": {
 				"target": "any",
-				"href": "url" // if you compiled master manually then change this from 'url' to 'href'
+				"href": "url"
 			},
 			"set_attributes": {
 				"rel": "nofollow"
@@ -38,10 +38,10 @@ var wysihtmlParserRules = {
 		},
 		"img": {
 			"check_attributes": {
-				"width": "dimension",
 				"alt": "alt",
-				"src": "url", // if you compiled master manually then change this from 'url' to 'src'
-				"height": "dimension"
+				"src": "url",
+				"height": "dimension",
+				"width": "dimension"
 			},
 			"add_class": {
 				"align": "align_img"

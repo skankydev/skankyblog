@@ -19,6 +19,6 @@ class MasterElement {
 		$this->form = $form;
 	}
 	
-	function input($name,$attr = [],$value = ''){}
+	public function input($name,$attr = [],$value = ''){}
 
 }

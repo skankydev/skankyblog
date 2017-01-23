@@ -8,7 +8,7 @@
 			'legend'  => ['content'=>'creat a new message','class'=>'legend_post'],
 			'input'   => [
 				'post_id' => ['type'=>'hidden','value'=>$post_id],
-				'message' => ['label'=>'message','type'=>'textarea'],
+				'message' => ['label'=>'message','type'=>'Wysiwyg'],
 			]
 		]); ?>
 	</section>

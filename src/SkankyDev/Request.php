@@ -67,7 +67,7 @@ class Request {
 			$csrf = Session::get('skankydev.form.csrf');
 			$this->data = (object)$_POST;
 			if($csrf){
-				$token = $_POST['_token'];
+				$token = isset($_POST['_token'])?$_POST['_token']:getallheaders()['X-Param-Token'];
 				if(!$csrf->checkValue($token) || !$csrf->checkTime()){
 					throw new Exception("CRSF error", 500);
 				}else{

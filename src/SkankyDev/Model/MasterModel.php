@@ -86,7 +86,7 @@ class MasterModel
 
 	/**
 	 * create new Document
-	 * @param  array $data the data
+	 * @param  stdClass $data the data
 	 * @return entity
 	 */
 	public function createDocument($data){

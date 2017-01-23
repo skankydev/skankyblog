@@ -3,9 +3,10 @@
 	<ul id="UserInfo" class="user-panel user-panel-bottom">
 	<?php if (empty($user)): ?>
 		<li><?php echo $this->link('login', ['controller'=>'user','action'=>'login']);?></li>
+		<li><?php echo $this->link('sign-up', ['controller'=>'user','action'=>'signUp']);?></li>
 	<?php else: ?>
 		<li><?php echo $this->link($user->login, ['controller'=>'user','action'=>'profil']);?></li>
-		<li><?php echo $this->link('&hksearow;', ['controller'=>'user','action'=>'logout']);?> </li>
+		<li><?php echo $this->link('&hksearow;', ['controller'=>'user','action'=>'logout'],['title'=>'logout']);?> </li>
 	<?php endif ?>
 	</ul>
 </nav>
@@ -15,6 +16,8 @@
 $(document).ready(function(){
 	var panel = document.getElementById('UserInfo');
 	var header = document.getElementById('Header');
+	var pps = panel.getBoundingClientRect();
+	var right = parseInt(window.innerWidth) - parseInt(pps.right) - 12;
 	$( window ).scroll(function() {
 		var doc = document.body;
 		var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
@@ -22,7 +25,9 @@ $(document).ready(function(){
 		var hp = header.getBoundingClientRect();
 		if((pp.top<=0)&&(hp.bottom<=0)){
 			$('.user-panel-bottom').removeClass('user-panel-bottom').addClass('user-panel-top');
+			$('.user-panel-top').css('right',right+'px');
 		}else{
+			$('.user-panel-top').css('right',0);
 			$('.user-panel-top').removeClass('user-panel-top').addClass('user-panel-bottom');
 		}
 		

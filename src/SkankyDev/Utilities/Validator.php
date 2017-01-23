@@ -56,6 +56,7 @@ class Validator {
 		
 	}
 
+
 	public function trimTag($fields){
 		$this->trimList = $fields;
 	}
@@ -118,7 +119,7 @@ class Validator {
 		return filter_var($value, FILTER_VALIDATE_EMAIL);
 	}
 
-	public function isInt($value){
+	public function isNum($value){
 		return is_numeric($value);
 	}
 

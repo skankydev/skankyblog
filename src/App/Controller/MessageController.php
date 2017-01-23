@@ -67,7 +67,6 @@ class MessageController extends MasterController {
 			throw new \Exception("page not found", 404);
 		}
 		if($this->request->isPost()){
-
 			if($message->isValid($this->request->data)){
 				if($this->Message->save($message)){
 					$this->Flash->set('ca marche',['class' => 'success']);
@@ -82,4 +81,9 @@ class MessageController extends MasterController {
 		$this->request->data = $message;
 		$this->view->set(['message' => $message]);
 	}
+
+	private function delete($_id){
+		
+	}
+
 }

@@ -28,18 +28,19 @@ return [
 	],
 	'Auth'=>[
 		'redirectAction' => [
-			'controller' => 'User',
-			'action'     => 'login',
+			'controller' => 'Post',
+			'action'     => 'index',
 			'namespace'  => 'App'
 		],
-		'cookieTimer'  => WEEK,
-		'accessDenied' => false,
-		'userEntity'   => 'App\Model\Document\User'
+		'cookieTimer'      => WEEK,
+		'accessDenied'     => false,
+		'userEntity'       => 'App\Model\Document\User',
+		'permissionEntity' => 'App\Model\Document\Permission',
+		'defaultRole'      => 'default',
 	],
 	'class' => [
 		'helper' => [
 			'Size' => 'App\View\Helper\SizeHelper',
-
 		],
 		'behavior' => [
 			'Owner' => 'App\Model\Behavior\OwnerBehavior'
