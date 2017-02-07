@@ -5,7 +5,7 @@ return [
 		'action'   =>'index'
 	],
 	'paginator'=>[
-		'limit'=>3,
+		'limit'=>25,
 		'range'=>5
 	],
 	'routes' =>[
@@ -32,14 +32,15 @@ return [
 			'action'     => 'login',
 			'namespace'  => 'App'
 		],
-		'cookieTimer'  => WEEK,
-		'accessDenied' => false,
-		'userEntity'   => 'App\Model\Document\User'
+		'cookieTimer'      => WEEK,
+		'accessDenied'     => false,
+		'userEntity'       => 'App\Model\Document\User',
+		'permissionEntity' => 'App\Model\Document\Permission',
+		'defaultRole'      => 'default',
 	],
 	'class' => [
 		'helper' => [
 			'Size' => 'App\View\Helper\SizeHelper',
-			'Time' => 'App\View\Helper\TimeHelper',
 		],
 		'behavior' => [
 			'Owner' => 'App\Model\Behavior\OwnerBehavior'
@@ -49,16 +50,20 @@ return [
 		],
 		'tools' => [
 			'Mail' => 'App\Controller\Tools\MailTool',
+		],
+		'formElement' => [
+			'Wysiwyg' => 'App\View\FormElement\WysiwygElement'
 		]
 	],
 	'listener'=> [
 		'Debug',
 		'Users',
 	],
-	'app'=>[
-		'timehelper'=> [
-			'format'=>'H:i:s d/m/Y',
-			'timezone'=>'Europe/Paris'
-		],
-	]
+	'timehelper'=> [
+		'format'=>'H:i:s d/m/Y',
+		'timezone'=>'Europe/Paris'
+	],
+	'upload'=>[
+		'image'=>['jpg','JPG','jpeg','JPEG','gif','png']
+	],
 ];

@@ -28,13 +28,23 @@ class PermissionManager implements PermissionInterface{
 	}
 
 	function checkProtectedAccess($link){
-		//$this->Flash->set('Protected',['class' => 'warning']);
-		return Auth::isAuthentified();
+		return $this->checkAccess($link);
 	}
 	
 	function checkPrivateAccess($link){
-		//$this->Flash->set('Private',['class' => 'error']);
-		return Auth::isAuthentified();
+		return $this->checkAccess($link);
+	}
+
+	public function checkAccess($link){
+		//return true;
+		
+		$perm = Auth::getPermission();
+		$allow = false;
+		if(isset($perm->action[$link['controller']][$link['action']])){
+			$result = $perm->action[$link['controller']][$link['action']];
+			$allow = ($result==='allow');
+		}
+		return $allow;
 	}
 
 }

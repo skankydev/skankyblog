@@ -59,15 +59,18 @@ class Request {
 		$this->ip        = $_SERVER['REMOTE_ADDR'];
 		$this->referer   = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null;
 		EventManager::getInstance()->event('request.construct',$this);
-		//$this->id        = uniqid();
+		
+		if(!empty($_POST)){
+			$this->data = (object)$_POST;
+		}
 	}
 
 	public function securePost(){
 		if($this->isPost()){
 			$csrf = Session::get('skankydev.form.csrf');
-			$this->data = (object)$_POST;
+			//debug($_FILES);debug($_POST);die();
 			if($csrf){
-				$token = $_POST['_token'];
+				$token = isset($_POST['_token'])?$_POST['_token']:getallheaders()['X-Param-Token'];
 				if(!$csrf->checkValue($token) || !$csrf->checkTime()){
 					throw new Exception("CRSF error", 500);
 				}else{
@@ -76,6 +79,13 @@ class Request {
 				}
 			}
 		}
+	}
+
+	public function getData($secure = true){
+		if($secure){
+			$this->securePost();
+		}
+		return $this->data;
 	}
 
 	/**
@@ -127,6 +137,7 @@ class Request {
 	 * @return [type]       [description]
 	 */
 	public function getParams($name = ''){
+		//ca marche pas
 		if(empty($name)){
 			return $this->params;
 		}else{

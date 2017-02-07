@@ -16,6 +16,7 @@ use SkankyDev\Controller\MasterController;
 use SkankyDev\Utilities\Token;
 use SkankyDev\EventManager;
 use SkankyDev\Auth;
+use SkankyDev\Config\Config;
 
 class UserController extends MasterController {
 
@@ -23,9 +24,6 @@ class UserController extends MasterController {
 		'Flash','Mail'
 	];
 
-	public $helpers = [
-		'Time'
-	];
 
 	private function index($page = 1,$field = 'login',$order = 1){
 		$option = [
@@ -47,8 +45,8 @@ class UserController extends MasterController {
 			}else{
 				$this->Flash->set('ca marche pas',['class' => 'error']);
 			}
-			$this->request->redirect(['action'=>'index']);
 		}
+		$this->request->redirect(['action'=>'index']);
 	}
 
 	private function view($login){
@@ -56,16 +54,16 @@ class UserController extends MasterController {
 		$this->view->set(['user'=>$user]);
 	}
 	
-	protected function profil(){
+	private function profil(){
 		$user = Auth::getInstance()->getAuth();
 		$this->view->set(['user'=>$user]);
 	}
 
-	protected function changePass(){
+	private function changePass(){
 		$user = Auth::getInstance()->getAuth();
 		if($this->request->isPost()){
 			$user = $this->User->findOne(['login'=>$user->login]);
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			if(password_verify($data->password,$user->password)){
 				if($data->new === $data->confirme){
 					$user->password = password_hash($data->new, PASSWORD_BCRYPT);
@@ -95,7 +93,7 @@ class UserController extends MasterController {
 
 	public function signUp(){
 		if($this->request->isPost()){
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			$user = $this->User->createDocument($data);
 			if(isset($data->cgu)){
 				if($data->password === $data->confirme){
@@ -104,6 +102,7 @@ class UserController extends MasterController {
 						$user->verifToken = new token();
 						$user->lastLogin = false;
 						$user->valid = false;
+						$user->role = Config::get('Auth.defaultRole');
 						if($this->User->save($user)){
 							$this->Mail->creatMail($user->email,'activation de votre compte','user.active',['user'=>$user]);
 							$this->Mail->sendMail();
@@ -138,10 +137,12 @@ class UserController extends MasterController {
 	public function active($login,$token){
 		$user = $this->User->findOne(['login'=>$login,'valid'=>false]);
 		if(!empty($user)){
-			if( ($user->verifToken->value === $token) && (time() < ($user->verifToken->time+WEEK) )){
+			if( ($user->verifToken) && ($user->verifToken->value === $token) && (time() < ($user->verifToken->time+WEEK)) ){
 				$user->valid = true;
+				$user->verifToken = false;
 				$this->User->save($user);
 				$this->Flash->set('votre compte a bien etais activer',['class' => 'success']);
+
 				$this->request->redirect('/');
 			}	
 		}else{
@@ -151,7 +152,7 @@ class UserController extends MasterController {
 
 	public function passwordLost(){
 		if($this->request->isPost()){
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			$user = $this->User->findOne(['email'=>$data->email,'valid'=>true]);
 			if(!empty($user)){
 				$user->verifToken = new token();
@@ -167,15 +168,16 @@ class UserController extends MasterController {
 	public function recoveryPass($login,$token){
 		$user = $this->User->findOne(['login'=>$login,'valid'=>true]);
 		if(!empty($user)){
-			if( !($user->verifToken->value === $token) || !(time() < ($user->verifToken->time+DAY) ) ){
+			if( !($user->verifToken) || !($user->verifToken->value === $token) || !(time() < ($user->verifToken->time+DAY)) ){
 				//token pas valide
 				throw new \Exception("error invalide token recoveryPass", 5101);
 			}
 			if($this->request->isPost()){
 				//si data post
-				$data = $this->request->data;
+				$data = $this->request->getData();
 				if($data->password === $data->confirme){
 					$user->password = password_hash($data->password, PASSWORD_BCRYPT);
+					$user->verifToken = false;
 					if($this->User->save($user)){
 						$this->Flash->set('votre mot de passe a bien etais changer',['class' => 'success']);
 						$this->request->redirect('/');
@@ -199,7 +201,7 @@ class UserController extends MasterController {
 
 	public function login(){
 		if($this->request->isPost()){
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			$user = $this->User->findOne(['email'=>$data->email]);
 			if(!empty($user)){
 				if(password_verify($data->password,$user->password)){
@@ -218,7 +220,7 @@ class UserController extends MasterController {
 					$user->_id = $user->_id->__toString();//MongoDB\BSON\ObjectID fatal error session
 					$link = Auth::getInstance()->setAuth($user);
 					EventManager::getInstance()->event('users.login',$this);
-					$this->Flash->set('bienvenu '.$user->login,['class' => 'success']);
+					$this->Flash->set('bienvenu '.$user->login.'.',['class' => 'success']);
 					$this->request->redirect($link);
 				}
 			}
@@ -228,8 +230,12 @@ class UserController extends MasterController {
 	}
 
 	public function logout(){
+		$user = Auth::getInstance()->getAuth();
 		$link = Auth::getInstance()->unsetAuth();
-		$this->Flash->set('success',['class' => 'success']);
-		$this->request->redirect($link);
+		EventManager::getInstance()->event('users.logout',$this);
+		$this->Flash->set('À bientôt '.$user->login.'.',['class' => 'success']);
+		$this->request->redirect('/');
 	}
+
+
 }

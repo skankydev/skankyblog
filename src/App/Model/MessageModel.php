@@ -15,6 +15,7 @@
 namespace App\Model;
 
 use SkankyDev\Model\NoSqlModel;
+use SkankyDev\Database\MongoClient;
 
 class MessageModel extends NoSqlModel {
 
@@ -28,10 +29,16 @@ class MessageModel extends NoSqlModel {
 
 	public function install(){
 		//debug($this);
-		$client = MongoClient::getInstance();
-		$option = [];
-		$option['autoIndexId'] = true;
-		$client->createCollection('message',$option);
-		return 'les messages c\'est bon aussi ';
+		try {
+			$client = MongoClient::getInstance();
+			$option = [];
+			$option['autoIndexId'] = true;
+			$client->createCollection('message',$option);
+			return 'MessageModel has been configured';			
+		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
+			return 'MessageModel :'.$e->getMessage();			
+			
+		}
+
 	}
 }

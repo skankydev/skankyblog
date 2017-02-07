@@ -11,7 +11,8 @@
     ],
     "require": {
         "mongodb/mongodb": "1.0.0",
-        "nette/mail": "^2.4"
+        "nette/mail": "^2.4",
+        "paypal/rest-api-sdk-php": "*"
     },
     "autoload": {
         "psr-4": { 

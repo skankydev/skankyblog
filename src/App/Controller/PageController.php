@@ -21,4 +21,5 @@ class PageController extends MasterController {
 
 	}
 
+	public function test(){}
 }

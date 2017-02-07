@@ -1,0 +1,49 @@
+<br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in E:\repository\skankyblog\src\App\Controller\CartController.php on line <i>31</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>367328</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0026</td><td bgcolor='#eeeeec' align='right'>551528</td><td bgcolor='#eeeeec'>SkankyDev\Application->__construct(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>12</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0120</td><td bgcolor='#eeeeec' align='right'>851528</td><td bgcolor='#eeeeec'>SkankyDev\Router->execute(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Application.php' bgcolor='#eeeeec'>...\Application.php<b>:</b>43</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017640</td><td bgcolor='#eeeeec'><a href='http://www.php.net/ReflectionMethod.invokeArgs' target='_new'>invokeArgs</a>
+(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017656</td><td bgcolor='#eeeeec'>App\Controller\CartController->add(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in E:\repository\skankyblog\src\App\Controller\CartController.php on line <i>32</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>367328</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0026</td><td bgcolor='#eeeeec' align='right'>551528</td><td bgcolor='#eeeeec'>SkankyDev\Application->__construct(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>12</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0120</td><td bgcolor='#eeeeec' align='right'>851528</td><td bgcolor='#eeeeec'>SkankyDev\Router->execute(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Application.php' bgcolor='#eeeeec'>...\Application.php<b>:</b>43</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017640</td><td bgcolor='#eeeeec'><a href='http://www.php.net/ReflectionMethod.invokeArgs' target='_new'>invokeArgs</a>
+(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017656</td><td bgcolor='#eeeeec'>App\Controller\CartController->add(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in E:\repository\skankyblog\src\App\Controller\CartController.php on line <i>33</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>367328</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0026</td><td bgcolor='#eeeeec' align='right'>551528</td><td bgcolor='#eeeeec'>SkankyDev\Application->__construct(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>12</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0120</td><td bgcolor='#eeeeec' align='right'>851528</td><td bgcolor='#eeeeec'>SkankyDev\Router->execute(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Application.php' bgcolor='#eeeeec'>...\Application.php<b>:</b>43</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017640</td><td bgcolor='#eeeeec'><a href='http://www.php.net/ReflectionMethod.invokeArgs' target='_new'>invokeArgs</a>
+(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017656</td><td bgcolor='#eeeeec'>App\Controller\CartController->add(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in E:\repository\skankyblog\src\App\Controller\CartController.php on line <i>35</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0003</td><td bgcolor='#eeeeec' align='right'>367328</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0026</td><td bgcolor='#eeeeec' align='right'>551528</td><td bgcolor='#eeeeec'>SkankyDev\Application->__construct(  )</td><td title='E:\repository\skankyblog\public\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>12</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0120</td><td bgcolor='#eeeeec' align='right'>851528</td><td bgcolor='#eeeeec'>SkankyDev\Router->execute(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Application.php' bgcolor='#eeeeec'>...\Application.php<b>:</b>43</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017640</td><td bgcolor='#eeeeec'><a href='http://www.php.net/ReflectionMethod.invokeArgs' target='_new'>invokeArgs</a>
+(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0147</td><td bgcolor='#eeeeec' align='right'>1017656</td><td bgcolor='#eeeeec'>App\Controller\CartController->add(  )</td><td title='E:\repository\skankyblog\src\SkankyDev\Router.php' bgcolor='#eeeeec'>...\Router.php<b>:</b>105</td></tr>
+</table></font>
+{"count":2,"html":"<tr>\r\n\t<td><\/td>\r\n\t<td><\/td>\r\n\t<td>0<\/td>\r\n\t<td><a class='btn-cart-remove' data-link=\"http:\/\/dev.skankyblog.com\/cart\/delete\/0;\r\n\"><i class=\"fa fa-trash \" aria-hidden=\"true\"><\/i><\/a><\/td>\r\n<\/tr>\r\n<tr>\r\n\t<td><\/td>\r\n\t<td><\/td>\r\n\t<td>0<\/td>\r\n\t<td><a class='btn-cart-remove' data-link=\"http:\/\/dev.skankyblog.com\/cart\/delete\/1;\r\n\"><i class=\"fa fa-trash \" aria-hidden=\"true\"><\/i><\/a><\/td>\r\n<\/tr>\r\n\r\n"}

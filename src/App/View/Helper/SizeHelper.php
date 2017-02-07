@@ -23,7 +23,7 @@ class SizeHelper extends MasterHelper
 	}
 
 	function toHuman($bytes, $precision = 2){  
-		//thx for the code
+		//thx for the code unknow for me
 		$kilobyte = 1024;
 		$megabyte = $kilobyte * 1024;
 		$gigabyte = $megabyte * 1024;

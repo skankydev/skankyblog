@@ -76,6 +76,10 @@ class MasterController {
 		}
 	}
 
+	public function _loadModel($name){
+		return MasterModel::load($name);
+	}
+
 	public function _getView(){
 		return $this->view;
 	}

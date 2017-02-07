@@ -23,5 +23,4 @@ class User extends MasterDocument {
 	public $verifToken;
 	public $cookie;
 	public $valid;
-
 }

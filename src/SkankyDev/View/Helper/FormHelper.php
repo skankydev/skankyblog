@@ -15,9 +15,10 @@ namespace SkankyDev\View\Helper;
 use SkankyDev\View\Helper\MasterHelper;
 use SkankyDev\View\Helper\Htmlhelper;
 use SkankyDev\Config\Config;
-use SkankyDev\Request;
 use SkankyDev\Utilities\Session;
 use SkankyDev\Utilities\Token;
+use SkankyDev\Factory;
+use SkankyDev\Request;
 /**
 * 
 */
@@ -25,10 +26,12 @@ class FormHelper extends MasterHelper {
 
 	use HtmlHelper;
 
-	private $data;
+	public $data;
+	public $token;
 	private $dClass;
 	private $formAttr = ['accept-charset'=>"UTF-8"];
 	private $submitBtn = false;
+	private $calledElement = [];
 
 	/**
 	 * create the form object 
@@ -38,6 +41,9 @@ class FormHelper extends MasterHelper {
 		$request = Request::getInstance();
 		$this->data = $request->data;
 		$this->dClass = Config::get('form.class');
+		$this->elementList = Config::get('class.formElement');
+		$this->elementName = array_keys($this->elementList);
+
 	}
 
 	/**
@@ -110,9 +116,9 @@ class FormHelper extends MasterHelper {
 		$retour .= $this->createAttr($attr);
 		$retour .= 'method="'.$method.'">';
 		if($csrf){
-			$token = new Token();
-			Session::set('skankydev.form.csrf',$token);
-			$retour .= $this->input('_token',['type'=>'hidden','value'=>$token->value]);
+			$this->token = new Token();
+			Session::set('skankydev.form.csrf',$this->token);
+			$retour .= $this->input('_token',['type'=>'hidden','value'=>$this->token->value]);
 		}
 		return $retour;
 	}
@@ -185,10 +191,13 @@ class FormHelper extends MasterHelper {
 				$label .= $this->label($value['label'],$lAttr);
 				unset($value['label']);
 			}
+	
 			$input ='';
 			if(in_array($value['type'],$methods)){
 				$name = $value['type'];
 				$input .= $this->{$name}($key,$value);
+			}else if (in_array($value['type'],$this->elementName)) {
+				$input .= $this->callElement($key,$value);
 			}else{
 				$input .= $this->input($key,$value);
 			}
@@ -229,7 +238,7 @@ class FormHelper extends MasterHelper {
 	/**
 	 * create input balise
 	 * @param  string $name the name
-	 * @param  array  $attr the attribute
+	 * @param  array  $attr the attribute 
 	 * @return string       the html
 	 */
 	public function input($name,$attr = []){
@@ -340,7 +349,7 @@ class FormHelper extends MasterHelper {
 	/**
 	 * create textarea
 	 * @param  string $name the name
-	 * @param  array  $attr the attributr
+	 * @param  array  $attr the attribute
 	 * @return string       the html
 	 */
 	public function textarea($name,$attr = []){
@@ -392,4 +401,21 @@ class FormHelper extends MasterHelper {
 		$retour = $this->surround($content,'button',$attr);
 		return $this->surround($retour,'div',['class'=>'submit'],false);
 	}
+
+
+	/**
+	 * call a custome form element 
+	 * @param  string $name the name
+	 * @param  array  $attr the attribute must be containe the name of the element
+	 * @return string       the html
+	 */
+	public function callElement($name,$attr){
+		$obj = $attr['type'];
+		$params = isset($attr['construct'])?$attr['construct']:[];
+		$value = $this->checkValue($name);
+		$elem = Factory::load($this->elementList[$obj],['form'=>&$this,'param'=>$params]);
+
+		return $elem->input($name,$attr,$value);
+	}
+
 }

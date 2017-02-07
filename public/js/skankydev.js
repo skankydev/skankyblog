@@ -28,6 +28,51 @@ $(document).ready(function(){
 		}
 	});
 
+	$.fn.colorSelect = function(op){
+		var o = {
+			outPut:function(val){
+				console.log("output");
+			},
+			name: "color-select"
+		}
+		if(op){$.extend(true,o,op)};
+		if (typeof o.colorPalettes == 'undefined') {
+			o.colorPalettes = ['black','gray','green','red','blue'];
+		}
+
+		var toHtml   = '<div class="color-select-master"><span> </span>';
+		toHtml      += '<div class="color-select"><span> </span><div class="color-input">';
+		var classCss = 'color-select-input'
+		for(var i=0;i<o.colorPalettes.length;i++){
+			toHtml +='<input type="radio" name="'+o.name+'"  value="'+o.colorPalettes[i]+'" class="'+classCss+' '+classCss+'-'+o.colorPalettes[i]+'" id="'+classCss+'-'+o.colorPalettes[i]+'" data="'+o.colorPalettes[i]+'"><label class="color-label" for="'+classCss+'-'+o.colorPalettes[i]+'"> </label>';
+		}
+		toHtml +='</div></div></div>';
+		$(this).html(toHtml);
+		$(this).find('input').each(function(k){
+			var color = $(this).attr('data');
+			$(this).next().css("background",color);
+			$(this).hide();
+		});
+		$(this).find('.color-input').hide();
+		var laspan = $(this).find('span');
+
+		$(this).click(function(e){
+			if($(this).find('.color-input').css('display') == 'none'){
+				$(this).find('.color-input').fadeIn(200);
+			}else{
+				$(this).find('.color-input').fadeOut(200);
+			}
+		});
+		$(this).mouseleave(function(e){
+			$(this).find('.color-input').fadeOut(200);
+		});
+		$(this).on('change','input',function(e){
+			laspan.css("background",$(this).val());
+			o.outPut($(this).val())
+		});
+	}
+
+
 	$.fn.formToObject = function() {
         var o = {};
         var a = this.serializeArray();

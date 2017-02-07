@@ -4,6 +4,7 @@
 		<?php echo $this->link('Edit Post',['action'=>'edit', 'params'=>['sulg'=>$post->slug]],['class'=>'btn-warning']); ?>
 	</header>
 	<section><?php echo $post->content; ?></section>
+	<div class="clear"></div>
 	<footer>
 		<?php if (isset($post->tags)): ?>
 			<div class='tags'>
@@ -23,7 +24,6 @@ echo $this->elementFromView(['namespace'=>'App','controller'=>'Message','action'
 <div class="see-more">
 	<span class="btn-see-more">see more</span>
 </div>
-
 </section>
 
 <?php $this->startScript() ?>

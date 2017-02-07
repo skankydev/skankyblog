@@ -7,27 +7,25 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) SCHENCK Simon
- * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  *
  */
 
-namespace App\View\Helper;
+namespace SkankyDev\View\Helper;
 
 use SkankyDev\View\Helper\MasterHelper;
 use SkankyDev\Config\Config;
 use DateTime;
 use DateTimeZone;
 
-class TimeHelper extends MasterHelper
-{
+class TimeHelper extends MasterHelper {
 
 	private $timezone;
 	private $format;
 
 	function __construct($conf = []){
 		if(empty($conf)){
-			$conf = Config::get('app.timehelper');;
+			$conf = Config::get('timehelper');;
 		}
 		$this->timezone = new DateTimeZone($conf['timezone']);
 		$this->format = $conf['format'];
@@ -78,7 +76,7 @@ class TimeHelper extends MasterHelper
 		if(!$full){
 			$string = array_slice($string, 0, 1);
 		}
-		return $string ? implode(', ', $string) : 'just now';	
+		return $string ? implode(', ', $string) : _('just now');	
 	}
 
 }

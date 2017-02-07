@@ -13,10 +13,12 @@
 
 namespace App\Listener;
 
+use SkankyDev\Controller\Tools\FlashMessagesTool;
 use SkankyDev\Listener\MasterListener;
 use SkankyDev\Model\MasterModel;
 use SkankyDev\Utilities\Token;
 use SkankyDev\Auth;
+use SkankyDev\Factory;
 
 class UsersListener extends MasterListener {
 	
@@ -26,16 +28,21 @@ class UsersListener extends MasterListener {
 
 	public function infoEvent(){
 		return [
-			'users.login'=>'trucdeouf',
+			'users.login'=>'getPermission',
 			'auth.firstStep' => 'cookieLogin',
 		];
 	}
 
-	public function trucdeouf($subject){
-		debug('trucdeouf');
+	public function getPermission($subject){
+		$auth = Auth::getInstance();
+		$model = MasterModel::load('App\Model\PermissionModel',true);
+		$user = $auth->getAuth();
+		$perm = $model->findOne(['name'=>$user->role]);
+		unset($perm->_id);
+		$auth->setPermission($perm);
 	}
 
-	public function cookieLogin(){
+	public function cookieLogin($subject){
 		$auth = Auth::getInstance();
 		$data = $auth->getCookieToken();
 		if($data){
@@ -48,6 +55,7 @@ class UsersListener extends MasterListener {
 				$user->_id = $user->_id->__toString();//MongoDB\BSON\ObjectID fatal error session
 				$auth->setAuth($user);
 				$auth->setCookieTokent($user->email,$cookiToken);
+				$this->getPermission($subject);
 			}
 		}
 	}

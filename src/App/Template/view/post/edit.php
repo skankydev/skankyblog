@@ -1,5 +1,5 @@
 <?php $this->setTitle('edit post'); ?>
-<section>
+<section id='Post'>
 	<header><h1>Edit Post</h1></header>
 	<?php echo $this->Form->start($this->request->url(['action'=>'edit','params'=>['slug'=>$post->slug]])); ?>
 	<section>
@@ -10,10 +10,21 @@
 					'_id'        => ['type' =>'hidden'],
 					'name'       => ['label'=>'name'],
 					'slug'       => ['label'=>'slug'],
-					'content'    => ['label'=>'content','type'=>'textarea','rows'=>'8','cols'=>'50'],
-					'tags'       => ['label'=>'tags','labelAttr'=>['class'=>'tags-label'],'type'=>'select','option'=>['joli','test','machin','youpi','marche'],'multiple'=>'checkbox','attr'=>['class'=>'checkbox']],
+					'content'    => ['label'=>'content',
+									'type'=>'Wysiwyg',
+									'construct'=>[
+										'img'=>[
+											'media' => $post->media,
+											'uploadLink'=> $this->request->url(['action'=>'upload','params'=>['slug'=>$post->slug]])
+										],
+										'link'=>true,
+										'color'=>true,
+										'title'=>true,
+									]
+								],
+					'tags'       => ['label'=>'tags','labelAttr'=>['class'=>'tags-label'],'type'=>'select','option'=>$tags,'multiple'=>'checkbox','attr'=>['class'=>'checkbox']],
 					'online'     => ['label'=>'online','type'=>'checkbox'],
-					'categories' => ['label'=>'category','type'=>'select','option'=>['','html','css','php','js','MongoDB'],'multiple'=>'multiple','class'=>'post-select']
+					'categories' => ['label'=>'category','type'=>'select','option'=>['','html','css','php','js','MongoDB'],'class'=>'post-select']
 				]
 		]); ?>
 	</section>

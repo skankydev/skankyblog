@@ -40,6 +40,14 @@ class Auth
 
 	public static function loadClass(){
 		Factory::loadFile(Config::get('Auth.userEntity'));
+		Factory::loadFile(Config::get('Auth.permissionEntity'));
+	}
+	public static function getAuth(){
+		return Session::get('skankydev.auth.user');
+	}
+
+	public static function getPermission(){
+		return Session::get('skankydev.auth.permission');
 	}
 
 	function __construct() {
@@ -56,14 +64,14 @@ class Auth
 		if($current['link']['controller']!==$controller){
 			Session::delete('skankydev.backlink');
 		}
-		if(empty($_COOKIE)||($this->historique->pageCount()==1)){
-			$this->firstStep();
-		}
+		
 		EventManager::getInstance()->event('auth.construct',$this);
 	}
 
-	function firstStep(){
-		EventManager::getInstance()->event('auth.firstStep',$this);
+	public function checkFirstStep(){
+		if(empty($_COOKIE)||($this->historique->pageCount()==1)){
+			EventManager::getInstance()->event('auth.firstStep',$this);
+		}
 	}
 	
 	/**
@@ -80,11 +88,15 @@ class Auth
 
 	public function setAuth($auth){
 
-		Session::set('skankydev.auth',$auth);
+		Session::set('skankydev.auth.user',$auth);
 		self::$loged = true;
 		$link = Session::get('skankydev.backlink');
 		Session::delete('skankydev.backlink');
 		return $link['link'];
+	}
+
+	public function setPermission($perm){
+		Session::set('skankydev.auth.permission',$perm);
 	}
 
 	public function unsetAuth(){
@@ -96,10 +108,6 @@ class Auth
 		return $link['link'];
 	}
 
-	public function getAuth(){
-		//incomplete class pas defini la conne
-		return Session::get('skankydev.auth');
-	}
 
 	public function setBackLink(){
 		if(!Session::get('skankydev.backlink')){
@@ -118,4 +126,5 @@ class Auth
 	public function deleteCookieTokent(){
 		return $this->cookie->delete('user');
 	}
+
 }

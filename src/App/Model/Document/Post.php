@@ -23,5 +23,6 @@ class Post extends MasterDocument {
 	public $tags;
 	public $online;
 	public $categories;
+	public $media;
 	
 }

@@ -78,7 +78,7 @@ $output = ob_get_clean();
 				return ' => <span class="debug-text">'.$result.'</span>';
 			}, $output);
 		}
-		echo "<pre><code>".$output."</code></pre>";
+		echo "<pre>".$output."</pre>";
 		echo '</div>';
 	}
 }

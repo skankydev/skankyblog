@@ -23,28 +23,30 @@
 	?>
 </head>
 <body>
-	<section id="Container">
+	<?php echo $this->element('admin-menu'); ?>
+	<section id="Container">		
 		<?php echo $this->element('menu'); ?>
 		<header id="Header">
-			<div class='sit-title'>
-				<h1>
-					<i class="fa fa-unlock-alt fa-flip-horizontal sit-title-icone"></i>SkankyDev
-					<legend class="sit-title-legende">'let's try to do something with it!'</legend>
-				</h1>
+			<div class="layout-header">
+				<div class='sit-title'>
+					<h1>
+						<i class="fa fa-unlock-alt fa-flip-horizontal sit-title-icone"></i>SkankyDev
+						<legend class="sit-title-legende">'let's try to do something with it!'</legend>
+					</h1>
+				</div>
+				<div class="empty-space"></div>
+				<?php echo $this->element('user-statu'); ?>
 			</div>
-			<div class="empty-space"></div>
-			<?php echo $this->element('user-statu'); ?>
 		</header>
 		
 		<section id="Contents">
-		
 			<?php echo $this->Flash->display(); ?>
 			<?php echo $this->fetch('content'); ?>
 		</section>
 		<footer id="Footer">
-			<span>application realiser par <a href="https://github.com/skank" target="_blanck">skank</a>.</span>
+			<?php echo $this->element('footer'); ?>
 		</footer>
-	</section>
+	</section>	
 	<?php echo $this->element('debug'); ?>
 	<?php echo $this->getScript(); ?>
 </body>

@@ -44,3 +44,7 @@ Temporary Items
 composer.lock
 /vendor/
 /config/smtp.config.php
+/config/paypal.config.php
+/public/img/upload
+/public/img/product
+/public/img/test
