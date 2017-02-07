@@ -63,7 +63,7 @@ class UserController extends MasterController {
 		$user = Auth::getInstance()->getAuth();
 		if($this->request->isPost()){
 			$user = $this->User->findOne(['login'=>$user->login]);
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			if(password_verify($data->password,$user->password)){
 				if($data->new === $data->confirme){
 					$user->password = password_hash($data->new, PASSWORD_BCRYPT);
@@ -93,7 +93,7 @@ class UserController extends MasterController {
 
 	public function signUp(){
 		if($this->request->isPost()){
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			$user = $this->User->createDocument($data);
 			if(isset($data->cgu)){
 				if($data->password === $data->confirme){
@@ -152,7 +152,7 @@ class UserController extends MasterController {
 
 	public function passwordLost(){
 		if($this->request->isPost()){
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			$user = $this->User->findOne(['email'=>$data->email,'valid'=>true]);
 			if(!empty($user)){
 				$user->verifToken = new token();
@@ -174,7 +174,7 @@ class UserController extends MasterController {
 			}
 			if($this->request->isPost()){
 				//si data post
-				$data = $this->request->data;
+				$data = $this->request->getData();
 				if($data->password === $data->confirme){
 					$user->password = password_hash($data->password, PASSWORD_BCRYPT);
 					$user->verifToken = false;
@@ -201,7 +201,7 @@ class UserController extends MasterController {
 
 	public function login(){
 		if($this->request->isPost()){
-			$data = $this->request->data;
+			$data = $this->request->getData();
 			$user = $this->User->findOne(['email'=>$data->email]);
 			if(!empty($user)){
 				if(password_verify($data->password,$user->password)){
@@ -236,5 +236,6 @@ class UserController extends MasterController {
 		$this->Flash->set('À bientôt '.$user->login.'.',['class' => 'success']);
 		$this->request->redirect('/');
 	}
+
 
 }

@@ -32,11 +32,13 @@ class InstallController extends MasterController {
 				if(is_file($folder.DS.$files)){
 					$class = $modul.'\\Model\\'.str_replace('.php', '', $files);
 					$collection = str_replace('Model.php', '', $files);
+					//debug($class);
 					$object = Factory::load($class,['name'=>$collection],false);
+					//debug(get_class($object));
 					if(method_exists($object, 'install')){
 						$message[] = $object->install();
 					}
-					$model[] = ['class'=>$class, 'collection'=>$collection];
+					$model[] = ['class'=>$class, 'collection'=>$collection,'file'=>$files];
 
 				}
 			}

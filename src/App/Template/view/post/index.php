@@ -14,17 +14,10 @@
 				<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
-			<nav class="menu-action">
-				<ul>
-					<li><?php echo $this->link('Edit Post',['action'=>'edit', 'params'=>['sulg'=>$post->slug]],['class'=>'btn-warning']); ?></li>
-					<li><?php echo $this->link('Delete Post',['action'=>'delete', 'params'=>['sulg'=>$post->slug]],['class'=>'btn-error']); ?></li>
-				</ul>
-			</nav>
 		</footer>
 	</section>
 	<?php endforeach; ?>
 	<footer>
 		<?php echo $this->element('paginator',$posts->getOption()); ?>
 	</footer>
-	<?php echo $this->link('Add Post',['action'=>'add'],['class'=>'btn-default']); ?>
 </section>

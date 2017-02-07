@@ -26,6 +26,10 @@ class TaxonomieModel extends NoSqlModel {
 		$validator->trimTag(['name']);
 	}
 
+	public function install(){
+		return 'TaxonomieModel need to be done';
+	}
+
 	public function getList(){
 		$tags = $this->find();
 		$list = [];

@@ -43,14 +43,15 @@ class PostController extends MasterController {
 		];
 		$option['sort'][$field] = (int)$order;
 		$posts = $this->Post->paginate($option);
-		$this->view->set( ['posts' => $posts] );		
+		$this->view->set( ['posts' => $posts] );
 	}
 
 	private function add(){
 
 		if($this->request->isPost()){
 
-			$post = $this->Post->createDocument($this->request->data);
+			$post = $this->Post->createDocument($this->request->getData());
+			debug($post);
 			if(empty($post->slug)){
 				$post->slug = str_replace(' ', '-', $post->name);
 			}
@@ -77,7 +78,7 @@ class PostController extends MasterController {
 		$post = $this->Post->findBySlug($slug);
 		if($this->request->isPost()){
 			$media = $post->media;
-			$post = $this->Post->createDocument($this->request->data);
+			$post = $this->Post->createDocument($this->request->getData());
 			$post->media = $media;
 			if($this->Post->isValid($post)){
 				if($this->Post->save($post)){
@@ -111,6 +112,7 @@ class PostController extends MasterController {
 		$media = [];
 		$result = ['statu'=>false];
 		if(!empty($slug)){
+			$media = $this->request->getData();
 			$h = getallheaders();
 			$dir =  PUBLIC_FOLDER.DS.'img'.DS.'upload'.DS.$slug;
 			$source = file_get_contents('php://input');

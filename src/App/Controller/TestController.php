@@ -14,6 +14,7 @@
 namespace App\Controller;
 
 use SkankyDev\Controller\MasterController;
+use SkankyDev\Utilities\Session;
 
 class TestController extends MasterController {
 	
@@ -38,6 +39,13 @@ class TestController extends MasterController {
 				}
 			}
 		}
+	}
+
+	public function index(){
+		$data = Session::get('skankydev.backlink');
+		//Session::destroy();
+		debug($data);
+		
 	}
 
 }

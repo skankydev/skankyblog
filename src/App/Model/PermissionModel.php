@@ -24,7 +24,7 @@ class PermissionModel extends NoSqlModel {
 			$client->createIndex('permission',$index);
 			return 'PermissionModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'PermissionModel already exists';
+			return 'PermissionModel :'.$e->getMessage();
 			
 		}
 

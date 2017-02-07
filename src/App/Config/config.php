@@ -28,8 +28,8 @@ return [
 	],
 	'Auth'=>[
 		'redirectAction' => [
-			'controller' => 'Post',
-			'action'     => 'index',
+			'controller' => 'User',
+			'action'     => 'login',
 			'namespace'  => 'App'
 		],
 		'cookieTimer'      => WEEK,
@@ -63,5 +63,7 @@ return [
 		'format'=>'H:i:s d/m/Y',
 		'timezone'=>'Europe/Paris'
 	],
-
+	'upload'=>[
+		'image'=>['jpg','JPG','jpeg','JPEG','gif','png']
+	],
 ];

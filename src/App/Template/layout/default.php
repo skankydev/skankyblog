@@ -23,6 +23,7 @@
 	?>
 </head>
 <body>
+	<?php echo $this->element('admin-menu'); ?>
 	<section id="Container">		
 		<?php echo $this->element('menu'); ?>
 		<header id="Header">
@@ -37,6 +38,7 @@
 				<?php echo $this->element('user-statu'); ?>
 			</div>
 		</header>
+		
 		<section id="Contents">
 			<?php echo $this->Flash->display(); ?>
 			<?php echo $this->fetch('content'); ?>

@@ -29,16 +29,6 @@ class PostModel extends NoSqlModel {
 		$validator->trimTag(['name','slug']);
 	}
 
-	public function findBySlug($slug = ''){
-		if(empty($slug)){
-			throw new \Exception("page not found", 404);
-		}
-		$post = $this->findOne(['slug'=>$slug]);
-		if(!isset($post->slug)){
-			throw new \Exception("page not found", 404);
-		}
-		return $post;
-	}
 
 	public function install(){
 		try {
@@ -51,9 +41,20 @@ class PostModel extends NoSqlModel {
 			$client->createIndex('post',$index);
 			return 'PostModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'PostModel already exists';
+			return 'PostModel :'.$e->getMessage();
 		}
 
+	}
+
+	public function findBySlug($slug = ''){
+		if(empty($slug)){
+			throw new \Exception("page not found", 404);
+		}
+		$post = $this->findOne(['slug'=>$slug]);
+		if(!isset($post->slug)){
+			throw new \Exception("page not found", 404);
+		}
+		return $post;
 	}
 
 	public function create($post){

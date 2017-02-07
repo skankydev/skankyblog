@@ -14,5 +14,7 @@
 	</section>
 	<footer>
 		<?php echo $this->link('Ajouter un role',['action'=>'add'],['class'=>'btn-default']); ?>
+		<?php echo $this->link('init',['action'=>'init'],['class'=>'btn-default']); ?>
+		<?php echo $this->link('update',['action'=>'update'],['class'=>'btn-default']); ?>
 	</footer>
 </section>

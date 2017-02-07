@@ -72,7 +72,7 @@ class PermissionController extends MasterController {
 
 	private function add(){
 		if($this->request->isPost()){
-			$role = $this->Permission->createDocument($this->request->data);
+			$role = $this->Permission->createDocument($this->request->getData());
 			$init = $this->Permission->findOne(['name'=>'init']);
 			$role->action = $init->action;
 			if($this->Permission->isValid($role)){
@@ -93,7 +93,7 @@ class PermissionController extends MasterController {
 	private function edit($name =''){
 		$role = $this->Permission->findOne(['name'=>$name]);
 		if($this->request->isPost()){
-			$role =$this->Permission->createDocument($this->request->data);
+			$role =$this->Permission->createDocument($this->request->getData());
 			if($this->Permission->isValid($role)){
 				if($this->Permission->save($role)){
 					$this->Flash->set('ca marche',['class' => 'success']);

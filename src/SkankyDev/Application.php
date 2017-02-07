@@ -38,7 +38,7 @@ class Application {
 			$this->auth = Auth::getInstance();
 			$this->auth->checkFirstStep();
 			include_once APP_FOLDER.DS.'config'.DS.'bootstrap.php';
-			$this->request->securePost();
+			//$this->request->securePost();
 
 			$view = $this->router->execute();
 			$view->render();

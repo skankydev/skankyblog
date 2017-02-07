@@ -1,11 +1,12 @@
 <?php $user = $this->Auth->getAuth(); ?>
 <nav class="element-end">
 	<ul id="UserInfo" class="user-panel user-panel-bottom">
+		<li><?php echo $this->element('cart'); ?></li>
 	<?php if (empty($user)): ?>
 		<li><?php echo $this->link('login', ['controller'=>'user','action'=>'login']);?></li>
 		<li><?php echo $this->link('sign-up', ['controller'=>'user','action'=>'signUp']);?></li>
 	<?php else: ?>
-		<li><?php echo $this->link($user->login, ['controller'=>'user','action'=>'profil']);?></li>
+		<li><?php echo $this->link($user->login, ['controller'=>'profil','action'=>'index']);?></li>
 		<li><?php echo $this->link('&hksearow;', ['controller'=>'user','action'=>'logout'],['title'=>'logout']);?> </li>
 	<?php endif ?>
 	</ul>
@@ -30,7 +31,6 @@ $(document).ready(function(){
 			$('.user-panel-top').css('right',0);
 			$('.user-panel-top').removeClass('user-panel-top').addClass('user-panel-bottom');
 		}
-		
 	});
 });
 </script>

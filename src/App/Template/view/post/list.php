@@ -1,7 +1,8 @@
-<?php $this->setTitle('users'); ?>
+<?php $this->setTitle('Post'); ?>
 <section id='Posts'>
 	<header>
-		<h1><?php echo _("Users"); ?></h1>
+		<h1><?php echo _("Post"); ?></h1>
+		<?php echo $this->link('Add Post',['action'=>'add'],['class'=>'btn-default']); ?>
 	</header>
 	<section class="liste-users">
 	<table>
@@ -23,7 +24,11 @@
 				<td><?php echo $post->online?'Yes':'No'; ?></td>
 				<td><?php echo $this->Time->toHuman($post->updated); ?></td>
 				<td><?php echo $this->Time->toHuman($post->created); ?></td>
-				<th><?php echo $this->link('<i class="fa fa-trash" aria-hidden="true"></i>', ['action'=>'delete','params'=>['_id'=>$post->_id]],['class'=>'btn-trash']);?></th>
+				<th>
+				<?php echo $this->link('<i class="fa fa-pencil-square-o" aria-hidden="true"></i>', ['action'=>'edit','params'=>['slug'=>$post->slug]],['class'=>'btn-warning']);?>
+				<?php echo $this->link('<i class="fa fa-trash " aria-hidden="true"></i>', ['action'=>'delete','params'=>['_id'=>$post->_id]],['class'=>'btn-error']);?>
+					
+				</th>
 			</tr>
 		<?php endforeach ?>
 		</tbody>

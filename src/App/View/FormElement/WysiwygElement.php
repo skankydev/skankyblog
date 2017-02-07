@@ -80,7 +80,6 @@ class WysiwygElement extends MasterElement {
 					</ul>
 					<a class='btn-default upload-img'>upload</a>
 				</div>
-				<div class="btn-left"></div>
 				<ul class="list-img">
 					<?php foreach ($this->option['img']['media'] as $media): ?>
 					<li class="img-elem">
@@ -89,7 +88,6 @@ class WysiwygElement extends MasterElement {
 					</li>
 					<?php endforeach ?>
 				</ul>
-				<div class="btn-right"></div>
 			<?php endif ?>
 
 			<label class="wysiwyg-label-a">
@@ -195,6 +193,8 @@ $(document).ready(function(){
 				$('.list-img').append(retour.html);
 				if(index < files.length-1){
 					upload(files,area,index+1);
+				}else{
+					fileList = [];
 				}
 			}else{
 				alert(retour.message);

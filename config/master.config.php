@@ -3,6 +3,7 @@
  * congratulation you have found the master configuration file
  */
 $smtp = require 'smtp.config.php';
+$paypal = require 'smtp.config.php';
 $conf =  [
 	'db' => [
 		'MongoDB' =>[
@@ -27,7 +28,9 @@ $conf =  [
 		],
 	],
 	'smtp' => $smtp,
+	'paypal' => $paypal,
 	'debug' => 2,
+	'adminMail' => 'skankydev@gmail.com',
 	
 ];
 return $conf;
@@ -43,6 +46,11 @@ return [
 		'port' => '465',
 		'sender' => 'no-reply@mail.com'
 	]
+];
+
+smtp.config.php exemple
+return [
+	
 ];
 
  */

@@ -43,7 +43,7 @@ class MessageController extends MasterController {
 	protected function add($post_id){
 		$this->view->displayLayout = false;
 		if($this->request->isPost()){
-			$message = $this->Message->createDocument($this->request->data);
+			$message = $this->Message->createDocument($this->request->getData());
 			if($this->Message->isValid($message)){
 				if($this->Message->save($message)){
 					$this->Flash->set('ca marche',['class' => 'success']);
@@ -67,7 +67,7 @@ class MessageController extends MasterController {
 			throw new \Exception("page not found", 404);
 		}
 		if($this->request->isPost()){
-			if($message->isValid($this->request->data)){
+			if($message->isValid($this->request->getData())) {
 				if($this->Message->save($message)){
 					$this->Flash->set('ca marche',['class' => 'success']);
 					//$this->request->redirect(['action'=>'index']);

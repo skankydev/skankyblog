@@ -26,6 +26,7 @@ class ProductModel extends NoSqlModel {
 	public function initValidator($validator){
 		$validator->addRules(['name','ref','prix'],['notEmpty'],'ne doit pas etre vide');
 		$validator->addRules(['prix'],['isNum'],'doit etre un nombre');
+		$validator->addRules(['ref'],['regex'=>['preg'=>'/^[a-zA-Z0-9]*$/']],'doit contenir que des caractère alphanumérique');
 		$validator->trimTag(['name','ref']);
 	}
 
@@ -37,10 +38,32 @@ class ProductModel extends NoSqlModel {
 			$client->createCollection('product',$option);
 			$index = [];
 			$index[0] = ['key'=>['ref'=>1],'name'=>'ref','unique'=>true];
-			$client->createIndex('post',$index);
+			$client->createIndex('product',$index);
 			return 'ProductModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'ProductModel already exists';
+			return 'ProductModel :'.$e->getMessage();
 		}
 	}
+
+	public function remove($_id){
+		$product = $this->findById($_id);
+		if($this->delete(['_id'=>$_id])){
+			$dir = PUBLIC_FOLDER.DS.'img'.DS.'product'.DS.$product->ref;
+			$dirContent = scandir($dir);
+			foreach ($dirContent as $file) {
+				if(is_file($dir.DS.$file)){
+					unlink($dir.DS.$file);
+				}
+			}
+			rmdir($dir);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function addMedia($ref,$media){
+		return $this->collection->findOneAndUpdate(['ref'=>$ref],['$push'=>['media'=>$media]]);
+	}
+
 }

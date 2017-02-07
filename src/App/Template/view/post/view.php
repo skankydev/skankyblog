@@ -15,7 +15,6 @@
 		<?php endif ?>
 	</footer>
 </section>
-
 <section id="Message">
 <?php
 $post_id = $post->_id->__toString();
@@ -25,7 +24,6 @@ echo $this->elementFromView(['namespace'=>'App','controller'=>'Message','action'
 <div class="see-more">
 	<span class="btn-see-more">see more</span>
 </div>
-
 </section>
 
 <?php $this->startScript() ?>

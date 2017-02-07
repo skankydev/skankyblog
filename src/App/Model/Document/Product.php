@@ -21,6 +21,8 @@ class Product extends MasterDocument {
 	public $name;
 	public $description;
 	public $media;
-	public $prixTTC;
+	public $prix;
+	public $stock;
+	public $online;
 
 }

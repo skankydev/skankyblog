@@ -32,7 +32,7 @@ class TaxonomieController extends MasterController {
 
 	private function add(){
 		if($this->request->isPost()){
-			$tag = $this->Taxonomie->createDocument($this->request->data);
+			$tag = $this->Taxonomie->createDocument($this->request->getData());
 			$tag->slug = str_replace(' ', '-', $tag->name);
 			$tag->count = 0;
 			if($this->Taxonomie->isValid($tag)){

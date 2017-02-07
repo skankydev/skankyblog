@@ -42,7 +42,7 @@ class UsersListener extends MasterListener {
 		$auth->setPermission($perm);
 	}
 
-	public function cookieLogin(){
+	public function cookieLogin($subject){
 		$auth = Auth::getInstance();
 		$data = $auth->getCookieToken();
 		if($data){
@@ -55,6 +55,7 @@ class UsersListener extends MasterListener {
 				$user->_id = $user->_id->__toString();//MongoDB\BSON\ObjectID fatal error session
 				$auth->setAuth($user);
 				$auth->setCookieTokent($user->email,$cookiToken);
+				$this->getPermission($subject);
 			}
 		}
 	}
