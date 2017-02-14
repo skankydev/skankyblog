@@ -872,6 +872,34 @@ a[class^="btn-"]:visited {
 	padding: 0 2px;
 	border: 1px solid;
 }
+/*-----------Menu bulder--------------*/
+.link-list{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.link{
+	width: 320px;
+	display: inline-block;
+	border: 1px solid #BEBEBE;
+	margin: 4px;
+	position: relative;
+	padding: 4px 0;
+}
+.link-remove{
+	position: absolute;
+	bottom: : 0;
+	left: 290px;
+}
+.link input{
+	width: 60%;
+	border: 1px solid #000;
+	padding: 4px;
+}
+.link label{
+	width: 39%;
+	padding: 4px;
+}
 /*--------------Product---------------*/
 
 .product-list{
@@ -1030,7 +1058,6 @@ a[class^="btn-"]:visited {
 	left: 0;
 	bottom: 0;
 	z-index: -1;
-	
 }
 .admin-option{}
 .admin-option:first-child{

@@ -25,6 +25,6 @@ class Commande extends MasterDocument {
 	public $adresse;
 	public $prixTotal;
 	public $quantityTotal;
-	public $paiment;
+	public $payment;
 
 }

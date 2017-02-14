@@ -41,7 +41,7 @@ class PostModel extends NoSqlModel {
 			$client->createIndex('post',$index);
 			return 'PostModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'PostModel :'.$e->getMessage();
+			return 'PostModel: '.$e->getMessage();
 		}
 
 	}

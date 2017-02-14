@@ -9,6 +9,7 @@
 			<tr>
 				<th><?php echo $this->link('login', ['params'=>$users->sortParams('login')]);?> </th>
 				<th><?php echo $this->link('e-mail', ['params'=>$users->sortParams('email')]);?> </th>
+				<th><?php echo $this->link('role', ['params'=>$users->sortParams('role')]);?> </th>
 				<th><?php echo $this->link('valid', ['params'=>$users->sortParams('valid')]);?> </th>
 				<th><?php echo $this->link('last login', ['params'=>$users->sortParams('lastLogin')]);?> </th>
 				<th><?php echo $this->link('inscription', ['params'=>$users->sortParams('created')]);?> </th>
@@ -20,6 +21,7 @@
 			<tr>
 				<td><?php echo $this->link($user->login, ['action'=>'view','params'=>['login'=>$user->login]]);?></td>
 				<td><?php echo $user->email; ?></td>
+				<td><?php echo $user->role; ?></td>
 				<td><?php echo $user->valid?'Yes':'No'; ?></td>
 				<td><?php echo $user->lastLogin?$this->Time->since($user->lastLogin):'No'; ?></td>
 				<td><?php echo $this->Time->toHuman($user->created); ?></td>

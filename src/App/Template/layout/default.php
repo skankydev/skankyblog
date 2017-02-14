@@ -24,8 +24,9 @@
 </head>
 <body>
 	<?php echo $this->element('admin-menu'); ?>
-	<section id="Container">		
-		<?php echo $this->element('menu'); ?>
+	<section id="Container">
+	<?php echo $this->elementFromView(['namespace'=>'App','controller'=>'Menu','action'=>'view','params'=>['name'=>'main']]);	 ?>
+
 		<header id="Header">
 			<div class="layout-header">
 				<div class='sit-title'>

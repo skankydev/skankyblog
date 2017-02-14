@@ -50,6 +50,7 @@ return [
 		],
 		'tools' => [
 			'Mail' => 'App\Controller\Tools\MailTool',
+			'Paypal' => 'App\Controller\Tools\PaypalTool',
 		],
 		'formElement' => [
 			'Wysiwyg' => 'App\View\FormElement\WysiwygElement'

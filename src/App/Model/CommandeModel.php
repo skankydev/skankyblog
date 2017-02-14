@@ -51,7 +51,7 @@ class CommandeModel extends NoSqlModel {
 		$commande->clientTel = $profil->telephone;
 		$commande->adresse = $profil->adresse[$data->adresse];
 
-		$commande->paiment = false;
+		$commande->payment = false;
 		$commande->prixTotal = 0;
 		$commande->quantityTotal = 0;
 

@@ -62,6 +62,7 @@ $(document).ready(function(){
 		$.get(link,function(data){
 			$('.cart-count').html(data.count);
 			$('.cart-list').html(data.html);
+			//TODO ajouter une feadback
 		},"json");
 	});
 

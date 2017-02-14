@@ -20,7 +20,7 @@
 					<td><?php echo $this->link($commande->num, ['action'=>'view','params'=>['num'=>$commande->num]]);?></td>
 					<td><?php echo $commande->quantityTotal; ?></td>
 					<td><?php echo $commande->prixTotal; ?></td>
-					<td><?php echo $commande->paiment?'oui':'non'; ?></td>
+					<td><?php echo $commande->payment?'oui':'non'; ?></td>
 					<td><?php echo $this->Time->toHuman($commande->created); ?></td>
 				</tr>
 			<?php endforeach ?>

@@ -10,19 +10,11 @@
  * @copyright     Copyright (c) SCHENCK Simon
  *
  */
+namespace App\Model\Document;
 
-namespace App\Controller;
+use SkankyDev\Model\Document\MasterDocument;
 
-use SkankyDev\Controller\MasterController;
-
-class PaimentController extends MasterController {
-	
-	public function index(){
-
-	}
-
-	protected function paypal($commande_id){
-
-	}
-
+class Menu extends MasterDocument {
+	public $name;
+	public $data;
 }

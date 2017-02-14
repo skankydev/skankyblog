@@ -16,9 +16,11 @@ namespace App\Model;
 use SkankyDev\Model\NoSqlModel;
 use SkankyDev\Database\MongoClient;
 
-class OptionModel extends NoSqlModel {
+class MenuModel extends NoSqlModel {
 
-	protected $behavior = [];
+	protected $behavior = [
+		'Timed'
+	];
 
 	public function initValidator($validator){
 	
@@ -28,25 +30,20 @@ class OptionModel extends NoSqlModel {
 		try {
 			$client = MongoClient::getInstance();
 			$option = [];
-			$client->createCollection('option',$option);
+			$option['autoIndexId'] = true;
+			$client->createCollection('menu',$option);
 			$index = [];
 			$index[0] = ['key'=>['name'=>1],'name'=>'name','unique'=>true];
-			$client->createIndex('option',$index);
-			return 'OptionModel has been configured';			
+			$client->createIndex('menu',$index);
+			return 'MenuModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'OptionModel: '.$e->getMessage();
+			return 'MenuModel: '.$e->getMessage();
 		}	
 	}
 
-	public function getNexCommandeNum(){
-		$num = $this->collection->findOneAndUpdate(
-			['name' => 'numCom'],
-			['$inc' => ["value" => 1]],
-			[
-				'upsert'=>true,
-				'returnDocument' => \MongoDB\Operation\FindOneAndUpdate::RETURN_DOCUMENT_AFTER,
-			]
-		);
-		return $num->value;
+	public function findMenu($name){
+		$menu = $this->collection->findOne(['name'=>$name]);
+		return $menu;
 	}
 }
+	

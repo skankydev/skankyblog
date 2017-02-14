@@ -36,7 +36,7 @@ class MessageModel extends NoSqlModel {
 			$client->createCollection('message',$option);
 			return 'MessageModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'MessageModel :'.$e->getMessage();			
+			return 'MessageModel: '.$e->getMessage();			
 			
 		}
 

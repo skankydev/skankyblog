@@ -3,7 +3,7 @@
  * congratulation you have found the master configuration file
  */
 $smtp = require 'smtp.config.php';
-$paypal = require 'smtp.config.php';
+$paypal = require 'paypal.config.php';
 $conf =  [
 	'db' => [
 		'MongoDB' =>[

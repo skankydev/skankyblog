@@ -25,6 +25,11 @@ $perm = SkankyDev\Auth::getPermission();
 				<?php echo $this->link('Taxonomie', ['controller'=>'taxonomie','action'=>'index'],['class'=>'admin-link']);?>
 			</li>
 		<?php endif ?>
+		<?php if ($action['Menu']['index']==='allow'): ?>
+			<li class="admin-button">
+				<?php echo $this->link('Menu', ['controller'=>'menu','action'=>'index'],['class'=>'admin-link']);?>
+			</li>
+		<?php endif ?>
 		<?php if ($action['Product']['list']==='allow'): ?>
 			<li class="admin-button">
 				<?php echo $this->link('Product', ['controller'=>'product','action'=>'list'],['class'=>'admin-link']);?>

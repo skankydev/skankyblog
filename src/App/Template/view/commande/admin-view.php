@@ -15,21 +15,21 @@
 		<table>
 			<thead>
 				<tr>
-					<th><?php echo _('ref') ?></th>
-					<th><?php echo _('nom') ?></th>
-					<th><?php echo _('quantité') ?></th>
-					<th><?php echo _('prix') ?></th>
-					<th><?php echo _('total') ?></th>
+					<th><?php echo _('ref'); ?></th>
+					<th><?php echo _('nom'); ?></th>
+					<th><?php echo _('quantité'); ?></th>
+					<th><?php echo _('prix'); ?></th>
+					<th><?php echo _('total'); ?></th>
 				</tr>
 			</thead>
 			<tbody class="">				
 			<?php foreach ($commande->product as $key => $product): ?>
 				<tr>
-					<td><?php echo $product['ref'] ?></td>
-					<td><?php echo $product['name'] ?></td>
-					<td><?php echo $product['quantity'] ?></td>
-					<td><?php echo number_format($product['prix'],2) ?>€</td>
-					<td><?php echo number_format($product['total'],2) ?>€</td>
+					<td><?php echo $product['ref']; ?></td>
+					<td><?php echo $product['name']; ?></td>
+					<td><?php echo $product['quantity']; ?></td>
+					<td><?php echo number_format($product['prix'],2); ?>€</td>
+					<td><?php echo number_format($product['total'],2); ?>€</td>
 				</tr>
 			<?php endforeach ?>	
 			</tbody>
@@ -47,9 +47,6 @@
 		</table>
 	</section>
 	<footer>
-		<?php if (!$commande->payment): ?>
-			<h3>procéder au paiement</h3>
-			<?php echo $this->link('paypal', ['controller'=>'payment','action'=>'paypal','params'=>['commande_id'=>$commande->_id]],['class'=>'']);?>
-		<?php endif ?>
+	<!-- TODO la suite -->
 	</footer>
 </section>

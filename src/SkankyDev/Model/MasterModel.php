@@ -74,8 +74,10 @@ class MasterModel
 	 */
 	static function load($name,$full = false){
 		if(!$full){
+			$name = ucwords($name);
 			$cName = Config::getCurentNamespace().'\\Model\\'.$name.'Model';
 		}else{
+			$name = ucwords($name);
 			$cName = $name;
 			$name = explode('\\', $name);
 			$name = end($name);
