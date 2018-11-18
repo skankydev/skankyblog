@@ -1,5 +1,10 @@
 #Permission input[type="radio"] {
 	float:none;
+	.action-element{
+		div{
+			margin: 0!important;
+		}
+	}
 }
 
 .controller{
@@ -31,4 +36,9 @@
 	margin: 2px 0 0 4px;
 	padding: 0 2px;
 	border: 1px solid;
+}
+input[type="radio"]:not(:checked) + .action-allow,
+input[type="radio"]:not(:checked) + .action-deny{
+	background-color: transparent;
+	border-color: transparent;
 }
