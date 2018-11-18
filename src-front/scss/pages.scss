@@ -1,0 +1,50 @@
+#Contents{
+	padding: 32px 0;
+	width: 1280px;
+	margin: auto;
+	min-height: 530px;/*le petit cache misaire*/
+	background-color: $white;
+}
+
+#Container{
+	background-color: $white;
+}
+
+
+
+.list-img {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+.img-elem{
+	width: 220px;
+}
+
+.img-select{
+	width: 220px;
+}
+.img-name{
+	width: 220px;
+	display: inline-block;
+	height: 20px;
+	position: relative;
+	top: -25px;
+	background: rgba(0,0,0,0.5);
+	color: $white;
+	text-align: center;
+}
+
+/*-------------------------------------*/
+.post-title,
+.post-title:visited{
+	text-decoration: none;
+	color: #000;
+}
+.label-tags{
+	display: block;
+	width: 100%;
+}
+#Message-Form form div{
+	margin: 0;
+}

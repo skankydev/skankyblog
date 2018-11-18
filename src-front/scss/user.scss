@@ -1,0 +1,62 @@
+#Login{
+	display: inline-block;
+	width: 45%;
+}
+#Login .field{
+	display: block;
+	width: 100%;
+}
+
+.user-panel{
+}
+.user-panel-top{
+	position:fixed;
+	top:0px;
+	right: 0;
+	z-index: 10;
+}
+.user-panel-bottom{
+	position:relative;
+	top:12px;
+}
+.user-panel::before,
+.user-panel::after {
+	border-color: transparent transparent transparent transparent;
+	border-style: solid;
+	border-width: 12px;
+	content: '';
+	height: 0px;
+	width: 0px;
+	line-height: 0px;
+	display: inline-block;
+}
+
+.user-panel-bottom::before{
+	border-color: transparent $color-primary transparent transparent;
+}
+.user-panel-bottom::after {
+	border-color: transparent transparent transparent $color-primary;
+}
+.user-panel-top::before{
+	border-color:  $color-primary $color-primary transparent transparent;
+}
+.user-panel-top::after {
+	border-color: $color-primary transparent transparent $color-primary;
+}
+.user-panel a{
+	height: 24px;
+	line-height: 24px;
+	display: inline-block;
+	padding: 0 8px;
+	
+	color:$white;
+	text-align: center;
+	text-decoration: none;
+	text-transform: capitalize;
+	background-color: $color-primary;
+
+	transition: all 0.2s ease-out;
+}
+.user-panel a:hover{
+	color: $color-primary-light;
+}

@@ -1,7 +1,6 @@
 <?php $user = $this->Auth->getAuth(); ?>
 <nav class="element-end">
 	<ul id="UserInfo" class="user-panel user-panel-bottom">
-		<li><?php echo $this->element('cart'); ?></li>
 	<?php if (empty($user)): ?>
 		<li><?php echo $this->link('login', ['controller'=>'user','action'=>'login']);?></li>
 		<li><?php echo $this->link('sign-up', ['controller'=>'user','action'=>'signUp']);?></li>
