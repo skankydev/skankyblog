@@ -1,77 +1,84 @@
 /*-------------Menu-------------------*/
-
 #Menu {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
 	height: 60px;
 	background: $color-primary;
 	width: 100%;
 	padding: 0 5%;
-}
+	ul{
+		display: flex;
+		flex-direction:row;
+		width: 1280px;
+		margin: auto;
+	}
+	li{
+		vertical-align: top;
+		height: 60px;
+		border-right:1px solid $color-primary-dark;
+		&:first-child{
+			border-left:1px solid $color-primary-dark;
+		}
+	}
+	a{
+		height: 60px;
+		line-height: 60px;
+		min-width: 80px;
+		display: inline-block;
+		padding: 0 8px;
+		
+		font-weight: bold;
+		color:$white;
+		text-align: center;
+		text-decoration: none;
+		text-transform: capitalize;
 
-#Menu ul{
-	display: flex;
-	flex-direction:row;
-	width: 1280px;
-	margin: auto;
-}
-#Menu li{
-	vertical-align: top;
-	height: 60px;
-}
-#Menu li{
-	border-right:1px solid $color-primary-dark;
-}
-#Menu li:first-child{
-	border-left:1px solid $color-primary-dark;
-}
-#Menu a{
-	height: 60px;
-	line-height: 60px;
-	min-width: 80px;
-	display: inline-block;
-	padding: 0 8px;
-	
-	font-weight: bold;
-	color:$white;
-	text-align: center;
-	text-decoration: none;
-	text-transform: capitalize;
+		position: relative;
+		transition: all 0.2s ease-out ;
 
-	position: relative;
-	transition: all 0.2s ease-out ;
-}
-#Menu a:hover{
-	color: $color-primary-light;
-	text-shadow: 0 0 50px $color-primary-light;
-}
-#Menu a:before,
-#Menu a:after{
-	content: ' ';
-	position: absolute;
+		&:hover{
+			color: $color-primary-light;
+			text-shadow: 0 0 50px $color-primary-light;
+			&:before{
+				transform: rotate3d(1,0,0,0deg);
+			}
+			&:after{
+				transform: rotate3d(1,0,0,0deg);
+			}
+		}
+		&:before,
+		&:after{
+			content: ' ';
+			position: absolute;
 
-	height: 4px;
-	width: 100%;
-	background-color: $color-primary-light;
-	transition: transform 0.2s ease-out ;
-}
-#Menu a:before{
-	top: 0;
-	left: 0;
-	transform-origin: center top 0px;
-	transform: perspective(200px) rotate3d(1,0,0,-90deg);	
-}
-#Menu a:after{
-	bottom: 0;
-	left: 0;
-	transform-origin: center bottom 0px;
-	transform: perspective(200px) rotate3d(1,0,0,90deg);
-}
-#Menu a.active:before,
-#Menu a:hover:before{
-	transform: rotate3d(1,0,0,0deg);
-}
-#Menu a.active:after,
-#Menu a:hover:after{
-	transform: rotate3d(1,0,0,0deg);
+			height: 4px;
+			width: 100%;
+			background-color: $color-primary-light;
+			transition: transform 0.2s ease-out ;			
+		}
+		&:before{
+			top: 0;
+			left: 0;
+			transform-origin: center top 0px;
+			transform: perspective(200px) rotate3d(1,0,0,-90deg);	
+		}
+		&:after{
+			bottom: 0;
+			left: 0;
+			transform-origin: center bottom 0px;
+			transform: perspective(200px) rotate3d(1,0,0,90deg);
+		}
+	}
+	a.active{
+		&:before{
+			transform: rotate3d(1,0,0,0deg);
+		}
+		&:after{
+			transform: rotate3d(1,0,0,0deg);
+		}
+	}
 }
 
 /*-----------Menu bulder--------------*/

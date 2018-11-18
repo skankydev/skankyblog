@@ -1,17 +1,30 @@
+<?php 
+$this->setTitle(' - framework');
+$this->layout = 'test';
+?>
+
+<header class="home-cover">
+	<div class="home-text">
+		<span class="debug-php">&lt;?=</span><span class="debug-keyword"> __</span>(<span class="debug-text">"Hello World"</span>) <span class="debug-php">?&gt;</span>
+	</div>
+</header>
 <section id="Index">
-	<header>
-		
-	</header>
-	<section>
-		<div class="layout-index">
-			<div><img src="/img/test/dontstarve.jpg" alt=""></div>
-			<div><img src="/img/test/dst.jpg" alt=""></div>
-			<div><img src="/img/test/darkest_dungeon.jpg" alt=""></div>
-			<div><img src="/img/test/subnautica.jpg" alt=""></div>
-			<div><img src="/img/test/ori_blind_forest.jpg" alt=""></div>
+	<div class="layout-index">
+		<div>
+			<?php echo _('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, numquam?'); ?>
+			<ul>
+				<li><?php echo _('PHP version: ').PHP_VERSION; ?></li>
+				<li><?php echo _('Mongodb driver: ').phpversion("mongodb"); ?></li>
+				<li><?php echo _('GetText: ').phpversion("gettext"); ?></li>
+				<li><?php echo _('Intl: ').phpversion("intl"); ?></li>
+			</ul>
 		</div>
-	</section>
-	<footer>
-		
-	</footer>
+		<div>
+			<?php echo _('Laborum repellendus ducimus earum. Libero labore ducimus nulla architecto sapiente.'); ?>
+		</div>
+		<div>
+			<?php echo _('Expedita hic quas vel vero culpa molestias itaque, quidem saepe. ');?>
+		</div>
+	</div>
 </section>
+

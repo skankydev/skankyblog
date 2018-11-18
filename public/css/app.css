@@ -335,7 +335,8 @@ body {
   font-family: "Consolas";
   width: 100%;
   scroll-behavior: smooth;
-  background: #E7E7E7; }
+  background: #E7E7E7;
+  padding-top: 60px; }
 
 header, footer, section, article, div, nav, figure {
   display: block; }
@@ -815,73 +816,66 @@ div[class^="layout-"] {
 
 /*-------------Menu-------------------*/
 #Menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   height: 60px;
   background: #243E79;
   width: 100%;
   padding: 0 5%; }
-
-#Menu ul {
-  display: flex;
-  flex-direction: row;
-  width: 1280px;
-  margin: auto; }
-
-#Menu li {
-  vertical-align: top;
-  height: 60px; }
-
-#Menu li {
-  border-right: 1px solid #061A46; }
-
-#Menu li:first-child {
-  border-left: 1px solid #061A46; }
-
-#Menu a {
-  height: 60px;
-  line-height: 60px;
-  min-width: 80px;
-  display: inline-block;
-  padding: 0 8px;
-  font-weight: bold;
-  color: #FFF;
-  text-align: center;
-  text-decoration: none;
-  text-transform: capitalize;
-  position: relative;
-  transition: all 0.2s ease-out; }
-
-#Menu a:hover {
-  color: #5B71A5;
-  text-shadow: 0 0 50px #5B71A5; }
-
-#Menu a:before,
-#Menu a:after {
-  content: ' ';
-  position: absolute;
-  height: 4px;
-  width: 100%;
-  background-color: #5B71A5;
-  transition: transform 0.2s ease-out; }
-
-#Menu a:before {
-  top: 0;
-  left: 0;
-  transform-origin: center top 0px;
-  transform: perspective(200px) rotate3d(1, 0, 0, -90deg); }
-
-#Menu a:after {
-  bottom: 0;
-  left: 0;
-  transform-origin: center bottom 0px;
-  transform: perspective(200px) rotate3d(1, 0, 0, 90deg); }
-
-#Menu a.active:before,
-#Menu a:hover:before {
-  transform: rotate3d(1, 0, 0, 0deg); }
-
-#Menu a.active:after,
-#Menu a:hover:after {
-  transform: rotate3d(1, 0, 0, 0deg); }
+  #Menu ul {
+    display: flex;
+    flex-direction: row;
+    width: 1280px;
+    margin: auto; }
+  #Menu li {
+    vertical-align: top;
+    height: 60px;
+    border-right: 1px solid #061A46; }
+    #Menu li:first-child {
+      border-left: 1px solid #061A46; }
+  #Menu a {
+    height: 60px;
+    line-height: 60px;
+    min-width: 80px;
+    display: inline-block;
+    padding: 0 8px;
+    font-weight: bold;
+    color: #FFF;
+    text-align: center;
+    text-decoration: none;
+    text-transform: capitalize;
+    position: relative;
+    transition: all 0.2s ease-out; }
+    #Menu a:hover {
+      color: #5B71A5;
+      text-shadow: 0 0 50px #5B71A5; }
+      #Menu a:hover:before {
+        transform: rotate3d(1, 0, 0, 0deg); }
+      #Menu a:hover:after {
+        transform: rotate3d(1, 0, 0, 0deg); }
+    #Menu a:before, #Menu a:after {
+      content: ' ';
+      position: absolute;
+      height: 4px;
+      width: 100%;
+      background-color: #5B71A5;
+      transition: transform 0.2s ease-out; }
+    #Menu a:before {
+      top: 0;
+      left: 0;
+      transform-origin: center top 0px;
+      transform: perspective(200px) rotate3d(1, 0, 0, -90deg); }
+    #Menu a:after {
+      bottom: 0;
+      left: 0;
+      transform-origin: center bottom 0px;
+      transform: perspective(200px) rotate3d(1, 0, 0, 90deg); }
+  #Menu a.active:before {
+    transform: rotate3d(1, 0, 0, 0deg); }
+  #Menu a.active:after {
+    transform: rotate3d(1, 0, 0, 0deg); }
 
 /*-----------Menu bulder--------------*/
 .link-list {
@@ -921,6 +915,48 @@ div[class^="layout-"] {
 
 #Container {
   background-color: #FFF; }
+
+#Index {
+  width: 1280px;
+  height: 100vh;
+  margin: 0 auto; }
+
+.home-cover {
+  text-align: center;
+  color: #FFF;
+  background-color: #000;
+  background-image: url("/img/theme/back.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-attachment: fixed;
+  border-bottom: 1px solid #243E79;
+  transition: background-position 1s;
+  height: calc(100vh - 280px); }
+
+.home-text {
+  font-size: 64px;
+  position: relative;
+  text-align: center;
+  top: calc( 50% - 32px);
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 33%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.75) 66%, transparent 100%);
+  padding: 20px; }
+
+.fix-header {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0; }
+
+.scroll-header {
+  position: absolute; }
+
+.fix-menu {
+  position: fixed;
+  left: 0;
+  right: 0; }
+
+.scroll-menu {
+  position: fixed; }
 
 .list-img {
   display: flex;
@@ -972,14 +1008,13 @@ div[class^="layout-"] {
 #Login {
   display: inline-block;
   width: 45%; }
-
-#Login .field {
-  display: block;
-  width: 100%; }
+  #Login .field {
+    display: block;
+    width: 100%; }
 
 .user-panel-top {
   position: fixed;
-  top: 0px;
+  top: 60px;
   right: 0;
   z-index: 10; }
 

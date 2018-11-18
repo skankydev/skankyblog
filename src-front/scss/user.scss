@@ -1,17 +1,17 @@
 #Login{
 	display: inline-block;
 	width: 45%;
-}
-#Login .field{
-	display: block;
-	width: 100%;
+	 .field{
+		display: block;
+		width: 100%;
+	}
 }
 
 .user-panel{
 }
 .user-panel-top{
 	position:fixed;
-	top:0px;
+	top:60px;
 	right: 0;
 	z-index: 10;
 }

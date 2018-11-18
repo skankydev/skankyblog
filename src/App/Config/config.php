@@ -11,7 +11,7 @@ return [
 	'routes' =>[
 		'/' => [
 			'options'=>[
-				'controller' => 'Post',
+				'controller' => 'Home',
 				'action'     => 'index',
 				'namespace'  => 'App'
 			]

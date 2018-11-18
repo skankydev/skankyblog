@@ -23,7 +23,7 @@ $(document).ready(function(){
 		var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 		var pp = panel.getBoundingClientRect();
 		var hp = header.getBoundingClientRect();
-		if((pp.top<=0)&&(hp.bottom<=0)){
+		if((pp.top<=60)&&(hp.bottom<=60)){
 			$('.user-panel-bottom').removeClass('user-panel-bottom').addClass('user-panel-top');
 			$('.user-panel-top').css('right',right+'px');
 		}else{
