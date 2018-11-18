@@ -35,10 +35,10 @@ class MenuModel extends NoSqlModel {
 			$index = [];
 			$index[0] = ['key'=>['name'=>1],'name'=>'name','unique'=>true];
 			$client->createIndex('menu',$index);
-			return 'MenuModel has been configured';			
+			return 'MenuModel has been configured';
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
 			return 'MenuModel: '.$e->getMessage();
-		}	
+		}
 	}
 
 	public function findMenu($name){

@@ -23,7 +23,7 @@ class CommandeModel extends NoSqlModel {
 	];
 
 	public function initValidator($validator){
-	
+		
 	}
 
 	public function install(){

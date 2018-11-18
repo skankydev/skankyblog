@@ -817,6 +817,7 @@ div[class^="layout-"] {
 /*-------------Menu-------------------*/
 #Menu {
   position: fixed;
+  z-index: 10;
   top: 0;
   right: 0;
   left: 0;
@@ -1012,15 +1013,22 @@ div[class^="layout-"] {
     display: block;
     width: 100%; }
 
+.user-panel {
+  transition: background-color 0.2s ease-out; }
+
 .user-panel-top {
   position: fixed;
-  top: 60px;
+  top: 36px;
   right: 0;
-  z-index: 10; }
+  z-index: 11; }
+  .user-panel-top a {
+    background-color: #030202; }
 
 .user-panel-bottom {
   position: relative;
   top: 12px; }
+  .user-panel-bottom a {
+    background-color: #243E79; }
 
 .user-panel::before,
 .user-panel::after {
@@ -1031,7 +1039,8 @@ div[class^="layout-"] {
   height: 0px;
   width: 0px;
   line-height: 0px;
-  display: inline-block; }
+  display: inline-block;
+  transition: border-color 0.2s ease-out; }
 
 .user-panel-bottom::before {
   border-color: transparent #243E79 transparent transparent; }
@@ -1040,10 +1049,10 @@ div[class^="layout-"] {
   border-color: transparent transparent transparent #243E79; }
 
 .user-panel-top::before {
-  border-color: #243E79 #243E79 transparent transparent; }
+  border-color: transparent #030202 #030202 transparent; }
 
 .user-panel-top::after {
-  border-color: #243E79 transparent transparent #243E79; }
+  border-color: transparent transparent #030202 #030202; }
 
 .user-panel a {
   height: 24px;
@@ -1054,11 +1063,10 @@ div[class^="layout-"] {
   text-align: center;
   text-decoration: none;
   text-transform: capitalize;
-  background-color: #243E79;
-  transition: all 0.2s ease-out; }
+  transition: background-color 0.2s ease-out; }
 
 .user-panel a:hover {
-  color: #5B71A5; }
+  color: #918F8F; }
 
 #Wysiwyg {
   position: relative; }
@@ -1165,7 +1173,7 @@ input[type="radio"]:not(:checked) + .action-deny {
   top: 0;
   left: 0;
   background: #243E79;
-  z-index: 1; }
+  z-index: 11; }
 
 .admin-btn-containe {
   display: inline-block;

@@ -27,14 +27,26 @@ trait StringFacility {
 	}
 
 	/**
+	 * convert info-action-name to InfoActionName
+	 * @param  string $string the string need to be convert
+	 * @return string         the result
+	 */
+	public function toCap($string, $delimiters = '-'){
+		$string = str_replace($delimiters, ' ', $string);
+		$string = ucwords($string);
+		$string = str_replace(' ', '', $string);
+		return trim($string);
+	}
+
+	/**
 	 * convert info-action-name to infoActionName
 	 * @param  string $string the string need to be convert
 	 * @return string         the result
 	 */
-	public function toCap($string){
-		$string = str_replace('-', ' ', $string);
-		$string = ucwords($string);
-		$string = str_replace(' ', '', $string);
+	public function toCamel($string, $delimiters = '-'){
+		//$string = str_replace('-', ' ', $string);
+		$string = lcfirst(ucwords($string, $delimiters));
+		$string = str_replace($delimiters, '', $string);
 		return trim($string);
 	}
 

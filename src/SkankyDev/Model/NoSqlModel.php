@@ -13,16 +13,16 @@
 
 namespace SkankyDev\Model;
 
-use SkankyDev\Model\MasterModel;
-use SkankyDev\Config\Config;
-use SkankyDev\Utilities\Paginator;
-use SkankyDev\Database\MongoClient;
-use SkankyDev\EventManager;
-use SkankyDev\Factory;
-
 use MongoDB\BSON\ObjectID;
 use MongoDB\Driver\BulkWrite;
 use MongoDB\Driver\Exception\BulkWriteException;
+use SkankyDev\Config\Config;
+use SkankyDev\Database\MongoClient;
+use SkankyDev\EventManager;
+use SkankyDev\Factory;
+use SkankyDev\Model\MasterModel;
+use SkankyDev\Request;
+use SkankyDev\Utilities\Paginator;
 
 class NoSqlModel extends MasterModel {
 	
@@ -172,9 +172,20 @@ class NoSqlModel extends MasterModel {
 	 * @return SkankyDev\Utilities\Paginator          the paginator object
 	 */
 	public function paginate($option = []){
+
 		$option = array_replace_recursive($this->defaultQuery,$option);
 		$dOption = Config::get('paginator');
 		$option = array_replace_recursive($dOption,$option);
+
+		$httpOption = Request::getInstance()->getGet();
+		if(isset($httpOption['page'])){
+			$option['page'] = $httpOption['page'];
+		}
+		if(isset($httpOption['field']) && isset($httpOption['order'])){
+			$option['sort'] = [
+				$httpOption['field'] => (int)$httpOption['order']
+			];
+		}
 		if(!$option['page']){
 			$option['page'] = 1;
 		}

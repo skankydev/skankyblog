@@ -8,16 +8,24 @@
 }
 
 .user-panel{
+
+	transition: background-color 0.2s ease-out;
 }
 .user-panel-top{
 	position:fixed;
-	top:60px;
+	top:36px;
 	right: 0;
-	z-index: 10;
+	z-index: 11;
+	a{
+		background-color: $color-secondary-dark;
+	}
 }
 .user-panel-bottom{
 	position:relative;
 	top:12px;
+	a{
+		background-color: $color-primary;
+	}
 }
 .user-panel::before,
 .user-panel::after {
@@ -29,6 +37,7 @@
 	width: 0px;
 	line-height: 0px;
 	display: inline-block;
+	transition: border-color 0.2s ease-out;
 }
 
 .user-panel-bottom::before{
@@ -38,10 +47,10 @@
 	border-color: transparent transparent transparent $color-primary;
 }
 .user-panel-top::before{
-	border-color:  $color-primary $color-primary transparent transparent;
+	border-color: transparent $color-secondary-dark  $color-secondary-dark transparent;
 }
 .user-panel-top::after {
-	border-color: $color-primary transparent transparent $color-primary;
+	border-color: transparent transparent  $color-secondary-dark  $color-secondary-dark;
 }
 .user-panel a{
 	height: 24px;
@@ -53,10 +62,10 @@
 	text-align: center;
 	text-decoration: none;
 	text-transform: capitalize;
-	background-color: $color-primary;
+	
 
-	transition: all 0.2s ease-out;
+	transition: background-color 0.2s ease-out;
 }
 .user-panel a:hover{
-	color: $color-primary-light;
+	color: $color-secondary-light;
 }

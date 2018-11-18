@@ -13,6 +13,7 @@
 
 namespace App\Controller;
 
+use SkankyDev\Auth;
 use SkankyDev\Controller\MasterController;
 use SkankyDev\Utilities\Session;
 
@@ -42,10 +43,12 @@ class TestController extends MasterController {
 	}
 
 	public function index(){
-		$data = Session::get('skankydev.backlink');
-		//Session::destroy();
-		debug($data);
-		
+		$user = Auth::getAuth();
+		$model = $this->_loadModel('Profil');
+		$profil = $model->findOne(['user_email'=>$user->email]);
+		//debug($this->tetetetze);
+		debug($profil->fullName);
+
 	}
 
 }

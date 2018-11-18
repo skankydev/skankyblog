@@ -215,6 +215,13 @@ class Request {
 				$url .= '/'.$params;
 			}
 		}
+		if(!empty($link['get'])){
+			$url .= '?';
+			foreach ($link['get'] as $key => $value) {
+				$url .= urlencode($key).'='.urlencode($value).'&';
+			}
+			$url = trim($url,'&');
+		}
 		return $url;
 	}
 

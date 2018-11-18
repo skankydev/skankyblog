@@ -30,16 +30,10 @@ class ProductController extends MasterController {
 		$this->view->set(['product' => $product]);
 	}
 
-	private function list($page = 1,$field = 'created',$order = -1){
-		$option = [
-			'limit'=> 25,
-			'query'=> [],
-			'page'=>(int)$page,
-			'sort' => [],
-		];
-		$option['sort'][$field] = (int)$order;
-		$products = $this->Product->paginate($option);
-		$this->view->set( ['products' => $products] );		
+	private function list(){
+		
+		$products = $this->Product->paginate();
+		$this->view->set( ['products' => $products] );
 	}
 
 
