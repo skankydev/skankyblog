@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang=<?php echo '"'.SkankyDev\I18n\Localization::getLang().'"'; ?>>
+<html lang=<?= '"'.SkankyDev\I18n\Localization::getLang().'"'; ?>>
 <head>
 	<meta charset="UTF-8" />
 	<link rel="icon" type="image/png" href="/favicon.ico" />
@@ -24,9 +24,9 @@
 	?>
 </head>
 <body>
-	<?php echo $this->element('admin-menu'); ?>
+	<?= $this->element('admin-menu'); ?>
 	<section id="Container">
-	<?php echo $this->elementFromView(['namespace'=>'App','controller'=>'Menu','action'=>'view','params'=>['name'=>'main']]);	 ?>
+	<?= $this->elementFromView(['namespace'=>'App','controller'=>'Menu','action'=>'view','params'=>['name'=>'Main']]);	 ?>
 
 		<header id="Header">
 			<div class="layout-header">
@@ -37,19 +37,19 @@
 					</h1>
 				</div>
 				<div class="empty-space"></div>
-				<?php echo $this->element('user-statu'); ?>
+				<?= $this->element('user-statu'); ?>
 			</div>
 		</header>
 		
 		<section id="Contents">
-			<?php echo $this->Flash->display(); ?>
-			<?php echo $this->fetch('content'); ?>
+			<?= $this->Flash->display(); ?>
+			<?= $this->fetch('content'); ?>
 		</section>
 		<footer id="Footer">
-			<?php echo $this->element('footer'); ?>
+			<?= $this->element('footer'); ?>
 		</footer>
-	</section>	
-	<?php echo $this->element('debug'); ?>
-	<?php echo $this->getScript(); ?>
+	</section>
+	<?= $this->element('debug'); ?>
+	<?= $this->getScript(); ?>
 </body>
 </html>
