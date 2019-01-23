@@ -5,7 +5,7 @@ return [
 		'action'   =>'index'
 	],
 	'paginator'=>[
-		'limit'=>3,
+		'limit'=>25,
 		'range'=>5
 	],
 	'routes' =>[
@@ -32,22 +32,44 @@ return [
 			'action'     => 'login',
 			'namespace'  => 'App'
 		],
-		'cookieTimer'  => WEEK,
-		'accessDenied' => false,
-		'userEntity'   => 'App\Model\Document\User'
+		'cookieTimer'      => WEEK,
+		'accessDenied'     => false,
+		'userEntity'       => 'App\Model\Document\User',
+		'permissionEntity' => 'App\Model\Document\Permission',
+		'defaultRole'      => 'default',
 	],
 	'class' => [
 		'helper' => [
-			'Size' => 'App\View\Helper\SizeHelper'
+			'Size'    => 'App\View\Helper\SizeHelper',
+			'Sociaux' => 'App\View\Helper\SociauxHelper',
+			'Images'  => 'App\View\Helper\ImagesHelper',
 		],
 		'behavior' => [
 			'Owner' => 'App\Model\Behavior\OwnerBehavior'
 		],
 		'listener' => [
 			'Users' => 'App\Listener\UsersListener'
+		],
+		'tools' => [
+			'Mail'   => 'App\Controller\Tools\MailTool',
+			'Paypal' => 'App\Controller\Tools\PaypalTool',
+			'Upload' => 'App\Controller\Tools\UploadTool',
+			'Image'  => 'App\Controller\Tools\ImageTool',
+		],
+		'formElement' => [
+			'Wysiwyg' => 'App\View\FormElement\WysiwygElement'
 		]
 	],
 	'listener'=> [
-		'Debug'
-	]
+		'Debug',
+		'Users',
+	],
+	'timehelper'=> [
+		'format'=>'H:i:s d/m/Y',
+		'timezone'=>'Europe/Paris'
+	],
+	'upload'=>[
+		'image' =>['jpg','JPG','jpeg','JPEG','gif','png'],
+		'folder'=> 'upload'.DS,
+	],
 ];

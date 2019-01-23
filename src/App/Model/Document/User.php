@@ -13,12 +13,14 @@
 
 namespace App\Model\Document;
 
-use SkankyDev\MasterDocument;
+use SkankyDev\Model\Document\MasterDocument;
 
 class User extends MasterDocument {
 	
-	public $username;
+	public $login;
 	public $password;
 	public $email;
-
+	public $verifToken;
+	public $cookie;
+	public $valid;
 }

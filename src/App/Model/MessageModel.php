@@ -15,6 +15,7 @@
 namespace App\Model;
 
 use SkankyDev\Model\NoSqlModel;
+use SkankyDev\Database\MongoClient;
 
 class MessageModel extends NoSqlModel {
 
@@ -26,4 +27,18 @@ class MessageModel extends NoSqlModel {
 		$validator->addRules(['message'],['notEmpty'],'ne doit pas etre vide');
 	}
 
+	public function install(){
+		//debug($this);
+		try {
+			$client = MongoClient::getInstance();
+			$option = [];
+			$option['autoIndexId'] = true;
+			$client->createCollection('message',$option);
+			return 'MessageModel has been configured';			
+		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
+			return 'MessageModel: '.$e->getMessage();			
+			
+		}
+
+	}
 }

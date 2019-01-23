@@ -11,7 +11,7 @@
  *
  */
 
-namespace Skankydev\View\Helper;
+namespace SkankyDev\View\Helper;
 
 /**
 * 

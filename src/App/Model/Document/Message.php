@@ -13,7 +13,7 @@
 
 namespace App\Model\Document;
 
-use SkankyDev\MasterDocument;
+use SkankyDev\Model\Document\MasterDocument;
 
 class Message extends MasterDocument {
 	

@@ -13,7 +13,7 @@
 namespace SkankyDev\View;
 
 use SkankyDev\request;
-use SkankyDev\MasterView;
+use SkankyDev\View\MasterView;
 use SkankyDev\Config\Config;
 use SkankyDev\View\Helper\HtmlHelper;
 use SkankyDev\Router;
@@ -22,7 +22,7 @@ class HtmlView extends MasterView {
 	
 	use HtmlHelper;
 
-	public $helpers = ['Form','Flash','Auth'];
+	public $helpers = ['Form','Flash','Auth','Time'];
 
 	public $keywords = '';
 	public $title = '';
@@ -55,6 +55,7 @@ class HtmlView extends MasterView {
 	 * @return string html header option
 	 */
 	public function getHeader(){
+		$this->getFileFromHelper();
 		$retour = '';
 		$retour .= '<meta name="keywords" content="'.$this->keywords.'" />'.PHP_EOL;
 		foreach ($this->meta as $name => $content) {
@@ -62,6 +63,7 @@ class HtmlView extends MasterView {
 		}
 		$retour .= $this->css;
 		$retour .= $this->js;
+		$retour .= $this->getHeaderFromHelper();
 		return $retour;
 	}
 
@@ -86,26 +88,37 @@ class HtmlView extends MasterView {
 	 * @return string the script
 	 */
 	public function getScript(){
-		$retour = $this->script;
+		$retour = '';
+		$retour .= $this->getScriptFromHelper();
+		$retour .= $this->script;
 		return $retour;
 	}
 
+	/**
+	 * TO DO a revoir !
+	 * [elementFromView description]
+	 * @param  [type] $link [description]
+	 * @return [type]       [description]
+	 */
 	public function elementFromView($link){
 		$friend = Router::getInstance()->getElement($link);
 		if($friend){
-			$this->script .= $friend->script;
-			$this->css    .= $friend->css;
-			$this->js     .= $friend->js;
-
 			$viewFolder = $this->toDash($link['controller']);
 			$action = $this->toDash($link['action']);
-			$friend->viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.ctp';
+			$friend->viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.php';
 
-			$friend->loadHelper();
+			//$friend->loadHelper();
+
 			extract($friend->data);
 			ob_start();
 			require($friend->viewPath);
-			return ob_get_clean();
+			$content = ob_get_clean();
+			//$friend->getFileFromHelper();
+			$this->script .= $friend->script;
+			$this->css    .= $friend->css;
+			$this->js     .= $friend->js;
+			return $content;
+
 		}else{
 			$element = Config::getAccessDenied();
 			if($element){
@@ -131,4 +144,32 @@ class HtmlView extends MasterView {
 		$this->meta[$name] = $content;
 	}
 
+	public function getFileFromHelper(){
+		foreach ($this->helpers as $helper) {
+			$scripts = $this->{$helper}->getScriptFile();
+			foreach ($scripts as $script) {
+				$this->addJs($script);
+			}
+			$cssFiles = $this->{$helper}->getCssFile();
+			foreach ($cssFiles as $css) {
+				$this->addCss($css);
+			}
+		}
+	}
+
+	public function getScriptFromHelper(){
+		$retour = '';
+		foreach ($this->helpers as $helper) {
+			$retour .= $this->{$helper}->getScript();
+		}
+		return $retour;
+	}
+
+	public function getHeaderFromHelper(){
+		$retour = '';
+		foreach ($this->helpers as $helper) {
+			$retour .= $this->{$helper}->getHeader();
+		}
+		return $retour;
+	}
 }

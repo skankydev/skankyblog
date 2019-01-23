@@ -1,0 +1,44 @@
+#Permission input[type="radio"] {
+	float:none;
+	.action-element{
+		div{
+			margin: 0!important;
+		}
+	}
+}
+
+.controller{
+	border-bottom: 2px solid $color-primary;
+	font-weight: bold;
+	padding: 0 4px;
+}
+
+.controller-list{
+	display: flex;
+	flex-direction: row;
+	justify-content:space-between;
+	flex-wrap: wrap;
+}
+.controller-element{
+	border: 1px solid #BEBEBE;
+	width: 19%;
+	margin-bottom: 4px;
+}
+.action-element{
+	display: flex;
+	flex-direction: row;
+}
+.action{
+	margin: 2px 0 0 4px;
+}
+.action-allow,
+.action-deny{
+	margin: 2px 0 0 4px;
+	padding: 0 2px;
+	border: 1px solid;
+}
+input[type="radio"]:not(:checked) + .action-allow,
+input[type="radio"]:not(:checked) + .action-deny{
+	background-color: transparent;
+	border-color: transparent;
+}

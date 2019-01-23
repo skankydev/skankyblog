@@ -23,7 +23,7 @@ class Auth
 {
 	private static $_instance = null;
 
-	var $loged = false;
+	static $loged = false;
 
 	public static function getInstance() {
 		if(is_null(self::$_instance)) {
@@ -33,39 +33,45 @@ class Auth
 	}
 	public static function isAuthentified(){
 		if(!is_null(self::$_instance)) {
-			return self::$_instance->loged;
+			return self::$loged;
 		}
 		return false;
 	}
 
 	public static function loadClass(){
 		Factory::loadFile(Config::get('Auth.userEntity'));
+		Factory::loadFile(Config::get('Auth.permissionEntity'));
+	}
+	public static function getAuth(){
+		return Session::get('skankydev.auth.user');
+	}
+
+	public static function getPermission(){
+		return Session::get('skankydev.auth.permission');
 	}
 
 	function __construct() {
-		
 		$auth = Session::get('skankydev.auth');
 		if($auth){
-			$this->loged = true;
+			self::$loged = true;
 		}
 		$this->historique = new Historique();
-		$this->userAgent = new UserAgent();
-		$this->cookie    = new Cookie('skankydev.auth',Config::get('Auth.cookieTimer'));
+		$this->userAgent = UserAgent::getInstance();
+		$this->cookie    = new Cookie('skankydev_auth',Config::get('Auth.cookieTimer'));
 		$this->historique->updateHistorique();
 		$current = $this->historique->getCurrent();
 		$controller = Config::get('Auth.redirectAction.controller');
 		if($current['link']['controller']!==$controller){
 			Session::delete('skankydev.backlink');
 		}
-		//$this->cookie->set('test.truc',['test1'=>'youpi1','test2'=>'youpi2']);
-		if(empty($_COOKIE)){
-			$this->firstStep();
-		}
+		
 		EventManager::getInstance()->event('auth.construct',$this);
 	}
 
-	function firstStep(){
-		EventManager::getInstance()->event('auth.firstStep',$this);
+	public function checkFirstStep(){
+		if(empty($_COOKIE)||($this->historique->pageCount()==1)){
+			EventManager::getInstance()->event('auth.firstStep',$this);
+		}
 	}
 	
 	/**
@@ -82,28 +88,46 @@ class Auth
 
 	public function setAuth($auth){
 
-		Session::set('skankydev.auth',$auth);
-		$this->loged = true;
+		Session::set('skankydev.auth.user',$auth);
+		self::$loged = true;
 		$link = Session::get('skankydev.backlink');
 		Session::delete('skankydev.backlink');
 		return $link['link'];
 	}
 
+	public function setPermission($perm){
+		Session::set('skankydev.auth.permission',$perm);
+	}
+
 	public function unsetAuth(){
 		$link = $this->historique->comeFrom();
 		Session::delete('skankydev.auth');
-		$this->loged = false;
+		self::$loged = false;
+		$this->deleteCookieTokent();
+
 		return $link['link'];
 	}
 
-	public function getAuth(){
-		//incomplete class pas defini la conne
-		return Session::get('skankydev.auth');
-	}
 
 	public function setBackLink(){
 		if(!Session::get('skankydev.backlink')){
 			Session::set('skankydev.backlink',$this->historique->comeFrom());
 		}
+	}
+
+	public function setCookieTokent($email,$token){
+		return $this->cookie->set('user',['email'=>$email,'token'=>$token]);
+	}
+	
+	public function getCookieToken(){
+		return $this->cookie->get('user');
+	}
+
+	public function deleteCookieTokent(){
+		return $this->cookie->delete('user');
+	}
+
+	public function getUserAgent(){
+		return $this->userAgent;
 	}
 }

@@ -1,0 +1,23 @@
+{
+    "name": "skank/skankydev",
+    "description": "my little cms",
+    "type": "CMS",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "simon schenck",
+            "email": "simon.schenck@gmail.com"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "1.0.0",
+        "nette/mail": "^2.4",
+        "psr/log": "^1.1"
+    },
+    "autoload": {
+        "psr-4": { 
+            "SkankyDev\\": "src/SkankyDev",
+            "App\\": "src/App"
+        }
+    }
+}

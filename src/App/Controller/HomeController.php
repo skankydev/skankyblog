@@ -14,7 +14,7 @@
 
 namespace App\Controller;
 
-use SkankyDev\MasterController;
+use SkankyDev\Controller\MasterController;
 
 class HomeController extends MasterController {
 	

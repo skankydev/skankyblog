@@ -1,0 +1,49 @@
+
+.color-select label{
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+	vertical-align: top;
+	border-radius: 8px;
+	border: 1px solid #BEBEBE;
+}
+.color-input{
+	position: relative;
+	z-index: 99;
+	width: 140px;
+	border: 1px solid #BEBEBE;
+	border-radius: 8px;
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(220,220,220,1) 100%); /* W3C */
+	padding: 5px;
+	margin: 0;
+}
+.color-select-master{
+	padding: 5px;
+	margin: 0;
+}
+.color-select {
+	width: 30px;
+	margin: 0;
+}
+.color-select span{
+	border: 1px solid  #BEBEBE;
+	height: 25px;
+	width: 25px;
+	display: block;
+	border-radius: 5px;
+	padding: 0;
+	margin: 0;
+}
+.color-select span:hover{
+	cursor: pointer;
+	box-shadow:1px 1px 1px 0px #BEBEBE;
+}
+.color-select [type="radio"]:not(:checked) + label,
+.color-select [type="radio"]:checked + label {
+	cursor: pointer;
+}
+.color-select [type="radio"]:checked + label {
+	cursor: pointer;
+}
+.block{
+	display: block;

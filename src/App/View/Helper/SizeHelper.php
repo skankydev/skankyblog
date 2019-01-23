@@ -7,7 +7,6 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright (c) SCHENCK Simon
- * @since         0.0.1
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  *
  */
@@ -24,7 +23,7 @@ class SizeHelper extends MasterHelper
 	}
 
 	function toHuman($bytes, $precision = 2){  
-		//thx for the code
+		//thx for the code unknow for me
 		$kilobyte = 1024;
 		$megabyte = $kilobyte * 1024;
 		$gigabyte = $megabyte * 1024;

@@ -16,7 +16,7 @@ namespace SkankyDev\Controller;
 use SkankyDev\Request;
 use SkankyDev\View\HtmlView;
 use SkankyDev\Config\Config;
-use SkankyDev\MasterController;
+use SkankyDev\Controller\MasterController;
 use SkankyDev\I18n\Localization;
 use Exception;
 

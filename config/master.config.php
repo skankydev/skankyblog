@@ -2,14 +2,15 @@
 /**
  * congratulation you have found the master configuration file
  */
-return [
+$smtp = require 'smtp.config.php';
+$conf =  [
 	'db' => [
 		'MongoDB' =>[
 			'host'=>'localhost',
 			'port'=>'27017',
 			'username'=>'',
 			'password'=>'',
-			'database'=>'skankydev'
+			'database'=>'skankyblog'
 		]
 	],
 	'Module'=>[
@@ -25,5 +26,29 @@ return [
 			'langue' =>'en_EN'
 		],
 	],
+	'smtp' => $smtp,
 	'debug' => 2,
+	'adminMail' => 'skankydev@gmail.com',
+	
 ];
+return $conf;
+
+/*
+smtp.config.php exemple
+return [
+	'default' => [
+		'host' => '***',
+		'username' => '***',
+		'password' => '***',
+		'secure' => 'ssl',
+		'port' => '465',
+		'sender' => 'no-reply@mail.com'
+	]
+];
+
+smtp.config.php exemple
+return [
+	
+];
+
+ */

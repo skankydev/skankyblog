@@ -13,7 +13,7 @@
 
 namespace App\Model\Document;
 
-use SkankyDev\MasterDocument;
+use SkankyDev\Model\Document\MasterDocument;
 
 class Post extends MasterDocument {
 	
@@ -23,5 +23,6 @@ class Post extends MasterDocument {
 	public $tags;
 	public $online;
 	public $categories;
+	public $media;
 	
 }

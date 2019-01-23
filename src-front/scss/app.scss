@@ -1,0 +1,36 @@
+/**
+ * Copyright (c) 2015 SCHENCK Simon
+ * 
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright     Copyright (c) SCHENCK Simon
+ *
+ * scss --watch src-front/scss/app.scss:public/css/app.css
+
+@media screen and (max-width: 1600px){}
+@media screen and (max-width: 1280px){}
+@media screen and (max-width: 960px){}
+@media screen and (max-width: 840px){}
+@media screen and (max-width: 600px){}
+@media screen and (max-width: 480px){}
+
+ * 
+ */
+
+@import 'variable';
+@import 'normalize';
+@import 'base';
+@import 'form';
+@import 'layout';
+@import 'header';
+@import 'menu';
+@import 'pages';
+@import 'footer';
+@import 'user';
+@import 'wysiwyg';
+@import 'permission';
+@import 'admin';
+@import 'tools';
