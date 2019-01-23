@@ -54,5 +54,6 @@ return [
 		'format'=>'Y-m-d H:i:s',
 		'timezone'=>'UTC'
 	],
+	'version' => 'Alpha.0.0.1'
 
 ];
