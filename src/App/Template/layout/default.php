@@ -18,14 +18,16 @@
 		$this->addJs("/vendor/jquery/jquery-2.1.4.min.js");
 		$this->addJs("/js/skankydev.js");
 		$this->addCss("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
-		$this->addCss("/css/skankydev.css");
+		$this->addCss("/css/app.css");
+		//$this->addCss("/css/skankydev.css");
 		echo $this->getHeader(); 
 	?>
 </head>
 <body>
 	<?php echo $this->element('admin-menu'); ?>
-	<section id="Container">		
-		<?php echo $this->element('menu'); ?>
+	<section id="Container">
+	<?php echo $this->elementFromView(['namespace'=>'App','controller'=>'Menu','action'=>'view','params'=>['name'=>'main']]);	 ?>
+
 		<header id="Header">
 			<div class="layout-header">
 				<div class='sit-title'>

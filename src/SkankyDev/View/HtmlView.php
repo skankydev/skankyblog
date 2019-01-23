@@ -63,6 +63,7 @@ class HtmlView extends MasterView {
 		}
 		$retour .= $this->css;
 		$retour .= $this->js;
+		$retour .= $this->getHeaderFromHelper();
 		return $retour;
 	}
 
@@ -160,6 +161,14 @@ class HtmlView extends MasterView {
 		$retour = '';
 		foreach ($this->helpers as $helper) {
 			$retour .= $this->{$helper}->getScript();
+		}
+		return $retour;
+	}
+
+	public function getHeaderFromHelper(){
+		$retour = '';
+		foreach ($this->helpers as $helper) {
+			$retour .= $this->{$helper}->getHeader();
 		}
 		return $retour;
 	}

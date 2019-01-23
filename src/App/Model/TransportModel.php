@@ -36,9 +36,9 @@ class TransportModel extends NoSqlModel {
 			$index = [];
 			$index[0] = ['key'=>['ref'=>1],'name'=>'ref','unique'=>true];
 			$client->createIndex('transport',$index);
-			return 'TransportModel : has been configured';			
+			return 'TransportModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'TransportModel : '.$e->getMessage();
+			return 'TransportModel: '.$e->getMessage();
 		}
 	}
 	

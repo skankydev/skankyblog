@@ -19,6 +19,11 @@ const MONTH      =  2592000;
 const YEAR       =  31536000;
 
 //ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ
+function dd($data,$message = ''){
+	debug($data,$message);
+	die();
+}
+
 
 function debug($data,$message = ''){
 	if(SkankyDev\Config\Config::getDebug()){

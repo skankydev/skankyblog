@@ -7,7 +7,7 @@
 	<section>
 		<?php echo $this->Form->fieldset([
 			'fieldset'=> ['class'=>'fieldset-post'],
-			'legend'  => ['content'=>'add a new tag','class'=>'legend-post'],
+			'legend'  => ['content'=>'add a new role','class'=>'legend-post'],
 			'input'   => [
 					'name' => ['label'=>'name'],
 				]

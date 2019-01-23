@@ -34,7 +34,7 @@ class OptionModel extends NoSqlModel {
 			$client->createIndex('option',$index);
 			return 'OptionModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'OptionModel :'.$e->getMessage();
+			return 'OptionModel: '.$e->getMessage();
 		}	
 	}
 

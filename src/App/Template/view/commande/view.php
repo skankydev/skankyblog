@@ -47,9 +47,9 @@
 		</table>
 	</section>
 	<footer>
-		<?php if (!$commande->paiment): ?>
+		<?php if (!$commande->payment): ?>
 			<h3>procéder au paiement</h3>
-			<?php echo $this->link('paypal', ['controller'=>'paiement','action'=>'paypal','params'=>['commande_id'=>$commande->_id]],['class'=>'']);?>
+			<?php echo $this->link('paypal', ['controller'=>'payment','action'=>'paypal','params'=>['commande_id'=>$commande->_id]],['class'=>'']);?>
 		<?php endif ?>
 	</footer>
 </section>

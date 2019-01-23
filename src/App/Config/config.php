@@ -11,7 +11,7 @@ return [
 	'routes' =>[
 		'/' => [
 			'options'=>[
-				'controller' => 'Post',
+				'controller' => 'Home',
 				'action'     => 'index',
 				'namespace'  => 'App'
 			]
@@ -40,7 +40,9 @@ return [
 	],
 	'class' => [
 		'helper' => [
-			'Size' => 'App\View\Helper\SizeHelper',
+			'Size'    => 'App\View\Helper\SizeHelper',
+			'Sociaux' => 'App\View\Helper\SociauxHelper',
+			'Images'  => 'App\View\Helper\ImagesHelper',
 		],
 		'behavior' => [
 			'Owner' => 'App\Model\Behavior\OwnerBehavior'
@@ -49,7 +51,10 @@ return [
 			'Users' => 'App\Listener\UsersListener'
 		],
 		'tools' => [
-			'Mail' => 'App\Controller\Tools\MailTool',
+			'Mail'   => 'App\Controller\Tools\MailTool',
+			'Paypal' => 'App\Controller\Tools\PaypalTool',
+			'Upload' => 'App\Controller\Tools\UploadTool',
+			'Image'  => 'App\Controller\Tools\ImageTool',
 		],
 		'formElement' => [
 			'Wysiwyg' => 'App\View\FormElement\WysiwygElement'
@@ -64,6 +69,7 @@ return [
 		'timezone'=>'Europe/Paris'
 	],
 	'upload'=>[
-		'image'=>['jpg','JPG','jpeg','JPEG','gif','png']
+		'image' =>['jpg','JPG','jpeg','JPEG','gif','png'],
+		'folder'=> 'upload'.DS,
 	],
 ];

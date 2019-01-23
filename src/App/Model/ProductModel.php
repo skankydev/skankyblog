@@ -41,7 +41,7 @@ class ProductModel extends NoSqlModel {
 			$client->createIndex('product',$index);
 			return 'ProductModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'ProductModel :'.$e->getMessage();
+			return 'ProductModel: '.$e->getMessage();
 		}
 	}
 

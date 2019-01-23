@@ -25,7 +25,7 @@ class CartController extends MasterController {
 
 	public function add($ref='',$quantity = 0){
 		$this->view->displayLayout = false;
-		$productModel=$this->_loadModel('product');
+		$productModel=$this->_loadModel('Product');
 		$product = $productModel->findOne(['ref'=>$ref]);
 		$cart = Session::get('cart');
 		$toSession['ref']=$product->ref;

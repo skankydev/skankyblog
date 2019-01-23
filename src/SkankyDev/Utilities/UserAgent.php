@@ -26,11 +26,27 @@ class UserAgent {
 	public $browser = 'unknow';
 	public $mobile  = false;
 
+	private static $_instance = null;
+
+	public static function getInstance() {
+		if(is_null(self::$_instance)) {
+			self::$_instance = new UserAgent();
+		}
+		return self::$_instance;
+	}
 
 	function __construct(){
+		/**
+		 * get_browser() essaie de déterminer les capacités du navigateur client en lisant les informations dans le fichier browscap.ini
+		 * le fichier est a dl: https://browscap.org/
+		 * prendre le lite sinon ca rame et ca donne des info inutile
+		 * activer dans le php.ini
+		 */
 
+		//$this->info = get_browser($_SERVER['HTTP_USER_AGENT']);
 		$this->agent = $_SERVER['HTTP_USER_AGENT'];
-
+		//debug($this->agent);
+		//debug($this->info);
 		if(preg_match('/iphone/i', $this->agent) || preg_match('/ipad/i',$this->agent) || preg_match('/ipod/i',$this->agent)){
 			$this->os = 'iOS';
 			$this->mobile = true;
@@ -60,5 +76,17 @@ class UserAgent {
 		}else if (preg_match('/Opera/i', $this->agent)) {
 			$this->browser = 'Opera';
 		}
+
+		//debug($this);
+	}
+
+	public function getDevice(){
+		/*if($this->info->ismobiledevice){
+			return 'Mobile';
+		}
+		if($this->info->istablet){
+			return 'Tablet';
+		}*/
+		return $this->mobile?'Mobile':'Desktop';
 	}
 }

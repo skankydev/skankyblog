@@ -24,10 +24,19 @@ class PermissionModel extends NoSqlModel {
 			$client->createIndex('permission',$index);
 			return 'PermissionModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'PermissionModel :'.$e->getMessage();
+			return 'PermissionModel: '.$e->getMessage();
 			
 		}
 
 	}
 
+	public function getRoles(){
+		$data = $this->collection->find(['name'=>['$ne'=>'init']],['name'=>true]);
+		$retour = [];
+		foreach ($data as $role) {
+			$retour[] = $role->name;
+		}
+		return $retour;
+	}
+	
 }

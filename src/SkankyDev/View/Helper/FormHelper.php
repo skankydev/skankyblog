@@ -127,9 +127,9 @@ class FormHelper extends MasterHelper {
 	 * close the form add the submit button if not exsiste
 	 * @return string the html
 	 */
-	public function end(){
+	public function end($submit = true){
 		$retour = '';
-		if(!$this->submitBtn){
+		if(!$this->submitBtn && $submit){
 			$retour .= $this->submit('Send');
 		}
 		$retour .= '</form>';
@@ -418,4 +418,25 @@ class FormHelper extends MasterHelper {
 		return $elem->input($name,$attr,$value);
 	}
 
+	/**
+	 * create input files balise
+	 * @param  string $name the name
+	 * @param  array  $attr the attribute 
+	 * @return string       the html
+	 */
+	public function file($name,$attr = []){
+		if(!isset($attr['name'])){
+			$attr['name'] = $name;
+		}
+		if(!isset($attr['id'])){
+			$attr['id'] = $name;
+		}
+		if(isset($attr['multiple']) && $attr['multiple']){
+			$attr['name'] .= '[]';
+			//unset($attr['id']);
+		}
+		$this->addDefaultClass('input',$attr);
+		$retour = '<input '.$this->createAttr($attr).' >';
+		return $retour;
+	}
 }

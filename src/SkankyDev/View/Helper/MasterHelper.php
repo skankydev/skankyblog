@@ -21,6 +21,7 @@ class MasterHelper {
 	protected $script = '';
 	protected $scriptFile = [];
 	protected $cssFile = [];
+	protected $header = '';
 
 	/**
 	 * add script for htmlView
@@ -70,4 +71,18 @@ class MasterHelper {
 		return $this->cssFile;
 	}
 	
+	/**
+	 * add some text to header
+	 * @param string $head the text
+	 */
+	public function addHeader($head){
+		$this->header .= $head;
+	}
+	/**
+	 * get text for header
+	 * @return string some header info
+	 */
+	public function getHeader(){
+		return $this->header;
+	}
 }

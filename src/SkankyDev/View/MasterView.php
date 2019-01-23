@@ -39,15 +39,14 @@ class MasterView {
 	 */
 	public function render(){
 		EventManager::getInstance()->event('view.render.before',$this);
-		$this->makePath();
 		$this->loadHelper();
 		extract($this->data);
 		ob_start();
-		require($this->viewPath);
+		require($this->viewPath());
 		$this->content = ob_get_clean();
 		
 		if($this->displayLayout){
-			require ($this->layoutPath);
+			require ($this->layoutPath());
 		}else{
 			echo $this->content;
 		}
@@ -66,6 +65,27 @@ class MasterView {
 		require($fileName);
 		return ob_get_clean();
 	}
+
+
+	public function viewPath(){
+		$viewFolder = str_replace('Controller','',$this->request->controller);
+		$viewFolder = $this->toDash($viewFolder);
+		$action = $this->toDash($this->request->action);
+		$viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.php';
+		if(!file_exists($viewPath)){
+			throw new \Exception("the view file : {$viewPath} does not exist", 601);
+		}
+		return  $viewPath;
+	}
+
+	public function layoutPath(){
+		$layoutPath = Config::layoutDir().DS.$this->layout.'.php';
+		if(!file_exists($layoutPath)){
+			throw new \Exception("the layout file : {$layoutPath} does not exist", 601);
+		}
+		return $layoutPath;
+	}
+
 	/**
 	 * create the path/to/folder for diferante view
 	 * @return void 
@@ -75,6 +95,7 @@ class MasterView {
 		if(!file_exists($this->layoutPath)){
 			throw new \Exception("the layout file : {$this->layoutPath} does not exist", 601);
 		}
+		
 		$viewFolder = str_replace('Controller','',$this->request->controller);
 		$viewFolder = $this->toDash($viewFolder);
 		$action = $this->toDash($this->request->action);

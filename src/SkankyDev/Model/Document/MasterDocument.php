@@ -13,15 +13,36 @@
 
 namespace SkankyDev\Model\Document;
 
+use DateTime;
+use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\Persistable;
 use MongoDB\BSON\UTCDateTime;
-use MongoDB\BSON\ObjectID;
 use MongoDB\Model\BSONArray;
-use DateTime;
+use SkankyDev\Utilities\Traits\StringFacility;
 
 class MasterDocument implements Persistable{
 
+	use StringFacility;
+
 	public $_id;
+
+	/**
+	 * Magic Methods user for get mutable 
+	 * @param  string $name the name of the property
+	 * @return mixed        the property
+	 */
+	public function __get($name){
+		if(isset($this->$name)){
+			return $this->$name; 
+		}
+		$methods = get_class_methods($this);
+		$name = 'get'.$this->toCap($name,'_');
+		if(in_array($name,$methods) !== false){
+			return $this->$name();
+		}
+		return false;
+	}
+
 
 	public function __construct($data){
 		$properties = get_class_vars(get_class($this));
@@ -80,5 +101,4 @@ class MasterDocument implements Persistable{
 			}
 		}
 	}
-
 }

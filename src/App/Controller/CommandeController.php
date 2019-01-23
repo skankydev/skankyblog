@@ -78,10 +78,22 @@ class CommandeController extends MasterController {
 
 	}
 
-	private function list(){
-
+	private function list($page = 1,$field = 'created',$order = 1){
+		$option = [
+			'limit'=>25,
+			'query'=>[],
+			'page'=>(int)$page,
+			'sort'=>[],
+		];
+		$option['sort'][$field] = (int)$order;
+		$commandes = $this->Commande->paginate($option);
+		$this->view->set(['commandes' => $commandes]);
 	}
 
+	private function adminView($num){
+		$commande = $this->Commande->findOne(['num'=>(int)$num]);
+		$this->view->set(['commande'=>$commande]);
+	}
 
 
 }

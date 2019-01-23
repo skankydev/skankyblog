@@ -8,13 +8,13 @@
 	<table>
 		<thead>
 			<tr>
-				<th><?php echo $this->link('ref', ['params'=>$products->sortParams('ref')]);?></th>
-				<th><?php echo $this->link('name', ['params'=>$products->sortParams('name')]);?></th>
-				<th><?php echo $this->link('prix', ['params'=>$products->sortParams('prix')]);?></th>
-				<th><?php echo $this->link('en stock', ['params'=>$products->sortParams('stock')]);?></th>
-				<th><?php echo $this->link('online', ['params'=>$products->sortParams('online')]);?></th>
-				<th><?php echo $this->link('updated', ['params'=>$products->sortParams('updated')]);?></th>
-				<th><?php echo $this->link('created', ['params'=>$products->sortParams('created')]);?></th>
+				<th><?php echo $this->link('ref', ['get'=>$products->sortParams('ref')]);?></th>
+				<th><?php echo $this->link('name', ['get'=>$products->sortParams('name')]);?></th>
+				<th><?php echo $this->link('prix', ['get'=>$products->sortParams('prix')]);?></th>
+				<th><?php echo $this->link('en stock', ['get'=>$products->sortParams('stock')]);?></th>
+				<th><?php echo $this->link('online', ['get'=>$products->sortParams('online')]);?></th>
+				<th><?php echo $this->link('updated', ['get'=>$products->sortParams('updated')]);?></th>
+				<th><?php echo $this->link('created', ['get'=>$products->sortParams('created')]);?></th>
 				<th>actions</th>
 			</tr>
 		</thead>

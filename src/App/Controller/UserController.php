@@ -51,7 +51,15 @@ class UserController extends MasterController {
 
 	private function view($login){
 		$user = $this->User->findOne(['login'=>$login]);
-		$this->view->set(['user'=>$user]);
+		if($this->request->isPost()){
+			$data = $this->request->getData();
+			$user->role = $data->role;
+			if($this->User->save($user)){
+				$this->Flash->set('ca marche',['class' => 'success']);
+			}
+		}
+		$roles = $this->_loadModel('permission')->getRoles();
+		$this->view->set(['user'=>$user,'roles'=>$roles]);
 	}
 	
 	private function profil(){

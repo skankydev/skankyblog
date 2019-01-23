@@ -23,7 +23,7 @@ class CommandeModel extends NoSqlModel {
 	];
 
 	public function initValidator($validator){
-	
+		
 	}
 
 	public function install(){
@@ -37,7 +37,7 @@ class CommandeModel extends NoSqlModel {
 			$client->createIndex('commande',$index);
 			return 'CommandeModel: has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'CommandeModel: '.$e->getMessage();
+			return 'CommandeModel '.$e->getMessage();
 		}
 	}
 
@@ -51,7 +51,7 @@ class CommandeModel extends NoSqlModel {
 		$commande->clientTel = $profil->telephone;
 		$commande->adresse = $profil->adresse[$data->adresse];
 
-		$commande->paiment = false;
+		$commande->payment = false;
 		$commande->prixTotal = 0;
 		$commande->quantityTotal = 0;
 

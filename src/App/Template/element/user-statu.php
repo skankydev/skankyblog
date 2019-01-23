@@ -1,13 +1,12 @@
 <?php $user = $this->Auth->getAuth(); ?>
 <nav class="element-end">
 	<ul id="UserInfo" class="user-panel user-panel-bottom">
-		<li><?php echo $this->element('cart'); ?></li>
 	<?php if (empty($user)): ?>
-		<li><?php echo $this->link('login', ['controller'=>'user','action'=>'login']);?></li>
-		<li><?php echo $this->link('sign-up', ['controller'=>'user','action'=>'signUp']);?></li>
+		<li><?= $this->link('login', ['controller'=>'user','action'=>'login']);?></li>
+		<li><?= $this->link('sign-up', ['controller'=>'user','action'=>'signUp']);?></li>
 	<?php else: ?>
-		<li><?php echo $this->link($user->login, ['controller'=>'profil','action'=>'index']);?></li>
-		<li><?php echo $this->link('&hksearow;', ['controller'=>'user','action'=>'logout'],['title'=>'logout']);?> </li>
+		<li><?= $this->link($user->login, ['controller'=>'profil','action'=>'index']);?></li>
+		<li><?= $this->link('&hksearow;', ['controller'=>'user','action'=>'logout'],['title'=>'logout']);?> </li>
 	<?php endif ?>
 	</ul>
 </nav>
@@ -24,7 +23,7 @@ $(document).ready(function(){
 		var top = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 		var pp = panel.getBoundingClientRect();
 		var hp = header.getBoundingClientRect();
-		if((pp.top<=0)&&(hp.bottom<=0)){
+		if((pp.top<=36)&&(hp.bottom<=36)){
 			$('.user-panel-bottom').removeClass('user-panel-bottom').addClass('user-panel-top');
 			$('.user-panel-top').css('right',right+'px');
 		}else{

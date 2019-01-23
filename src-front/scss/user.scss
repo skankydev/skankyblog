@@ -1,0 +1,71 @@
+#Login{
+	display: inline-block;
+	width: 45%;
+	 .field{
+		display: block;
+		width: 100%;
+	}
+}
+
+.user-panel{
+
+	transition: background-color 0.2s ease-out;
+}
+.user-panel-top{
+	position:fixed;
+	top:36px;
+	right: 0;
+	z-index: 11;
+	a{
+		background-color: $color-secondary-dark;
+	}
+}
+.user-panel-bottom{
+	position:relative;
+	top:12px;
+	a{
+		background-color: $color-primary;
+	}
+}
+.user-panel::before,
+.user-panel::after {
+	border-color: transparent transparent transparent transparent;
+	border-style: solid;
+	border-width: 12px;
+	content: '';
+	height: 0px;
+	width: 0px;
+	line-height: 0px;
+	display: inline-block;
+	transition: border-color 0.2s ease-out;
+}
+
+.user-panel-bottom::before{
+	border-color: transparent $color-primary transparent transparent;
+}
+.user-panel-bottom::after {
+	border-color: transparent transparent transparent $color-primary;
+}
+.user-panel-top::before{
+	border-color: transparent $color-secondary-dark  $color-secondary-dark transparent;
+}
+.user-panel-top::after {
+	border-color: transparent transparent  $color-secondary-dark  $color-secondary-dark;
+}
+.user-panel a{
+	height: 24px;
+	line-height: 24px;
+	display: inline-block;
+	padding: 0 8px;
+	
+	color:$white;
+	text-align: center;
+	text-decoration: none;
+	text-transform: capitalize;
+	
+
+	transition: background-color 0.2s ease-out;
+}
+.user-panel a:hover{
+	color: $color-secondary-light;
+}

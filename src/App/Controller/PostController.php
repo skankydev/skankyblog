@@ -18,12 +18,10 @@ use SkankyDev\MasterModel;
 
 class PostController extends MasterController {
 	
-	public function index($page=1){
+	public function index(){
 		$option = [
-			'limit'=> 5,
-			'query'=> [],
+			'limit'=> 1,
 			'sort' => ['created'=> -1],
-			'page'=>(int)$page,
 		];
 		$posts = $this->Post->paginate($option);
 		$this->view->set( ['posts' => $posts] );

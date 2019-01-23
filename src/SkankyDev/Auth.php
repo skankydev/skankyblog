@@ -56,7 +56,7 @@ class Auth
 			self::$loged = true;
 		}
 		$this->historique = new Historique();
-		$this->userAgent = new UserAgent();
+		$this->userAgent = UserAgent::getInstance();
 		$this->cookie    = new Cookie('skankydev_auth',Config::get('Auth.cookieTimer'));
 		$this->historique->updateHistorique();
 		$current = $this->historique->getCurrent();
@@ -127,4 +127,7 @@ class Auth
 		return $this->cookie->delete('user');
 	}
 
+	public function getUserAgent(){
+		return $this->userAgent;
+	}
 }

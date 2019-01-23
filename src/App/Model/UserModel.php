@@ -44,9 +44,7 @@ class UserModel extends NoSqlModel {
 			$client->createIndex('user',$index);
 			return 'UserModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			
-			return 'UserModel :'.$e->getMessage();			
-			
+			return 'UserModel: '.$e->getMessage();
 		}
 
 	}

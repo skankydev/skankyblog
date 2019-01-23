@@ -38,7 +38,7 @@ class ProfilModel extends NoSqlModel {
 			$client->createIndex('profil',$index);
 			return 'ProfilModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'ProfilModel :'.$e->getMessage();			
+			return 'ProfilModel: '.$e->getMessage();
 		}
 	}
 

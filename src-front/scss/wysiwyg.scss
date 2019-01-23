@@ -1,0 +1,68 @@
+#Wysiwyg{
+	position: relative;
+}
+#WysiwygToolbar{
+	border: 1px solid #BEBEBE;
+	margin-bottom: 0;
+	padding: 0 8px;
+	box-shadow:inset 0px 1px 0px 0px $white;
+	background: rgb(237,237,237); /* Old browsers */
+	background: linear-gradient(to bottom, rgba(237,237,237,1) 5%,rgba(223,223,223,1) 100%); /* W3C */
+	border-radius: 5px 5px 0 0 ;
+	display: flex;
+	flex-direction: row;
+}
+textarea {
+	clear: both;
+	font-size: 1em;
+	width:100%;
+	height: 300px;
+	border: 1px solid #BEBEBE;
+	border-radius:0 0  5px 5px ;
+}
+#Post textarea {
+	height: 800px;
+}
+.wysiwyg-separator{
+	border-left: 1px dashed #BEBEBE;
+	height: 32px;
+	line-height: 32px;
+	margin: 0 3px
+}
+.wysiwyg-box{
+	background: $white;
+	position: absolute;
+	top: 70px;
+	margin: 0;
+	border: 1px solid #AAA;
+	left:0;
+	padding: 4px;
+}
+.btn-wysiwyg-bold{
+	font-weight: bold;
+}
+.btn-wysiwyg-italic{
+	font-style: italic;
+}
+.btn-wysiwyg-undo{
+
+}
+.btn-wysiwyg-redo{
+
+}
+.btn-wysiwyg-link{
+
+}
+.btn-wysiwyg-source{
+	align-self: flex-end;
+}
+.btn-wysiwyg-title{
+	text-decoration: underline;
+}
+.wysiwyg-input-a{
+	line-height: 32px;
+	border: 1px solid #BEBEBE;
+}
+.wysiwyg-label-a{
+	line-height: 32px;
+}

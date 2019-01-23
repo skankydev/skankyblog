@@ -14,9 +14,12 @@
 namespace App\Model\Document;
 
 use SkankyDev\Model\Document\MasterDocument;
+use SkankyDev\Utilities\Traits\StringFacility;
 
 class Profil extends MasterDocument {
 	
+
+
 	public $civilite;
 	public $nom;
 	public $prenom;
@@ -24,5 +27,11 @@ class Profil extends MasterDocument {
 	public $telephone;
 	public $mobil;
 	public $user_email;
+
+
+	public function getFullName(){
+		return ucfirst($this->civilite.' '.$this->nom.' '.$this->prenom);
+	}
+
 
 }
