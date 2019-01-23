@@ -12,7 +12,7 @@
  */
 namespace SkankyDev\Utilities;
 
-use SkankyDev\Utilities\Traits\Iterable;
+use SkankyDev\Utilities\Traits\IterableData;
 use SkankyDev\Config\Config;
 use Iterator;
 
@@ -21,14 +21,14 @@ use Iterator;
 */
 class Paginator implements Iterator {
 	
-	use Iterable;
+	use IterableData;
 
 	var $data = [];
 	var $option = [];
 	
 	/**
 	 * construct
-	 * @param array $data thes iterable data 
+	 * @param array $data the iterable data 
 	 */
 	function __construct($data){
 		$this->data = $data;

@@ -12,11 +12,12 @@
     "require": {
         "mongodb/mongodb": "1.0.0",
         "nette/mail": "^2.4",
-        "paypal/rest-api-sdk-php": "*"
+        "psr/log": "^1.1"
     },
     "autoload": {
         "psr-4": { 
-            "SkankyDev\\": "src/SkankyDev"
+            "SkankyDev\\": "src/SkankyDev",
+            "App\\": "src/App"
         }
     }
 }

@@ -37,7 +37,7 @@ class CommandeModel extends NoSqlModel {
 			$client->createIndex('commande',$index);
 			return 'CommandeModel: has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
-			return 'CommandeModel: '.$e->getMessage();
+			return 'CommandeModel '.$e->getMessage();
 		}
 	}
 
