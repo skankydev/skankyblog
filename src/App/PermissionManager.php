@@ -36,7 +36,7 @@ class PermissionManager implements PermissionInterface{
 	}
 
 	public function checkAccess($link){
-		return true;
+		//return true;
 		
 		$perm = Auth::getPermission();
 		$allow = false;

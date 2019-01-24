@@ -31,6 +31,7 @@ class Auth
 		}
 		return self::$_instance;
 	}
+	
 	public static function isAuthentified(){
 		if(!is_null(self::$_instance)) {
 			return self::$loged;

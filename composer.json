@@ -19,5 +19,8 @@
             "SkankyDev\\": "src/SkankyDev",
             "App\\": "src/App"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5"
     }
 }

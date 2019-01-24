@@ -17,27 +17,27 @@ $perm = SkankyDev\Auth::getPermission();
 		<ul class="admin-option">
 		<?php if ($action['Post']['list']==='allow'): ?>
 			<li class="admin-button">
-				<?php echo $this->link('Post', ['controller'=>'post','action'=>'list'],['class'=>'admin-link']);?>
+				<?= $this->link('Post', ['controller'=>'post','action'=>'list'],['class'=>'admin-link']);?>
 			</li>
 		<?php endif ?>
 		<?php if ($action['Taxonomie']['index']==='allow'): ?>
 			<li class="admin-button">
-				<?php echo $this->link('Taxonomie', ['controller'=>'taxonomie','action'=>'index'],['class'=>'admin-link']);?>
+				<?= $this->link('Taxonomie', ['controller'=>'taxonomie','action'=>'index'],['class'=>'admin-link']);?>
 			</li>
 		<?php endif ?>
 		<?php if ($action['Menu']['index']==='allow'): ?>
 			<li class="admin-button">
-				<?php echo $this->link('Menu', ['controller'=>'menu','action'=>'index'],['class'=>'admin-link']);?>
+				<?= $this->link('Menu', ['controller'=>'menu','action'=>'index'],['class'=>'admin-link']);?>
 			</li>
 		<?php endif ?>
 		<?php if ($action['User']['index']==='allow'): ?>
 			<li class="admin-button">
-				<?php echo $this->link('User', ['controller'=>'user','action'=>'index'],['class'=>'admin-link']);?>
+				<?= $this->link('User', ['controller'=>'user','action'=>'index'],['class'=>'admin-link']);?>
 			</li>
 		<?php endif ?>
 		<?php if ($action['Permission']['index']==='allow'): ?>
 			<li class="admin-button">
-				<?php echo $this->link('Permission', ['controller'=>'permission','action'=>'index'],['class'=>'admin-link']);?>
+				<?= $this->link('Permission', ['controller'=>'permission','action'=>'index'],['class'=>'admin-link']);?>
 			</li>
 		<?php endif ?>
 		</ul>

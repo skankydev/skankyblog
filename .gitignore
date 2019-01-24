@@ -48,9 +48,9 @@ composer.lock
 .phpintel/
 vendor/
 config/smtp.config.php
-config/paypal.config.php
 public/img/upload
 public/img/product
 public/img/test
+public/coverage
 
 composer.lock
