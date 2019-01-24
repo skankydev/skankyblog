@@ -26,7 +26,7 @@
 <body>
 	<?= $this->element('admin-menu'); ?>
 	<section id="Container">
-	<?= $this->elementFromView(['namespace'=>'App','controller'=>'Menu','action'=>'view','params'=>['name'=>'Main']]);	 ?>
+	<?= $this->elementFromView(['namespace'=>'App','controller'=>'Menu','action'=>'view','params'=>['name'=>'main']]);	 ?>
 
 		<header id="Header">
 			<div class="layout-header">
