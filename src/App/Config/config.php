@@ -1,4 +1,5 @@
 <?php 
+
 return [
 	'default' => [
 		'namespace'=>'App',
@@ -32,7 +33,7 @@ return [
 			'action'     => 'login',
 			'namespace'  => 'App'
 		],
-		'cookieTimer'      => WEEK,
+		'cookieTimer'      => TIME_WEEK,
 		'accessDenied'     => false,
 		'userEntity'       => 'App\Model\Document\User',
 		'permissionEntity' => 'App\Model\Document\Permission',

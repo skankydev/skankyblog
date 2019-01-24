@@ -24,7 +24,7 @@ class Token{
 		$this->time  = time();
 	}
 
-	public function checkTime($life = HOUR){
+	public function checkTime($life = TIME_HOUR){
 		$current = time();
 		$tokenExpir = $this->time+$life;
 		return ($tokenExpir > $current);

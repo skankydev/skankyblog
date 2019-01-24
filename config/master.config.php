@@ -2,7 +2,7 @@
 /**
  * congratulation you have found the master configuration file
  */
-$smtp = require 'smtp.config.php';
+$smtp = require_once 'smtp.config.php';
 $conf =  [
 	'db' => [
 		'MongoDB' =>[

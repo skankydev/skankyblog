@@ -12,9 +12,6 @@
  */
 namespace SkankyDev;
 
-include_once 'Utilities'.DS.'Debug.php';
-include_once 'Config'.DS.'Config.php'; 
-
 use SkankyDev\Request;
 use SkankyDev\Router;
 use SkankyDev\MasterView;
@@ -24,6 +21,22 @@ use SkankyDev\Utilities\Session;
 use SkankyDev\Controller\MasterController;
 use SkankyDev\Controller\ErrorController;
 use Exception;
+
+if ( !defined('DS') ){
+	define('DS', DIRECTORY_SEPARATOR);
+}
+
+if ( !defined('APP_FOLDER') ){
+	define('APP_FOLDER', dirname(dirname(__DIR__)));
+}
+
+if ( !defined('PUBLIC_FOLDER') ){
+	define('PUBLIC_FOLDER',APP_FOLDER.DS.'public');
+}
+
+//include_once 'Utilities'.DS.'Debug.php';
+//include_once 'Config'.DS.'Config.php'; 
+
 
 class Application {
 	
@@ -42,6 +55,7 @@ class Application {
 
 			$view = $this->router->execute();
 			$view->render();
+			debug(dirname(dirname(__DIR__)));
 		} catch (Exception $e) {
 			$this->controller = new ErrorController($e);
 		}

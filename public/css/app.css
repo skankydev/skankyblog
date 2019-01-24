@@ -335,8 +335,7 @@ body {
   font-family: "Consolas";
   width: 100%;
   scroll-behavior: smooth;
-  background: #E7E7E7;
-  padding-top: 60px; }
+  background: #E7E7E7; }
 
 header, footer, section, article, div, nav, figure {
   display: block; }
@@ -816,11 +815,10 @@ div[class^="layout-"] {
 
 /*-------------Menu-------------------*/
 #Menu {
-  position: fixed;
   z-index: 10;
-  top: 0;
+  /* top: 0;
   right: 0;
-  left: 0;
+  left: 0; */
   height: 60px;
   background: #243E79;
   width: 100%;

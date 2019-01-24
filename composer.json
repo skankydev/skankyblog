@@ -18,6 +18,14 @@
         "psr-4": { 
             "SkankyDev\\": "src/SkankyDev",
             "App\\": "src/App"
+        },
+        "files": [
+            "src/Skankydev/Utilities/Debug.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4":{
+            "SkankyTest\\":"test"
         }
     },
     "require-dev": {

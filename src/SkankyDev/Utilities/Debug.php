@@ -10,13 +10,13 @@
  * @copyright     Copyright (c) SCHENCK Simon
  *
  */
-const SECOND     =  1;
-const MINUTE     =  60;
-const HOUR       =  3600;
-const DAY        =  86400;
-const WEEK       =  604800;
-const MONTH      =  2592000;
-const YEAR       =  31536000;
+const TIME_SECOND     =  1;
+const TIME_MINUTE     =  60;
+const TIME_HOUR       =  3600;
+const TIME_DAY        =  86400;
+const TIME_WEEK       =  604800;
+const TIME_MONTH      =  2592000;
+const TIME_YEAR       =  31536000;
 
 //ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ
 function dd($data,$message = ''){
