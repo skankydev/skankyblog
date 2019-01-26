@@ -12,7 +12,7 @@
  *
  */
 
-namespace TestCase\Utilities;
+namespace SkankyTest\TestCase\Utilities;
 
 use PHPUnit\Framework\TestCase;
 use SkankyDev\Utilities\Token;
@@ -44,8 +44,8 @@ class TokenTest extends TestCase
 	 */
 	public function testCorrectValue(){
 		$token = new Token();
-		$this->assertEquals(true, $this->token->checkValue($token->value));
-		$this->assertEquals(false, $this->token->checkValue('ceci nes pas valide'));
+		$this->assertEquals(true, $token->checkValue($token->value));
+		$this->assertEquals(false, $token->checkValue('ceci nes pas valide'));
 	}
 
 	/**

@@ -1,9 +1,9 @@
 <?php $this->setTitle('add post'); ?>
 <section id='Post'>
 	<header><h1>Add Post</h1></header>
-	<?php echo $this->Form->start($this->request->url(['action'=>'add'])); ?>
+	<?= $this->Form->start($this->request->url(['action'=>'add'])); ?>
 	<section>
-		<?php echo $this->Form->fieldset([
+		<?= $this->Form->fieldset([
 			'fieldset'=> ['class'=>'fieldset-post'],
 			'legend'  => ['content'=>'creat a new post','class'=>'legend-post'],
 			'input'   => [
@@ -27,7 +27,7 @@
 		]); ?>
 	</section>
 	<footer>
-		<?php echo $this->Form->submit('Envoyer'); ?>
+		<?= $this->Form->submit('Envoyer'); ?>
 	</footer>
-	<?php echo $this->Form->end(); ?>
+	<?= $this->Form->end(); ?>
 </section>

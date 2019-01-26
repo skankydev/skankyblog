@@ -64,7 +64,7 @@ textarea:focus {
 select {
 	clear: both;
 	font-size: 100%;
-	width: 60%;
+	width: 100%;
 	padding: 2px;
 }
 select[multiple=multiple] {
@@ -113,6 +113,25 @@ input[type=radio] {
 	padding: 0;
 	line-height: 26px;
 }
+input[type="radio"]:not(:checked) + label,  
+input[type="radio"]:checked + label{  
+	cursor: pointer;
+}
+input[type="radio"]:not(:checked) + label:before,
+input[type="radio"]:checked + label:before{
+	content: " ";
+	display: inline-block;
+	vertical-align: top;
+	width: 18px;
+	height: 18px;
+	padding: 2px;
+	margin: 0 8px;
+	border: 1px solid #BEBEBE;
+	border-radius: 50%;
+}
+input[type="radio"]:not(:checked) + label:before{content: ' '}
+input[type="radio"]:checked + label:before{content: url("/img/theme/true.png")}
+
 button[type=submit]{
 	
 }

@@ -1,8 +1,8 @@
 <section>
 	<header><h1>Edit message</h1></header>
-	<?php echo $this->Form->start($this->request->url(['action'=>'edit','params'=>['_id'=>$message->_id]])); ?>
+	<?= $this->Form->start($this->request->url(['action'=>'edit','params'=>['_id'=>$message->_id]])); ?>
 	<section>
-		<?php echo $this->Form->fieldset([
+		<?= $this->Form->fieldset([
 			'fieldset'=> ['class'=>'fieldset_message'],
 			'legend'  => ['content'=>'creat a new post','class'=>'legend_post'],
 			'input'   => [
@@ -14,7 +14,7 @@
 		]); ?>
 	</section>
 	<footer>
-		<?php echo $this->Form->submit('Envoyer'); ?>
+		<?= $this->Form->submit('Envoyer'); ?>
 	</footer>
-	<?php echo $this->Form->end(); ?>
+	<?= $this->Form->end(); ?>
 </section>

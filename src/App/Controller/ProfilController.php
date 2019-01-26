@@ -34,7 +34,6 @@ class ProfilController extends MasterController {
 			$profil->user_email = $user->email;
 			$profil->adresse = [];
 			unset($this->request->data->_id);
-			debug($profil);
 		}
 		if($this->request->isPost() && ($this->request->data->user_email === $user->email)){
 			$adresse = $profil->adresse;

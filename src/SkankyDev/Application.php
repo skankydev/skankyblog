@@ -55,7 +55,6 @@ class Application {
 
 			$view = $this->router->execute();
 			$view->render();
-			debug(dirname(dirname(__DIR__)));
 		} catch (Exception $e) {
 			$this->controller = new ErrorController($e);
 		}
