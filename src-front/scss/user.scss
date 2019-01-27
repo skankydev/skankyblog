@@ -1,7 +1,7 @@
 #Login{
 	display: inline-block;
 	width: 45%;
-	 .field{
+	.field:not(.hidden){
 		display: block;
 		width: 100%;
 	}

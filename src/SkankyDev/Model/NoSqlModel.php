@@ -114,12 +114,12 @@ class NoSqlModel extends MasterModel {
 		EventManager::getInstance()->event('model.query.find',$this,$option);
 		unset($option['query']);
 		$cursor = $this->collection->find($query,$option);
-		//return $cursor;
-		$retour = [];
+		return $cursor;
+		/*$retour = [];
 		foreach ($cursor as $document) {
 			$retour[] = $document;
 		}
-		return $retour;
+		return $retour;*/
 	}
 
 	/**
@@ -191,11 +191,14 @@ class NoSqlModel extends MasterModel {
 		}
 		$option['skip'] = $option['limit']*($option['page']-1);
 		$option['count'] = $this->count($option['query']);
-		$result = $this->find($option);
-		$paginator = new Paginator($result);
+		$cursor = $this->find($option);
+		$data = [];
+		foreach ($cursor as $document) {
+			$data[] = $document;
+		}
 		unset($option['query']);
 		unset($option['skip']);
-		$paginator->setOption($option);
+		$paginator = new Paginator($data,$option);
 
 		return $paginator;
 	}

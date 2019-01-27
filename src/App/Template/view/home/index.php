@@ -11,19 +11,19 @@ $this->layout = 'test';
 <section id="Index">
 	<div class="layout-index">
 		<div>
-			<?php echo _('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, numquam?'); ?>
+			<?= _('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, numquam?'); ?>
 			<ul>
-				<li><?php echo _('PHP version: ').PHP_VERSION; ?></li>
-				<li><?php echo _('Mongodb driver: ').phpversion("mongodb"); ?></li>
-				<li><?php echo _('GetText: ').phpversion("gettext"); ?></li>
-				<li><?php echo _('Intl: ').phpversion("intl"); ?></li>
+				<li><?= _('PHP version: ').PHP_VERSION; ?></li>
+				<li><?= _('Mongodb driver: ').phpversion("mongodb"); ?></li>
+				<li><?= _('GetText: ').phpversion("gettext"); ?></li>
+				<li><?= _('Intl: ').phpversion("intl"); ?></li>
 			</ul>
 		</div>
 		<div>
-			<?php echo _('Laborum repellendus ducimus earum. Libero labore ducimus nulla architecto sapiente.'); ?>
+			<?= _('Laborum repellendus ducimus earum. Libero labore ducimus nulla architecto sapiente.'); ?>
 		</div>
 		<div>
-			<?php echo _('Expedita hic quas vel vero culpa molestias itaque, quidem saepe. ');?>
+			<?= _('Expedita hic quas vel vero culpa molestias itaque, quidem saepe. ');?>
 		</div>
 	</div>
 </section>

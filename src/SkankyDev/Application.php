@@ -12,18 +12,32 @@
  */
 namespace SkankyDev;
 
-include_once 'Utilities'.DS.'Debug.php';
-include_once 'Config'.DS.'Config.php'; 
-
-use SkankyDev\Request;
-use SkankyDev\Router;
-use SkankyDev\MasterView;
-use SkankyDev\EventManager;
-use SkankyDev\Config\Config;
-use SkankyDev\Utilities\Session;
-use SkankyDev\Controller\MasterController;
-use SkankyDev\Controller\ErrorController;
 use Exception;
+use SkankyDev\Config\Config;
+use SkankyDev\Controller\ErrorController;
+use SkankyDev\Controller\MasterController;
+use SkankyDev\EventManager;
+use SkankyDev\MasterView;
+use SkankyDev\Request;
+use SkankyDev\Routing\Dispatcher;
+use SkankyDev\Routing\Router;
+use SkankyDev\Utilities\Session;
+
+if ( !defined('DS') ){
+	define('DS', DIRECTORY_SEPARATOR);
+}
+
+if ( !defined('APP_FOLDER') ){
+	define('APP_FOLDER', dirname(dirname(__DIR__)));
+}
+
+if ( !defined('PUBLIC_FOLDER') ){
+	define('PUBLIC_FOLDER',APP_FOLDER.DS.'public');
+}
+
+//include_once 'Utilities'.DS.'Debug.php';
+//include_once 'Config'.DS.'Config.php'; 
+
 
 class Application {
 	
@@ -33,14 +47,16 @@ class Application {
 			Auth::loadClass();//we c'est un peux de la triche
 			Session::start();
 			EventManager::init();
+			include_once APP_FOLDER.DS.'config'.DS.'bootstrap.php';
+			include_once APP_FOLDER.DS.'config'.DS.'routes.php';
 			$this->request = Request::getInstance();
-			$this->router = Router::getInstance();
+			$current = Router::_findCurrentRoute($this->request->uri);
+			//debug($current);
 			$this->auth = Auth::getInstance();
 			$this->auth->checkFirstStep();
-			include_once APP_FOLDER.DS.'config'.DS.'bootstrap.php';
 			//$this->request->securePost();
 
-			$view = $this->router->execute();
+			$view = Dispatcher::_execute($current);
 			$view->render();
 		} catch (Exception $e) {
 			$this->controller = new ErrorController($e);

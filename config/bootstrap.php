@@ -1,6 +1,7 @@
 <?php 
 $manager = SkankyDev\Factory::load('App\PermissionManager');
-$this->router->setPermissionManager($manager);
+
+SkankyDev\Routing\Dispatcher::_setPermissionManager($manager);
 //un jour peux etre ca sera utile d ecrire des truc ici 
 
 SkankyDev\I18n\Localization::initGetText('fr');

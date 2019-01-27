@@ -48,11 +48,9 @@ trait ArrayPathable {
 	 * @param pointer &$pointer the array we need to read
 	 * @return  void
 	 */
-	static function arraySet($path,$value,&$pointer = 'stepOne'){
+	static function arraySet($path,$value,&$pointer){
 		$aPath = explode('.',$path);
-		if($pointer==='stepOne'){
-			$pointer = &self::$myArrayPathable;
-		}
+		
 		if(count($aPath)>1){
 			$path = strstr($path,'.');
 			$path = substr($path,-strlen($path)+1);
@@ -72,11 +70,9 @@ trait ArrayPathable {
 	 * @param  pointer &$pointer the array where we need to delete a data
 	 * @return void
 	 */
-	static function arrayDelete($path,&$pointer = 'stepOne'){
+	static function arrayDelete($path,&$pointer){
 		$aPath = explode('.',$path);
-		if($pointer==='stepOne'){
-			$pointer = &self::$myArrayPathable;
-		}
+	
 		if(count($aPath)>1){
 			$path = strstr($path,'.');
 			$path = substr($path,-strlen($path)+1);

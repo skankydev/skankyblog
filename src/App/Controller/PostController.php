@@ -32,14 +32,10 @@ class PostController extends MasterController {
 		$this->view->set(['post' => $post]);
 	}
 
-	private function list($page = 1,$field = 'created',$order = -1){
+	private function list(){
 		$option = [
 			'limit'=> 25,
-			'query'=> [],
-			'page'=>(int)$page,
-			'sort' => [],
 		];
-		$option['sort'][$field] = (int)$order;
 		$posts = $this->Post->paginate($option);
 		$this->view->set( ['posts' => $posts] );
 	}
@@ -49,7 +45,6 @@ class PostController extends MasterController {
 		if($this->request->isPost()){
 
 			$post = $this->Post->createDocument($this->request->getData());
-			debug($post);
 			if(empty($post->slug)){
 				$post->slug = str_replace(' ', '-', $post->name);
 			}
@@ -57,15 +52,14 @@ class PostController extends MasterController {
 			if($this->Post->isValid($post)){
 				if($this->Post->create($post)){
 					$this->Flash->set('ça marche',['class' => 'success']);
-					$this->request->redirect(['action'=>'index']);
+					$this->request->redirect(['action'=>'list']);
 				}else{
 					$this->Flash->set('ça marche pas',['class' => 'error']);
-					$this->request->data = $post;
 				}
 			}else{
 				$this->Flash->set('pas valid',['class' => 'error']);
-				$this->request->data = $post;
 			}
+			$this->request->data = $post;
 		}
 		$tags = $this->_loadModel('taxonomie')->getList();
 		$this->view->set(['tags'=>$tags]);
@@ -81,7 +75,7 @@ class PostController extends MasterController {
 			if($this->Post->isValid($post)){
 				if($this->Post->save($post)){
 					$this->Flash->set('ça marche',['class' => 'success']);
-					$this->request->redirect(['action'=>'index']);
+					$this->request->redirect(['action'=>'list']);
 				}else{
 					$this->Flash->set('ça marche pas',['class' => 'error']);
 				}

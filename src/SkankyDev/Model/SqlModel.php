@@ -14,13 +14,13 @@
 
 namespace SkankyDev\Collection;
 
-use SkankyDev\MasterCollection;
 use SkankyDev\Config\Config;
+use SkankyDev\Model\MasterModel;
 /*
  * TODO Le PDO Connar !!!!
  *
  */
-class SqlCollection extends MasterCollection {
+class SqlCollection extends MasterModel {
 	
 	public function find($option = array()){
 		$link = $this->openConnect();

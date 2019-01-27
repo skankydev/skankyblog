@@ -8,9 +8,9 @@
 		<table>
 		<thead>
 			<tr>
-				<th><?php echo $this->link('tag', ['params'=>$taxonomies->sortParams('name')]);?> </th>
-				<th><?php echo $this->link('count', ['params'=>$taxonomies->sortParams('count')]);?> </th>
-				<th><?php echo $this->link('created', ['params'=>$taxonomies->sortParams('created')]);?> </th>
+				<th><?php echo $this->link('tag', ['get'=>$taxonomies->sortParams('name')]);?> </th>
+				<th><?php echo $this->link('count', ['get'=>$taxonomies->sortParams('count')]);?> </th>
+				<th><?php echo $this->link('created', ['get'=>$taxonomies->sortParams('created')]);?> </th>
 				<th>actions</th>
 			</tr>
 		</thead>

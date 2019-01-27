@@ -1,9 +1,9 @@
 <?php $this->setTitle('edit post'); ?>
 <section id='Post'>
 	<header><h1>Edit Post</h1></header>
-	<?php echo $this->Form->start($this->request->url(['action'=>'edit','params'=>['slug'=>$post->slug]])); ?>
+	<?= $this->Form->start($this->request->url(['action'=>'edit','params'=>['slug'=>$post->slug]])); ?>
 	<section>
-		<?php echo $this->Form->fieldset([
+		<?= $this->Form->fieldset([
 			'fieldset'=> ['class'=>'fieldset-post'],
 			'legend'  => ['content'=>'edite a post','class'=>'legend-post'],
 			'input'   => [
@@ -29,7 +29,7 @@
 		]); ?>
 	</section>
 	<footer>
-		<?php echo $this->Form->submit('Envoyer',['class'=>'btn-submit']); ?>
+		<?= $this->Form->submit('Envoyer',['class'=>'btn-submit']); ?>
 	</footer>
-	<?php echo $this->Form->end(); ?>
+	<?= $this->Form->end(); ?>
 </section>

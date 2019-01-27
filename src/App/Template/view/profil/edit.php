@@ -4,9 +4,9 @@
 	<header>
 		<h1>Votre Profil</h1>
 	</header>
-	<?php echo $this->Form->start($this->request->url(['action'=>'edit'])); ?>
+	<?= $this->Form->start($this->request->url(['action'=>'edit'])); ?>
 	<section>
-		<?php echo $this->Form->fieldset([
+		<?= $this->Form->fieldset([
 			'fieldset'=> ['class'=>''],
 			'legend'  => ['content'=>'','class'=>''],
 			'input'   => [
@@ -21,8 +21,8 @@
 		]); ?>
 	</section>
 	<footer>
-		<?php echo $this->Form->submit('Envoyer'); ?>
+		<?= $this->Form->submit('Envoyer'); ?>
 	</footer>
-	<?php echo $this->Form->end(); ?>
+	<?= $this->Form->end(); ?>
 </section>
 </div>

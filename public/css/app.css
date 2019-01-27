@@ -335,8 +335,7 @@ body {
   font-family: "Consolas";
   width: 100%;
   scroll-behavior: smooth;
-  background: #E7E7E7;
-  padding-top: 60px; }
+  background: #E7E7E7; }
 
 header, footer, section, article, div, nav, figure {
   display: block; }
@@ -417,6 +416,9 @@ th > a:hover {
 tr:nth-child(even) {
   background-color: #EFEFEF; }
 
+.hidden {
+  display: none; }
+
 /*---------------Form------------------*/
 form {
   clear: both; }
@@ -470,7 +472,7 @@ textarea {
 select {
   clear: both;
   font-size: 100%;
-  width: 60%;
+  width: 100%;
   padding: 2px; }
 
 select[multiple=multiple] {
@@ -521,6 +523,28 @@ input[type=radio] {
   margin: 6px 0;
   padding: 0;
   line-height: 26px; }
+
+input[type="radio"]:not(:checked) + label,
+input[type="radio"]:checked + label {
+  cursor: pointer; }
+
+input[type="radio"]:not(:checked) + label:before,
+input[type="radio"]:checked + label:before {
+  content: " ";
+  display: inline-block;
+  vertical-align: top;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
+  margin: 0 8px;
+  border: 1px solid #BEBEBE;
+  border-radius: 50%; }
+
+input[type="radio"]:not(:checked) + label:before {
+  content: ' '; }
+
+input[type="radio"]:checked + label:before {
+  content: url("/img/theme/true.png"); }
 
 .radio label {
   margin: 0 0 6px 20px;
@@ -816,11 +840,10 @@ div[class^="layout-"] {
 
 /*-------------Menu-------------------*/
 #Menu {
-  position: fixed;
   z-index: 10;
-  top: 0;
+  /* top: 0;
   right: 0;
-  left: 0;
+  left: 0; */
   height: 60px;
   background: #243E79;
   width: 100%;
@@ -1009,7 +1032,7 @@ div[class^="layout-"] {
 #Login {
   display: inline-block;
   width: 45%; }
-  #Login .field {
+  #Login .field:not(.hidden) {
     display: block;
     width: 100%; }
 
