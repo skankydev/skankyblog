@@ -21,7 +21,6 @@ return [
 		'page'  => 1,
 		'count' => 1,
 		'range' => 1,
-		'pages' => 1,
 	],
 	'historique' => ['limit'=>10],
 	'autoloader' => [

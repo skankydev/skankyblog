@@ -50,7 +50,7 @@ class Request {
 	}
 
 	public function __construct(){
-		//debug($_SERVER);
+		debug($_SERVER);
 		$this->host      = $_SERVER['HTTP_HOST'];
 		$this->uri       = urldecode($_SERVER['REQUEST_URI']);
 		$this->sheme     = $_SERVER['REQUEST_SCHEME'];

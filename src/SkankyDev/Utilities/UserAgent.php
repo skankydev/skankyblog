@@ -12,6 +12,9 @@
  */
 namespace SkankyDev\Utilities;
 
+use SkankyDev\Utilities\Traits\Singleton;
+
+
 /**
 * UserAgent
 *
@@ -22,31 +25,26 @@ namespace SkankyDev\Utilities;
 
 class UserAgent {
 	
+	use Singleton;
+
 	public $os      = 'unknow';
 	public $browser = 'unknow';
 	public $mobile  = false;
-
-	private static $_instance = null;
-
-	public static function getInstance() {
-		if(is_null(self::$_instance)) {
-			self::$_instance = new UserAgent();
-		}
-		return self::$_instance;
-	}
+	public $agent   = '';
 
 	function __construct(){
-		/**
-		 * get_browser() essaie de déterminer les capacités du navigateur client en lisant les informations dans le fichier browscap.ini
-		 * le fichier est a dl: https://browscap.org/
-		 * prendre le lite sinon ca rame et ca donne des info inutile
-		 * activer dans le php.ini
-		 */
+		if(isset($_SERVER['HTTP_USER_AGENT'])){
+			$this->agent = $_SERVER['HTTP_USER_AGENT'];
+			//debug($this->agent);
+		}
+		$this->parse();
+	}
 
-		//$this->info = get_browser($_SERVER['HTTP_USER_AGENT']);
-		$this->agent = $_SERVER['HTTP_USER_AGENT'];
-		//debug($this->agent);
-		//debug($this->info);
+	public function parse($agent = ''){
+		if(!empty($agent)){
+			$this->agent = $agent;
+		}
+
 		if(preg_match('/iphone/i', $this->agent) || preg_match('/ipad/i',$this->agent) || preg_match('/ipod/i',$this->agent)){
 			$this->os = 'iOS';
 			$this->mobile = true;
@@ -54,7 +52,7 @@ class UserAgent {
 			$this->os = 'Android';
 			$this->mobile = true;
 		}else if(preg_match('/Mac OS/i',$this->agent)){
-			$this->os = 'MacOSX';
+			$this->os = 'MacOS';
 			$this->mobile = false;
 		}else if(preg_match('/Windows/i',$this->agent)){
 			$this->os = 'Windows';
@@ -69,15 +67,19 @@ class UserAgent {
 
 		if(preg_match('/Safari/i', $this->agent)&&!preg_match('/Chrome/i', $this->agent)){
 			$this->browser = 'Safari';
-		}else if (preg_match('/Chrome/i', $this->agent)) {
-			$this->browser = 'Chrome';
 		}else if (preg_match('/Firefox/i', $this->agent)) {
 			$this->browser = 'Firefox';
-		}else if (preg_match('/Opera/i', $this->agent)) {
+		}else if (preg_match('/Opera/i', $this->agent) || preg_match('/OPR/i', $this->agent)) {
 			$this->browser = 'Opera';
+		}else if (preg_match('/Chrome/i', $this->agent)) {
+			$this->browser = 'Chrome';
 		}
 
-		//debug($this);
+		return [
+			'os' => $this->os,
+			'browser' => $this->browser,
+			'mobile' => $this->mobile,
+		];
 	}
 
 	public function getDevice(){

@@ -20,8 +20,8 @@ trait StringFacility {
 	 * @param  string $string the string need to be convert
 	 * @return string         the result
 	 */
-	public function toDash($string){
-		$string = preg_replace('/[A-Z]/',"-$0",$string);
+	public function toDash($string,$delimiters = '-'){
+		$string = preg_replace('/[A-Z]/',$delimiters."$0",$string);
 		$string = strtolower($string);
 		return trim($string,' -');
 	}

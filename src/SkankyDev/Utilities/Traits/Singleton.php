@@ -10,7 +10,11 @@
  * @copyright     Copyright (c) SCHENCK Simon
  *
  */
+
 namespace SkankyDev\Utilities\Traits;
+
+use SkankyDev\Exception\UnknownMethodExeption;
+
 
 trait Singleton {
 
@@ -30,12 +34,14 @@ trait Singleton {
 			self::getInstance();
 		}
 
-		$name = substr($name,1);
+		if(substr( $name, 0, 1 ) === '_'){
+			$name = substr($name,1);
+		}
 		
 		if(method_exists(self::$_instance, $name)){
 			return call_user_func_array([self::$_instance,$name], $arguments);
 		}else{
-			throw new Exception('Unknown method : '.$name.' in Class : '.get_called_class(),101);
+			throw new UnknownMethodExeption('Unknown method : '.$name.' in Class : '.get_called_class(),101);
 		}
 
 	}

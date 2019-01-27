@@ -32,14 +32,10 @@ class PostController extends MasterController {
 		$this->view->set(['post' => $post]);
 	}
 
-	private function list($page = 1,$field = 'created',$order = -1){
+	private function list(){
 		$option = [
 			'limit'=> 25,
-			'query'=> [],
-			'page'=>(int)$page,
-			'sort' => [],
 		];
-		$option['sort'][$field] = (int)$order;
 		$posts = $this->Post->paginate($option);
 		$this->view->set( ['posts' => $posts] );
 	}
