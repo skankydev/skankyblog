@@ -96,7 +96,7 @@ class CurrentRoute
 	}
 
 	public function getParams(){
-		return $this->link['params'];
+		return isset($this->link['params'])?$this->link['params']:[];
 	}
 
 	public function getLink(){
