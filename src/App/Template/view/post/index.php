@@ -2,7 +2,7 @@
 <section id='Posts'>
 	<?php foreach ($posts as $post): ?>
 	<section class='post-liste'>
-		<header><h2><?= $this->link($post->name,['action'=>'view','params'=>['sulg'=>$post->slug]],['class'=>'post-title']) ; ?></h2></header>
+		<header><h2><?= $this->link($post->name,['action'=>'view','params'=>['slug'=>$post->slug]],['class'=>'post-title']) ; ?></h2></header>
 		<div class="post-content">
 			<p><?= $post->content; ?></p>
 		</div>

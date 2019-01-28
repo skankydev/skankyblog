@@ -26,21 +26,34 @@ class CurrentRoute
 	private $action;
 	private $link;
 	
+	/**
+	 * get the route matche with uri and parse the params
+	 *
+	 * if $rout is null the uri will be parse lick /:controller/:action/:param/:param ... or with /:namespace....
+	 * 
+	 * @param string     $uri   the uri
+	 * @param Route|null $route the route have matche in the router or null
+	 */	
 	function __construct(string $uri ,Route $route = null){
 		$this->uri = $uri;
 		if($route){
-			$this->initFromRoute($route,$uri);
+			$this->initFromRoute($uri,$route);
 		}else{
 			$this->initFromUri($uri);
 		}
 	}
 
-	public function initFromRoute($route,$uri){
-		$this->link = $route->getLink();
-		if(isset($this->link['params'])){
 
-			$exeptedParams = $this->link['params'];
-			unset($this->link['params']);
+	/**
+	 * pars the uri with the rulse defin in route
+	 * @param  string $uri   the uri
+	 * @param  Route  $route the route 
+	 */
+	public function initFromRoute(string $uri, Route $route){
+		$this->link = $route->getLink();
+		$rules = $route->getRules();
+		if(!empty($rules)){
+
 			$shema = $route->getShema();
 			$shema = trim($shema,'/');
 			$shema = explode('/',$shema);
@@ -59,7 +72,12 @@ class CurrentRoute
 		$this->setControllerAction();
 	}
 
-	public function initFromUri($uri){
+	/**
+	 * pars the uri with the default rules
+	 * @param  string $uri the uri
+	 * @return void        
+	 */
+	public function initFromUri(string $uri){
 
 		$uri = trim($uri,'/');
 		$tmp = explode('/', $uri);
@@ -82,27 +100,49 @@ class CurrentRoute
 
 	}
 
+	/**
+	 * define the controller name and the action for the dispatcher
+	 */
 	private function setControllerAction(){
 		$this->controller = $this->link['namespace'].'\\Controller\\'.$this->link['controller'].'Controller';
 		$this->action = $this->link['action'];
 	}
 
+	/**
+	 * get the controller name
+	 * @return string controller name
+	 */
 	public function getController(){
 		return $this->controller;
 	}
 
+	/**
+	 * get the action name
+	 * @return string action name
+	 */
 	public function getAction(){
 		return $this->action;
 	}
 
+	/**
+	 * get parametres
+	 * @return array the params array
+	 */
 	public function getParams(){
 		return isset($this->link['params'])?$this->link['params']:[];
 	}
 
+	/**
+	 * retrun the link array
+	 * @return array the link
+	 */
 	public function getLink(){
 		return $this->link;
 	}
-
+	/**
+	 * get the namespance
+	 * @return string the current
+	 */
 	public function getNamespace(){
 		return $this->link['namespace'];
 	}
