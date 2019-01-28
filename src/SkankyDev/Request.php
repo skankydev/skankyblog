@@ -12,15 +12,16 @@
  */
 namespace SkankyDev;
 
+use Exception;
 use SkankyDev\Config\Config;
-use SkankyDev\Utilities\UserAgent;
+use SkankyDev\Routing\UrlBuilder;
+use SkankyDev\Utilities\Historique;
+use SkankyDev\Utilities\Interfaces\PermissionInterface;
 use SkankyDev\Utilities\Session;
 use SkankyDev\Utilities\Token;
-use SkankyDev\Utilities\Historique;
 use SkankyDev\Utilities\Traits\ArrayPathable;
 use SkankyDev\Utilities\Traits\StringFacility;
-use SkankyDev\Utilities\Interfaces\PermissionInterface;
-use Exception;
+use SkankyDev\Utilities\UserAgent;
 
 class Request {
 
@@ -30,6 +31,7 @@ class Request {
 	private static $_instance = null;
 
 	public $uri;
+	public $host;
 	public $sheme;
 	public $method;
 	public $protocol;
@@ -54,11 +56,11 @@ class Request {
 		$this->host      = $_SERVER['HTTP_HOST'];
 		$this->uri       = urldecode($_SERVER['REQUEST_URI']);
 		$this->sheme     = $_SERVER['REQUEST_SCHEME'];
-		$this->method    = $_SERVER['REQUEST_METHOD'];
-		$this->protocol  = $_SERVER['SERVER_PROTOCOL'];
-		$this->ip        = $_SERVER['REMOTE_ADDR'];
+		$this->method    = isset($_SERVER['REQUEST_METHOD'])?$_SERVER['REQUEST_METHOD']:null;
+		$this->protocol  = isset($_SERVER['SERVER_PROTOCOL'])?$_SERVER['SERVER_PROTOCOL']:null;
+		$this->ip        = isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:null;
 		$this->referer   = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null;
-		EventManager::getInstance()->event('request.construct',$this);
+		//EventManager::getInstance()->event('request.construct',$this);
 		if(!empty($_POST)){
 			$this->data = (object)$_POST;
 		}
@@ -153,6 +155,7 @@ class Request {
 			}
 		}
 	}
+
 	/**
 	 * ca viendra un jour enfin je suis pas bien sur
 	 * @param  string $name [description]
@@ -172,6 +175,7 @@ class Request {
 	 * @param  array  $link a array description of the link
 	 */
 	public function redirect($link = []){
+		//doit etre deplacer
 		EventManager::getInstance()->event('request.redirect',$this);
 		Auth::getInstance()->notDirect();
 		$url ='';
@@ -198,31 +202,7 @@ class Request {
 	 * @return string       the absolut url;
 	 */
 	public function url($link = [], $absolut = true){
-		$url = '';
-		if(!isset($link['controller'])){
-			$link['controller'] = $this->controller;
-		}
-		if(!isset($link['action'])){
-			$link['action'] = $this->action;
-		}
-		if($absolut){
-			$url .= $this->sheme.'://'.$this->host;
-		}
-		//TODO: add modul if not modul default
-		$url .= '/'.$this->toDash($link['controller']).'/'.$this->toDash($link['action']);
-		if(!empty($link['params'])){
-			foreach ($link['params'] as $key => $params){
-				$url .= '/'.$params;
-			}
-		}
-		if(!empty($link['get'])){
-			$url .= '?';
-			foreach ($link['get'] as $key => $value) {
-				$url .= urlencode($key).'='.urlencode($value).'&';
-			}
-			$url = trim($url,'&');
-		}
-		return $url;
+		return UrlBuilder::_build($link, $absolut);
 	}
 
 	/**

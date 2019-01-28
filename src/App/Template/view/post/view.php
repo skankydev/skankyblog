@@ -17,13 +17,10 @@
 </section>
 <section id="Message">
 <?php
-$post_id = $post->_id->__toString();
-echo $this->elementFromView(['namespace'=>'App','controller'=>'Message','action'=>'add','params'=>['posts_id'=>$post_id]]);
-echo $this->elementFromView(['namespace'=>'App','controller'=>'Message','action'=>'index','params'=>['page'=>1,'posts_id'=>$post_id]]);
+//$post_id = $post->_id->__toString();
+//echo $this->elementFromView(['namespace'=>'App','controller'=>'Message','action'=>'add','params'=>['posts_id'=>$post_id]]);
+//echo $this->elementFromView(['namespace'=>'App','controller'=>'Message','action'=>'index','params'=>['page'=>1,'posts_id'=>$post_id]]);
 ?>
-<div class="see-more">
-	<span class="btn-see-more">see more</span>
-</div>
 </section>
 
 <?php $this->startScript() ?>

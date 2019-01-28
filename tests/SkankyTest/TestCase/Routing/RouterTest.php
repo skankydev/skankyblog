@@ -49,11 +49,8 @@ class RouterTest extends TestCase
 			'action'     => 'index',
 		]);
 		Router::_add('/article/:slug',[
-			'controller' => 'post',
-			'action'     => 'view',
-			'params'     => [
-				'slug',
-			]
+			'controller' => 'Post',
+			'action'     => 'view'
 		],[
 			'slug'=>'[a-zA-Z0-9\-]*',
 		]);
@@ -72,6 +69,7 @@ class RouterTest extends TestCase
 	public function testFindCurentRoute(){
 		Config::set('default.namespace','App');
 		Config::set('default.action','index');
+		Config::set('Module',['App','Cms']);
 		Router::_add('/',[
 			'controller' => 'Home',
 			'action'     => 'index',
@@ -79,9 +77,6 @@ class RouterTest extends TestCase
 		Router::_add('/article/:slug',[
 			'controller' => 'post',
 			'action'     => 'view',
-			'params'     => [
-				'slug',
-			]
 		],[
 			'slug'=>'[a-zA-Z0-9\-]*',
 		]);

@@ -47,7 +47,7 @@ class Dispatcher {
 		$controller = Factory::load($current->getController());
 
 		$method = new \ReflectionMethod($controller,$current->getAction());
-		debug($this->permission);
+		//debug($this->permission);
 		if(!isset($this->permission)){
 			$method->invokeArgs($controller,$current->getParams());
 		}else{

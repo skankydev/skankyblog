@@ -94,40 +94,7 @@ class HtmlView extends MasterView {
 		return $retour;
 	}
 
-	/**
-	 * TO DO a revoir !
-	 * [elementFromView description]
-	 * @param  [type] $link [description]
-	 * @return [type]       [description]
-	 */
-	public function elementFromView($link){
-		$friend = Router::getInstance()->getElement($link);
-		if($friend){
-			$viewFolder = $this->toDash($link['controller']);
-			$action = $this->toDash($link['action']);
-			$friend->viewPath = Config::viewDir().DS.$viewFolder.DS.$action.'.php';
-
-			//$friend->loadHelper();
-
-			extract($friend->data);
-			ob_start();
-			require($friend->viewPath);
-			$content = ob_get_clean();
-			//$friend->getFileFromHelper();
-			$this->script .= $friend->script;
-			$this->css    .= $friend->css;
-			$this->js     .= $friend->js;
-			return $content;
-
-		}else{
-			$element = Config::getAccessDenied();
-			if($element){
-				return $this->element($element);
-			}
-		}	
-		return false;
-	}
-
+	
 	public function setTitle($title){
 		$this->title = $title;
 	}
