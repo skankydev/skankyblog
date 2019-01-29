@@ -159,9 +159,3 @@ class MasterView {
 
 
 }
-/*
-else if(is_string($params)){
-				$className = $def[$params];
-				$this->{$params} = Factory::load($className);
-			}
- */

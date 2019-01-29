@@ -66,7 +66,7 @@ trait HtmlHelper {
 	 * @param array &$attr the attribut
 	 */
 	private function addDefaultClass($tag,&$attr,$default = true){
-		if(isset($this->dClass[$tag])&&$default){
+		if(isset($this->dClass[$tag]) && $default){
 			$s = ' ';
 			if(!isset($attr['class'])){
 				$attr['class'] = '';

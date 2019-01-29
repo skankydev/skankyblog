@@ -23,11 +23,6 @@ class Validator {
 	private $shema = [];
 	private $trimList = [];
 
-
-	public function __construct(){
-
-	}
-
 	/**
 	 * add validation rules for fields
 	 * @param array|string $fields  the fields list
@@ -53,15 +48,18 @@ class Validator {
 			}
 			$this->shema[$fields]['message'] = $message;
 		}
-		
+		//return $this->shema;
 	}
 
+	public function getRules(){
+		return $this->shema;
+	}
 
 	public function trimTag($fields){
 		$this->trimList = $fields;
 	}
 
-	public function valid($data){
+	public function valid(&$data){
 		if(!empty($this->trimList)){
 			$this->doTrim($data);
 		}
@@ -116,7 +114,7 @@ class Validator {
 	}
 
 	public function isEmail($value){
-		return filter_var($value, FILTER_VALIDATE_EMAIL);
+		return filter_var($value, FILTER_VALIDATE_EMAIL)?true:false;
 	}
 
 	public function isNum($value){

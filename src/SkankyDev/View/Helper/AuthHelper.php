@@ -18,11 +18,6 @@ use SkankyDev\View\Helper\MasterHelper;
 
 class AuthHelper extends MasterHelper {
 	
-
-
-	public function __construct(){
-	}
-
 	public function getAuth(){
 		return Auth::getInstance()->getAuth();
 	}

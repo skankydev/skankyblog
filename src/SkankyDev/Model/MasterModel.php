@@ -103,7 +103,7 @@ class MasterModel
 		return $document;
 	}
 
-	public function isValid($data){
+	public function isValid(&$data){
 		$validator = Factory::load($this->validatorName);
 		$this->initValidator($validator);
 		return $validator->valid($data);

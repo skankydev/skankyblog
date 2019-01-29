@@ -23,9 +23,9 @@ use SkankyDev\Utilities\UserAgent;
 class UserAgentTest extends TestCase
 {
 
-	public function TestUserAgentConstruct(){
+	public function testUserAgentConstruct(){
 		$_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:64.0) Gecko/20100101 Firefox/64.0';
-		$agent = UserAgent::getIstance();
+		$agent = new UserAgent();
 
 		$this->assertEquals('Windows',$agent->os);
 		$this->assertEquals('Firefox',$agent->browser);
