@@ -62,7 +62,7 @@ class Request {
 		$this->referer   = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:null;
 		//EventManager::getInstance()->event('request.construct',$this);
 		if(!empty($_POST)){
-			$this->data = (object)$_POST;
+			$this->data = $_POST;
 		}
 		if(!empty($_FILES)){
 			$this->initFiles();
@@ -79,7 +79,7 @@ class Request {
 					throw new Exception("CRSF error", 500);
 				}else{
 					//Session::delete('skankydev.form.csrf');
-					unset($this->data->_token);
+					unset($this->data['_token']);
 				}
 			}
 		}

@@ -13,6 +13,8 @@
 
 namespace SkankyDev\Utilities;
 
+use SkankyDev\Model\Document\DocumentInterface;
+
 /**
  * method return false if not valid
  */
@@ -59,7 +61,7 @@ class Validator {
 		$this->trimList = $fields;
 	}
 
-	public function valid(&$data){
+	public function valid(DocumentInterface &$data){
 		if(!empty($this->trimList)){
 			$this->doTrim($data);
 		}
@@ -78,7 +80,9 @@ class Validator {
 				}
 				if(!$result){
 					$retour = false;
-					$data->messageValidate[$field] = $config['message'];
+					$data->setValidateMessage($field,$config['message']);
+					//$data->messageValidate[$field] = $config['message'];
+					debug($data);
 				}
 			}
 		}

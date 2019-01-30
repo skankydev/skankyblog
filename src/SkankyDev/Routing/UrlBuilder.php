@@ -45,6 +45,11 @@ class UrlBuilder
 		return $url;
 	}
 
+	public function buildCurrent( $absolut = false){
+		$current = Router::_getCurrentRoute()->getLink();
+		return $this->build($current,$absolut);
+	}
+
 	public function completLink(array $link){
 		$current = Router::_getCurrentRoute()->getLink();
 		if(!isset($link['namespace'])){

@@ -35,15 +35,11 @@ if ( !defined('PUBLIC_FOLDER') ){
 	define('PUBLIC_FOLDER',APP_FOLDER.DS.'public');
 }
 
-//include_once 'Utilities'.DS.'Debug.php';
-//include_once 'Config'.DS.'Config.php'; 
-
-
 class Application {
 	
 	public function __construct() {
 		try {
-			Config::getConf();
+			Config::initConf();
 			Auth::loadClass();//we c'est un peux de la triche
 			Session::start();
 			EventManager::init();

@@ -59,5 +59,6 @@ mb_internal_encoding("UTF-8");	//defini encodage des carataire utf-8
 	echo UrlBuilder::_build(['controller'=>'Message','action'=>'view','params'=>['youpi-test']]);
 ?>
 
+
 </body>
 </html>

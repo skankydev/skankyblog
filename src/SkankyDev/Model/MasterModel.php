@@ -13,8 +13,10 @@
 namespace SkankyDev\Model;
 
 use SkankyDev\Config\Config;
-use SkankyDev\Factory;
 use SkankyDev\EventManager;
+use SkankyDev\Exception\ModelExeption;
+use SkankyDev\Factory;
+use SkankyDev\Model\Document\DocumentInterface;
 
 class MasterModel
 {
@@ -88,10 +90,10 @@ class MasterModel
 
 	/**
 	 * create new Document
-	 * @param  stdClass $data the data
+	 * @param  array $data the data
 	 * @return entity
 	 */
-	public function createDocument($data){
+	public function createDocument(array $data = []){
 		$tmp = explode('\\', get_class($this));
 		$document = str_replace('Model','',$tmp[2]);
 		//debug($data);
@@ -100,6 +102,31 @@ class MasterModel
 		$this->callBehavior('beforeCreateEntity',$data);
 		$document = Factory::load($eName,['data'=>$data]);
 		$this->callBehavior('afterCreateEntity',$data,$document);
+		return $document;
+	}
+
+	public function patchDocument(DocumentInterface $document,array $data){
+		if(isset($data['_id'])){
+
+			$oid = (string) $document->_id;
+			if($oid !== $data['_id']){
+				throw new ModelExeption('The posted id don\'t match with current id',301);
+			}
+			unset($data['_id']);
+		}
+		$properties = get_class_vars(get_class($document));
+		foreach ($properties as $key=>$value){
+			if( isset($data[$key]) ){
+				$document->{$key} = $data[$key];
+				if(preg_match('/[a-zA-Z0-9_-]*_id/', $key)){
+					if(empty($data[$key])){
+						$document->{$key} = new ObjectID();
+					}else{
+						$document->{$key} = new ObjectID($data[$key]);
+					}
+				}
+			}
+		}
 		return $document;
 	}
 

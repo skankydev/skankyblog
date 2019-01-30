@@ -42,9 +42,10 @@ class PostController extends MasterController {
 
 	private function add(){
 
+		$post = $this->Post->createDocument();
 		if($this->request->isPost()){
 
-			$post = $this->Post->createDocument($this->request->getData());
+			$post = $this->Post->patchDocument($post,$this->request->getData());
 			if(empty($post->slug)){
 				$post->slug = str_replace(' ', '-', $post->name);
 			}
@@ -59,19 +60,19 @@ class PostController extends MasterController {
 			}else{
 				$this->Flash->set('pas valid',['class' => 'error']);
 			}
+			
 			$this->request->data = $post;
 		}
+
 		$tags = $this->_loadModel('taxonomie')->getList();
-		$this->view->set(['tags'=>$tags]);
+		$this->view->set(['tags'=>$tags,'post'=>$post]);
 	}
 
 	private function edit($slug = ''){
 
 		$post = $this->Post->findBySlug($slug);
 		if($this->request->isPost()){
-			$media = $post->media;
-			$post = $this->Post->createDocument($this->request->getData());
-			$post->media = $media;
+			$post = $this->Post->patchDocument($post,$this->request->getData());
 			if($this->Post->isValid($post)){
 				if($this->Post->save($post)){
 					$this->Flash->set('ça marche',['class' => 'success']);

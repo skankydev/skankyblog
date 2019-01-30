@@ -11,6 +11,9 @@
  *
  */
 
+/**
+ * @codeCoverageIgnore
+ */
 return [
 	'default' => [
 		'namespace' => 'App',
@@ -29,9 +32,21 @@ return [
 		'Behavior'   => 'Model',
 	],
 	'skankydev'  => [
-		'version'=>'Alpha.0.0.1'
+		'version'=>'1.0.0'
 	],
 	'debug' => false,
+	'Auth'=>[
+		'redirectAction' => [
+			'controller' => 'User',
+			'action'     => 'login',
+			'namespace'  => 'App'
+		],
+		'cookieTimer'      => TIME_WEEK,
+		'accessDenied'     => false,
+		'userEntity'       => false,
+		'permissionEntity' => false,
+		'defaultRole'      => 'default',
+	],
 	'class' => [
 		'helper' => [
 			'Flash' => 'SkankyDev\View\Helper\FlashMessagesHelper',
@@ -53,4 +68,6 @@ return [
 		'format'=>'Y-m-d H:i:s',
 		'timezone'=>'UTC'
 	],
+	'version' => 'Alpha.0.0.1'
+
 ];

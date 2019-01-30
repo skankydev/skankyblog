@@ -26,10 +26,6 @@ use SkankyDev\Utilities\Traits\Singleton;
 class Dispatcher {
 	
 	use Singleton;
-	
-	function __construct(){
-
-	}
 
 	public function execute(CurrentRoute $current){
 		$request = Request::getInstance();
@@ -41,6 +37,7 @@ class Dispatcher {
 		if(isset($link['params'])){
 			$request->params = $link['params'];
 		}
+		Config::setCurentNamespace($link['namespace']);
 		//c'est juste pour pas tout casser
 		
 		EventManager::getInstance()->event('router.execute.before',$this);

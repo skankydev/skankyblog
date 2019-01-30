@@ -114,16 +114,20 @@ class Config {
 		return self::arrayGet('debug',self::$conf);
 	}
 
-	static function getConf(){
+	static function initConf($basePath = ''){
+
 		if(empty(self::$conf)){
-			$mConf = require APP_FOLDER.DS."config".DS."master.config.php";
+			if(empty($basePath)){
+				$basePath = APP_FOLDER;
+			}
+			$mConf = require $basePath.DS.'config'.DS.'master.config.php';
 			$tmpConf = [];
 			$conf = array_replace_recursive($tmpConf,$mConf);
 			foreach ($mConf['Module'] as $key) {
-				$tmpConf = require APP_FOLDER.DS."src".DS.$key.DS."Config".DS."config.php";
+				$tmpConf = require $basePath.DS.'src'.DS.$key.DS.'Config'.DS.'config.php';
 				$conf = array_replace_recursive($conf,$tmpConf);
 			}
-			$dConf = require 'default.config.php';
+			$dConf = require $basePath.DS.'src'.DS.'SkankyDev'.DS.'Config'.DS.'default.config.php';
 			self::$conf = array_replace_recursive($dConf,$conf);
 		}
 		

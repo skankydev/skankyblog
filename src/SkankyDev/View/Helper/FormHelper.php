@@ -12,13 +12,15 @@
  */
 namespace SkankyDev\View\Helper;
 
-use SkankyDev\View\Helper\MasterHelper;
-use SkankyDev\View\Helper\Htmlhelper;
 use SkankyDev\Config\Config;
+use SkankyDev\Factory;
+use SkankyDev\Model\Document\DocumentInterface;
+use SkankyDev\Request;
+use SkankyDev\Routing\UrlBuilder;
 use SkankyDev\Utilities\Session;
 use SkankyDev\Utilities\Token;
-use SkankyDev\Factory;
-use SkankyDev\Request;
+use SkankyDev\View\Helper\Htmlhelper;
+use SkankyDev\View\Helper\MasterHelper;
 /**
 * 
 */
@@ -38,8 +40,8 @@ class FormHelper extends MasterHelper {
 	 * @param array $data the data to put in input
 	 */
 	function __construct(){
-		$request = Request::getInstance();
-		$this->data = $request->data;
+		//$request = Request::getInstance();
+		//$this->data = $request->data;
 		$this->dClass = Config::get('form.class');
 		$this->elementList = Config::get('class.formElement');
 		$this->elementName = array_keys($this->elementList);
@@ -110,13 +112,20 @@ class FormHelper extends MasterHelper {
 
 	/**
 	 * create the form balise
-	 * @param  string $action the url for valide form
-	 * @param  array  $attr   the attribute
-	 * @param  string $method the method of form (default POST)
-	 * @param  string $csrf   active CSRF protection
-	 * @return string         the balise form
+	 * @param  DocumentInterface  $document   default value for form
+	 * @param  array              $link       the link for send form
+	 * @param  array              $attr       the attribute
+	 * @param  string             $method     the method of form (default POST)
+	 * @param  string             $csrf       active CSRF protection
+	 * @return string                         the balise form
 	 */
-	public function start($action,$attr = [],$method='POST',$csrf = true){
+	public function start(DocumentInterface $document, $link = [],$attr = [],$method='POST',$csrf = true){
+		$this->data = $document;
+		if(empty($link)){
+			$action = UrlBuilder::_buildCurrent();
+		}else{
+			$action = UrlBuilder::_build($link);			
+		}
 		$retour = '<form action="'.$action.'" ';
 		$attr =  array_merge($this->formAttr,$attr);
 		$retour .= $this->createAttr($attr);

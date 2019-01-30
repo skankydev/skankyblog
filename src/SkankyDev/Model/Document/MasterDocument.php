@@ -18,14 +18,15 @@ use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\Persistable;
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\Model\BSONArray;
+use SkankyDev\Model\Document\DocumentInterface;
 use SkankyDev\Utilities\Traits\StringFacility;
 
-class MasterDocument implements Persistable{
+class MasterDocument implements Persistable, DocumentInterface {
 
 	use StringFacility;
 
 	public $_id;
-
+	private $messageValidate;
 	/**
 	 * Magic Methods user for get mutable 
 	 * @param  string $name the name of the property
@@ -44,16 +45,18 @@ class MasterDocument implements Persistable{
 	}
 
 
-	public function __construct($data){
-		$properties = get_class_vars(get_class($this));
-		foreach ($properties as $key=>$value){
-			if(isset($data->{$key})){
-				$this->{$key} = $data->{$key};
-				if(preg_match('/[a-zA-Z0-9_-]*_id/', $key)){
-					if(empty($data->{$key})){
-						$this->{$key} = new ObjectID();
-					}else{
-						$this->{$key} = new ObjectID($data->{$key});
+	public function __construct(array $data = []){
+		if(!empty($data)){
+			$properties = get_class_vars(get_class($this));
+			foreach ($properties as $key=>$value){
+				if(isset($data[$key])){
+					$this->{$key} = $data[$key];
+					if(preg_match('/[a-zA-Z0-9_-]*_id/', $key)){
+						if(empty($data[$key])){
+							$this->{$key} = new ObjectID();
+						}else{
+							$this->{$key} = new ObjectID($data[$key]);
+						}
 					}
 				}
 			}
@@ -100,5 +103,13 @@ class MasterDocument implements Persistable{
 				$this->{$key} = $this->{$key}->getArrayCopy();
 			}
 		}
+	}
+
+	public function setValidateMessage(string $field, string $message){
+		$this->messageValidate[$field] = $message;
+	}
+
+	public function getValidateMessage(string $field){
+		return $this->messageValidate[$field];
 	}
 }

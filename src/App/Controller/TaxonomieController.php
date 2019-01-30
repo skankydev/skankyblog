@@ -50,8 +50,23 @@ class TaxonomieController extends MasterController {
 		}
 	}
 	
-	private function edit(){
-
+	private function edit($_id){
+		$tag = $this->Taxonomie->findById($_id);
+		if($this->request->isPost()){
+			$tag = $this->Taxonomie->createDocument($this->request->getData());
+			if($this->Taxonomie->isValid($tag)){
+				if($this->Taxonomie->save($tag)){
+					$this->Flash->set('ça marche',['class' => 'success']);
+					$this->request->redirect(['action'=>'index']);
+				}else{
+					$this->Flash->set('ça marche pas',['class' => 'error']);
+				}
+			}else{
+				$this->Flash->set('ça marche pas',['class' => 'warning']);
+			}
+		}
+		$this->request->data = $tag;
+		$this->view->set(['tag'=>$tag]);
 	}
 	
 	private function delete($_id){

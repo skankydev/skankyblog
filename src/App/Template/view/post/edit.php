@@ -1,7 +1,7 @@
 <?php $this->setTitle('edit post'); ?>
 <section id='Post'>
 	<header><h1>Edit Post</h1></header>
-	<?= $this->Form->start($this->request->url(['action'=>'edit','params'=>['slug'=>$post->slug]])); ?>
+	<?= $this->Form->start($post); ?>
 	<section>
 		<?= $this->Form->fieldset([
 			'fieldset'=> ['class'=>'fieldset-post'],

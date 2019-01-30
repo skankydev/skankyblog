@@ -20,12 +20,13 @@
             "App\\": "src/App"
         },
         "files": [
-            "src/Skankydev/Utilities/Debug.php"
+            "src/SkankyDev/Config/constant.php",
+            "src/SkankyDev/Utilities/Debug.php"
         ]
     },
     "autoload-dev": {
         "psr-4":{
-            "SkankyTest\\":"test/SkankyTest"
+            "SkankyTest\\":"tests/SkankyTest"
         }
     },
     "require-dev": {

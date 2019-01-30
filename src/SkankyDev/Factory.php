@@ -13,6 +13,8 @@
 
 namespace SkankyDev;
 
+use SkankyDev\EventManager;
+
 
 class Factory {
 
