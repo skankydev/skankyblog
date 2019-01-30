@@ -53,9 +53,9 @@ class Request {
 
 	public function __construct(){
 		//debug($_SERVER);
-		$this->host      = $_SERVER['HTTP_HOST'];
-		$this->uri       = urldecode($_SERVER['REQUEST_URI']);
-		$this->sheme     = $_SERVER['REQUEST_SCHEME'];
+		$this->host      = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : null;
+		$this->uri       = isset($_SERVER['HTTP_HOST']) ? urldecode($_SERVER['REQUEST_URI']) : null;
+		$this->sheme     = isset($_SERVER['REQUEST_SCHEME'])? $_SERVER['REQUEST_SCHEME'] : null;
 		$this->method    = isset($_SERVER['REQUEST_METHOD'])?$_SERVER['REQUEST_METHOD']:null;
 		$this->protocol  = isset($_SERVER['SERVER_PROTOCOL'])?$_SERVER['SERVER_PROTOCOL']:null;
 		$this->ip        = isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:null;

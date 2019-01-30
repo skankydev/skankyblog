@@ -78,7 +78,7 @@ class FormHelper extends MasterHelper {
 	 * check the selected value for a select
 	 * @param  string $name  the name of the select
 	 * @param  string $value the value of the select
-	 * @return string        selected or null
+	 * @return string        selected or empty string
 	 */
 	private function checkSelected($name,$value=''){
 		$retour = '';
@@ -94,6 +94,12 @@ class FormHelper extends MasterHelper {
 		return $retour;
 	}
 
+	/**
+	 * check the selected value for a radio button
+	 * @param  string $name  the name of the select
+	 * @param  string $value the value of the select
+	 * @return string        selected or empty string
+	 */
 	private function checkRadio($name,$value=''){
 		$retour = '';
 		if(isset($this->data->{$name})){

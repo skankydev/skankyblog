@@ -25,11 +25,6 @@ class TokenTest extends TestCase
 {
 
 
-	protected function setUp() {
-
-		//$this->token = new Token();
-	}
-
 	/**
 	 * @covers ::__construct
 	 */
