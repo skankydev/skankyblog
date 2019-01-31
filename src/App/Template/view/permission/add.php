@@ -3,7 +3,7 @@
 	<header>
 		<h1><?php echo _("Ajouter un role"); ?> </h1>
 	</header>
-	<?php echo $this->Form->start($permission); ?>
+	<?php echo $this->Form->start($role); ?>
 	<section>
 		<?php echo $this->Form->fieldset([
 			'fieldset'=> ['class'=>'fieldset-post'],

@@ -25,7 +25,6 @@ class PermissionModel extends NoSqlModel {
 			return 'PermissionModel has been configured';			
 		} catch (\MongoDB\Driver\Exception\RuntimeException $e) {
 			return 'PermissionModel: '.$e->getMessage();
-			
 		}
 
 	}

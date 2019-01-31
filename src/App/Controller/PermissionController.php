@@ -71,8 +71,9 @@ class PermissionController extends MasterController {
 	}
 
 	private function add(){
+		$role = $this->Permission->createDocument();
 		if($this->request->isPost()){
-			$role = $this->Permission->createDocument($this->request->getData());
+			$role = $this->Permission->patchDocument($role,$this->request->getData());
 			$init = $this->Permission->findOne(['name'=>'init']);
 			$role->action = $init->action;
 			if($this->Permission->isValid($role)){
@@ -81,13 +82,12 @@ class PermissionController extends MasterController {
 					$this->request->redirect(['action'=>'index']);
 				}else{
 					$this->Flash->set('ca marche pas',['class' => 'error']);
-					$this->request->data = $role;
 				}
 			}else{
 				$this->Flash->set('pas valid',['class' => 'error']);
-				$this->request->data = $role;
 			}
 		}
+		$this->view->set('role',$role);
 	}
 
 	private function edit($name =''){

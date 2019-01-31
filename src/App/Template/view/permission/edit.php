@@ -3,7 +3,7 @@
 	<header>
 		<h1>Permission</h1>
 	</header>
-	<?= $this->Form->start($this->request->url(['action'=>'edit','params'=>['name'=>$role->name]])); ?>
+	<?= $this->Form->start(); ?>
 	<section>
 		<input value="<?= $role->_id; ?>" name="_id" id="_id" class="field-input" type="hidden">
 		<div class="field text field-completed">

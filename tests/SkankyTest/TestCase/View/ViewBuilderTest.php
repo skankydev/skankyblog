@@ -50,8 +50,6 @@ class ViewBuilderTest extends TestCase
 		$exepted[] = 'Auth';
 		$builder->addHelpers(['Auth']);
 		$this->assertEquals($exepted,$builder->getHelpers());
-		/*$exepted['user'] = 'skankydev';
-		$builder->addHelpers(['user'=>'skankydev']);
-		$this->assertEquals($exepted,$builder->getData());*/
 	}
+	
 }
