@@ -20,9 +20,11 @@ use SkankyDev\Config\Config;
 
 class UserController extends MasterController {
 
-	public $tools = [
-		'Flash','Mail'
-	];
+
+	protected function _init(){
+		parent::_init();
+		$this->_addTools('Mail');
+	}
 
 
 	private function index($page = 1,$field = 'login',$order = 1){
@@ -114,7 +116,7 @@ class UserController extends MasterController {
 						$user->role = Config::get('Auth.defaultRole');
 						if($this->User->save($user)){
 							$this->Mail->creatMail($user->email,'activation de votre compte','user.active',['user'=>$user]);
-							$this->Mail->sendMail();
+							//$this->Mail->sendMail();
 							$this->Flash->set('un mail de confirmation vous a été envoyé',['class' => 'success']);
 							$this->request->redirect('/');
 						}else{

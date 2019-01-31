@@ -52,7 +52,7 @@ class UsersListener extends MasterListener {
 				$token = new Token();
 				$cookiToken = $token->value;
 				$model->updateLogin($user,$cookiToken);
-				$user->_id = $user->_id->__toString();//MongoDB\BSON\ObjectID fatal error session
+				$user->_id = (string) $user->_id;//MongoDB\BSON\ObjectID fatal error session
 				$auth->setAuth($user);
 				$auth->setCookieTokent($user->email,$cookiToken);
 				$this->getPermission($subject);

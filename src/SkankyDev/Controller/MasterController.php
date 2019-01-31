@@ -13,22 +13,22 @@
 namespace SkankyDev\Controller;
 
 use SkankyDev\Config\Config;
-use SkankyDev\Model\MasterModel;
-use SkankyDev\MasterView;
-use SkankyDev\Factory;
-use SkankyDev\Request;
 use SkankyDev\EventManager;
+use SkankyDev\Exception\ClassNotFoundException;
+use SkankyDev\Factory;
+use SkankyDev\MasterView;
+use SkankyDev\Model\MasterModel;
+use SkankyDev\Request;
+use SkankyDev\View\ViewBuilder;
 /**
 * 
 */
 class MasterController {
 
-	public $request;
-	public $viewModel = 'SkankyDev\View\HtmlView';
-	public $collection = 'default';
-	public $tools = [
-		'Flash',
-	];
+	protected $request;
+	protected $viewModel = 'SkankyDev\View\HtmlView';
+	protected $collection = 'default';
+	protected $tools = [];
 
 	
 	/**
@@ -39,7 +39,7 @@ class MasterController {
 	public function __construct(){
 		EventManager::getInstance()->event('controller.construct',$this);
 		$this->request = Request::getInstance();
-		
+		$this->view = ViewBuilder::getInstance();
 		$name = explode('\\',get_class($this));
 		
 		if($this->collection === 'default'){
@@ -48,33 +48,53 @@ class MasterController {
 			$modelName = $this->collection; 
 		}
 		$this->{$modelName} = MasterModel::load($modelName);
-		$this->_loadTools();
-		$this->_iniView();
+		$this->_init();
 	}
 
-	public function _iniView(){
-		$this->view = Factory::load($this->viewModel);
-		if( isset($this->helpers) && !empty($this->helpers)){
-			$this->view->addHelper($this->helpers);
-		}
+	protected function _init(){
+		$this->_addTools('Flash');
 	}
+
 
 	/**
-	 * creat tools for controller
-	 * @return void
+	 * Add new tools
+	 * @param array|string $tools   the nam of Tool or combo tool => params
+	 * @param array        $params  the params for the tool constructor      
 	 */
-	public function _loadTools(){
-		$def = Config::getTools();
-		foreach ($this->tools as $tool => $params) {
-			if(is_array($params)){
-				$className = $def[$tool];
-				$this->{$tool} = Factory::load($className,$params);
-			}else{
-				$className = $def[$params];
-				$this->{$params} = Factory::load($className);
+	public function _addTools($tools,$params = []){
+		if(is_array($tools)){
+			foreach ($tools as $tool => $params) {
+				if(is_array($params)){
+					$className = Config::getTools($tool);
+					if(!$className){
+						throw new ClassNotFoundException('No class found for '.$tool.' in '.get_class($this).'',201);
+					}
+					$this->{$tool} = Factory::load($className,$params);
+				}else{
+					$className = Config::getTools($params);
+					if(!$className){
+						throw new ClassNotFoundException('No class found for '.$tool.' in '.get_class($this).'',201);
+					}
+					$this->{$params} =  Factory::load($className);
+				}
 			}
+		}else if(is_string($tools)){
+			$className = Config::getTools($tools);
+			if(!$className){
+				throw new ClassNotFoundException('No class found for '.$tool.' in '.get_class($this).'',201);
+			}
+			$this->{$tools} = Factory::load($className,$params);
 		}
 	}
+
+	public function _addHelpers($name,$params = []){
+		$this->view->addHelpers($name,$params);
+		/*Factory::load($this->viewModel);
+		if( isset($this->helpers) && !empty($this->helpers)){
+			$this->view->addHelper($this->helpers);
+		}*/
+	}
+
 
 	public function _loadModel($name){
 		return MasterModel::load($name);

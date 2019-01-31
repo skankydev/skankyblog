@@ -1,4 +1,4 @@
-<?php	
+<?php 
 /**
  * Copyright (c) 2015 SCHENCK Simon
  * 
@@ -15,8 +15,7 @@ namespace SkankyDev\Exception;
 
 use Exception;
 
-class ModelException extends Exception
+class ClassNotFoundException extends Exception
 {
-
+	
 }
-

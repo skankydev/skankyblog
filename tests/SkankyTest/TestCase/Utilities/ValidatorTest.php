@@ -16,9 +16,13 @@ namespace SkankyTest\TestCase\Utilities;
 
 use PHPUnit\Framework\TestCase;
 use SkankyDev\Utilities\Validator;
+use SkankyTest\Fixtures\Document;
+
+
 
 /**
  * @covers SkankyDev\Utilities\Validator
+ * @covers SkankyDev\Model\Document\MasterDocument
  * @coversDefaultClass SkankyDev\Utilities\Validator
  */
 class ValidatorTest extends TestCase
@@ -118,18 +122,18 @@ class ValidatorTest extends TestCase
 		$validator->addRules(['mail'],['isEmail'],'doit etre une adresse valid');
 		$validator->trimTag(['name','slug']);
 
-		$data = new \stdClass();
+		$data = new Document();
 		$data->name = 'youpi test';
 		$data->slug = 'youpi-test';
 		$data->mail = 'youpi@test.com';
 		$this->assertEquals(true,$validator->valid($data));
 
-		$data = new \stdClass();
+		$data = new Document();
 		$data->name = 'youpi test';
 		$data->slug = 'youpi-test';
 		$data->mail = 'youpi test';
 		$this->assertEquals(false,$validator->valid($data));
-		$this->assertEquals(['mail'=>'doit etre une adresse valid'],$data->messageValidate);
+		$this->assertEquals('doit etre une adresse valid',$data->getValidateMessage('mail'));
 
 	}
 
@@ -137,7 +141,7 @@ class ValidatorTest extends TestCase
 		$validator = new Validator();
 		$validator->trimTag(['name','slug']);
 
-		$data = new \stdClass();
+		$data = new Document();
 		$data->name = ' youpi test ';
 		$data->slug = '<h1>youpi-test';
 

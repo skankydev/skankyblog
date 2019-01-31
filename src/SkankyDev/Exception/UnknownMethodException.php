@@ -15,6 +15,7 @@ namespace SkankyDev\Exception;
 
 use Exception;
 
-class UnknownMethodException extends Exception{
+class UnknownMethodException extends Exception
+{
 
 }

@@ -26,7 +26,6 @@ class MasterView {
 
 	public $data = [];
 	public $layout = 'default';
-	public $displayLayout = true;
 	public $helpers = [];
 
 	function __construct(){
@@ -45,7 +44,7 @@ class MasterView {
 		require($this->viewPath());
 		$this->content = ob_get_clean();
 		
-		if($this->displayLayout){
+		if($this->layout){
 			require ($this->layoutPath());
 		}else{
 			echo $this->content;
@@ -128,7 +127,7 @@ class MasterView {
 		}
 	}
 
-	public function addHelper($helpers){
+	public function addHelpers($helpers,$params = []){
 
 		if(is_array($helpers)){
 			foreach ($helpers as $key => $value) {

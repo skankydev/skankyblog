@@ -51,7 +51,7 @@ class SingletonTest extends TestCase
 	}
 
 	/**
-	 * @expectedException SkankyDev\Exception\UnknownMethodExeption
+	 * @expectedException SkankyDev\Exception\UnknownMethodException
 	 */
 	public function testMethodDontExsiste(){
 		$this->expectException(MyTestSingleton::_unknown());

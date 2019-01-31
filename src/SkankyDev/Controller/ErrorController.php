@@ -35,7 +35,7 @@ class ErrorController extends MasterController{
 		$this->request->params = ['error'=>$exception];
 		$this->view = new HtmlView();
 		$this->view->set($save);
-		$this->_loadTools();
+
 		if(Config::getDebug()){
 			$this->request->action = 'error';
 			$this->error($exception);

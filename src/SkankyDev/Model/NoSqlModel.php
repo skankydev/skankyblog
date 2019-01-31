@@ -63,7 +63,7 @@ class NoSqlModel extends MasterModel {
 				$var = explode(':', $tmp->getMessage());
 				$var = explode(' ', $var[2]);
 				$var = $var[1];
-				$document->messageValidate[$var] = _('is already used');
+				$document->setValidateMessage($var, _('is already used'));
 				return false;
 			}
 			throw $e;

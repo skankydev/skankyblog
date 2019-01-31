@@ -80,7 +80,10 @@ class Config {
 	static function getBehavior(){
 		return self::arrayGet('class.behavior',self::$conf);
 	}
-	static function getTools(){
+	static function getTools($name = ''){
+		if(!empty($name)){
+			return self::arrayGet('class.tools.'.$name,self::$conf);
+		}
 		return self::arrayGet('class.tools',self::$conf);
 	}
 	static function getListener(){

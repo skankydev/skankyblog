@@ -14,6 +14,7 @@
 namespace SkankyDev;
 
 use SkankyDev\EventManager;
+use SkankyDev\Exception\FactoryException;
 
 
 class Factory {
@@ -25,7 +26,7 @@ class Factory {
 			}
 			$class = new \ReflectionClass($className);
 			return $class->newInstanceArgs($params);			
-		} catch (\Exception $e) {
+		} catch (FactoryException $e) {
 			if($thr){
 				throw $e;
 			}else{
@@ -43,7 +44,7 @@ class Factory {
 		$path .= '.php';
 		if(!file_exists($path)){
 			if($thr){
-				throw new \Exception("the file {$path} does not exist");
+				throw new FactoryException("the file {$path} does not exist",100);
 			}else{
 				return false;
 			}

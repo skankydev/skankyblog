@@ -1,4 +1,4 @@
-<?php	
+<?php 
 /**
  * Copyright (c) 2015 SCHENCK Simon
  * 
@@ -11,12 +11,13 @@
  *
  */
 
-namespace SkankyDev\Exception;
+namespace SkankyTest\Fixtures;
 
-use Exception;
+use SkankyDev\Model\Document\MasterDocument;
 
-class ModelException extends Exception
+class Document extends MasterDocument
 {
-
+	public $name;
+	public $slug;
+	public $mail;
 }
-

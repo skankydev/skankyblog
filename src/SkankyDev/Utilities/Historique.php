@@ -77,7 +77,6 @@ class Historique
 	 */
 	function comeFrom(){
 		$come = Session::get('skankydev.historique.1'); 
-		debug($come);
 		return Session::get('skankydev.historique.1');
 	}
 	/**
@@ -98,7 +97,6 @@ class Historique
 
 	/**
 	 * set the last
-	 * @return [type] [description]
 	 */
 	function notDirect(){
 		//$this->history[0]['direct'] = false;
