@@ -2,7 +2,7 @@
 <div class="layout-login">
 	<section id="Login">
 		<header><h1><?php echo _("Sign in"); ?></h1></header>
-		<?php echo $this->Form->start($this->request->url()); ?>
+		<?php echo $this->Form->start(); ?>
 		<section>
 			<?php echo $this->Form->fieldset([
 				'fieldset'=> ['class'=>'fieldset-user'],

@@ -119,7 +119,7 @@ class FormHelper extends MasterHelper {
 	 * @param  string             $csrf       active CSRF protection
 	 * @return string                         the balise form
 	 */
-	public function start(DocumentInterface $document, $link = [],$attr = [],$method='POST',$csrf = true){
+	public function start(DocumentInterface $document = null, $link = [],$attr = [],$method='POST',$csrf = true){
 		$this->data = $document;
 		if(empty($link)){
 			$action = UrlBuilder::_buildCurrent();

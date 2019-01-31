@@ -15,7 +15,7 @@ namespace SkankyDev\Exception;
 
 use Exception;
 
-class ModelExeption extends Exception{
+class NotFoundException extends Exception{
 
 }
 

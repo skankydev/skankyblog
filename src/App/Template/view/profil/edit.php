@@ -4,7 +4,7 @@
 	<header>
 		<h1>Votre Profil</h1>
 	</header>
-	<?= $this->Form->start($this->request->url(['action'=>'edit'])); ?>
+	<?= $this->Form->start($profil); ?>
 	<section>
 		<?= $this->Form->fieldset([
 			'fieldset'=> ['class'=>''],

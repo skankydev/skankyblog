@@ -3,7 +3,7 @@
 	<header>
 		<h1> </h1>
 	</header>
-	<?= $this->Form->start($this->request->url(['action'=>'editAdresse','params'=>['key'=>$key]])); ?>
+	<?= $this->Form->start($profil,['action'=>'editAdresse','params'=>['key'=>$key]]); ?>
 	<section>
 		<?= $this->Form->fieldset([
 			'fieldset'=> ['class'=>''],

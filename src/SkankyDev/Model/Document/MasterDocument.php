@@ -69,6 +69,7 @@ class MasterDocument implements Persistable, DocumentInterface {
 	 */
 	public function bsonSerialize(){
 		$prop = get_object_vars($this);
+		unset($prop['messageValidate']);
 		foreach ($prop as $key=>$value) {
 			$prop[$key] = $this->{$key};
 			if($prop[$key] instanceof DateTime){
@@ -110,6 +111,9 @@ class MasterDocument implements Persistable, DocumentInterface {
 	}
 
 	public function getValidateMessage(string $field){
-		return $this->messageValidate[$field];
+		if(isset($this->messageValidate[$field])){
+			return $this->messageValidate[$field];
+		}
+		return '';
 	}
 }

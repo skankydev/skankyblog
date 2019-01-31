@@ -53,7 +53,7 @@ class UserController extends MasterController {
 		$user = $this->User->findOne(['login'=>$login]);
 		if($this->request->isPost()){
 			$data = $this->request->getData();
-			$user->role = $data->role;
+			$user->role = $data['role'];
 			if($this->User->save($user)){
 				$this->Flash->set('ca marche',['class' => 'success']);
 			}
@@ -72,9 +72,9 @@ class UserController extends MasterController {
 		if($this->request->isPost()){
 			$user = $this->User->findOne(['login'=>$user->login]);
 			$data = $this->request->getData();
-			if(password_verify($data->password,$user->password)){
-				if($data->new === $data->confirme){
-					$user->password = password_hash($data->new, PASSWORD_BCRYPT);
+			if(password_verify($data['password'],$user->password)){
+				if($data['new'] === $data['confirme']){
+					$user->password = password_hash($data['new'], PASSWORD_BCRYPT);
 					if($this->User->save($user)){
 						$this->Flash->set('Votre password a bien était changer',['class' => 'success']);
 						$this->request->redirect(['controller'=>'user','action'=>'profil']);
@@ -83,30 +83,31 @@ class UserController extends MasterController {
 						unset($this->request->data);
 					}
 				}else{
-					$data->messageValidate['confirme'] = 'les mdp c\'est pas les meme (>_<) !';
-					unset($data->password);
-					unset($data->new);
-					unset($data->confirme);
+					$data['messageValidate']['confirme'] = 'les mdp c\'est pas les meme (>_<) !';
+					unset($data['password']);
+					unset($data['new']);
+					unset($data['confirme']);
 					$this->request->data = $data;
 				}
 			}else{
-				$data->messageValidate['password'] = 'le mdp c\'est pas le bon (>_<) !';
-				unset($data->password);
-				unset($data->new);
-				unset($data->confirme);
+				$data['messageValidate']['password'] = 'le mdp c\'est pas le bon (>_<) !';
+				unset($data['password']);
+				unset($data['new']);
+				unset($data['confirme']);
 				$this->request->data = $data;
 			}
 		}
 	}
 
 	public function signUp(){
+		$user = $this->User->createDocument();
 		if($this->request->isPost()){
 			$data = $this->request->getData();
-			$user = $this->User->createDocument($data);
-			if(isset($data->cgu)){
-				if($data->password === $data->confirme){
+			$user = $this->User->patchDocument($user,$data);
+			if(isset($data['cgu'])){
+				if($data['password'] === $data['confirme']){
 					if($this->User->isValid($user)){
-						$user->password = password_hash($data->password, PASSWORD_BCRYPT);
+						$user->password = password_hash($data['password'], PASSWORD_BCRYPT);
 						$user->verifToken = new token();
 						$user->lastLogin = false;
 						$user->valid = false;
@@ -119,27 +120,23 @@ class UserController extends MasterController {
 						}else{
 							$this->Flash->set('oupse on a un problème (-_-)',['class' => 'warning']);
 							unset($user->password);
-							$this->request->data = $user;
 						}
 					}else{
 						$this->Flash->set('oupse on a un problème (-_-)',['class' => 'warning']);
 						unset($user->password);
-						$this->request->data = $user;
-					}				
+					}
 				}else{
-					$data->messageValidate['confirme'] = 'les mdp c\'est pas les meme (>_<) !';
-					unset($data->password);
-					unset($data->confirme);
-					$this->request->data = $data;
+					$user->setValidateMessage('confirme','les mdp c\'est pas les meme (>_<) !');
+					unset($user->password);
+					unset($user->confirme);
 				}
 			}else{
-				$data->messageValidate['cgu'] = 'merci d\'accepter les CGU';
-				unset($data->password);
-				unset($data->confirme);
-				$this->request->data = $data;
+				$user->setValidateMessage('cgu','merci d\'accepter les CGU');
+				unset($user->password);
+				unset($user->confirme);
 			}
 		}
-
+		$this->view->set(['user'=>$user]);
 	}
 
 	public function active($login,$token){
@@ -161,7 +158,7 @@ class UserController extends MasterController {
 	public function passwordLost(){
 		if($this->request->isPost()){
 			$data = $this->request->getData();
-			$user = $this->User->findOne(['email'=>$data->email,'valid'=>true]);
+			$user = $this->User->findOne(['email'=>$data['email'],'valid'=>true]);
 			if(!empty($user)){
 				$user->verifToken = new token();
 				$this->User->save($user);
@@ -183,8 +180,8 @@ class UserController extends MasterController {
 			if($this->request->isPost()){
 				//si data post
 				$data = $this->request->getData();
-				if($data->password === $data->confirme){
-					$user->password = password_hash($data->password, PASSWORD_BCRYPT);
+				if($data['password'] === $data['confirme']){
+					$user->password = password_hash($data['password'], PASSWORD_BCRYPT);
 					$user->verifToken = false;
 					if($this->User->save($user)){
 						$this->Flash->set('votre mot de passe a bien etais changer',['class' => 'success']);
@@ -194,10 +191,9 @@ class UserController extends MasterController {
 						unset($user->password);
 					}
 				}else{
-					$data->messageValidate['confirme'] = 'les mdp c\'est pas les meme (>_<) !';
-					unset($data->password);
-					unset($data->confirme);
-					$this->request->data = $data;
+					$user->setValidateMessage('confirme','les mdp c\'est pas les meme (>_<) !');
+					unset($data['password']);
+					unset($data['confirme']);
 				}
 			}
 			$this->view->set(['user' => $user]);
@@ -210,22 +206,22 @@ class UserController extends MasterController {
 	public function login(){
 		if($this->request->isPost()){
 			$data = $this->request->getData();
-			$user = $this->User->findOne(['email'=>$data->email]);
+			$user = $this->User->findOne(['email'=>$data['email']]);
 			if(!empty($user)){
-				if(password_verify($data->password,$user->password)){
+				if(password_verify($data['password'],$user->password)){
 					if(!$user->valid){
 						$this->Flash->set('votre compte n\'est pas activé',['class' => 'warning']);
 						$this->request->redirect('/');
 					}
 					$cookiToken = '';
 
-					if(isset($data->remember)){
+					if(isset($data['remember'])){
 						$token = new token();
 						$cookiToken = $token->value;
 						Auth::getInstance()->setCookieTokent($user->email,$cookiToken);
 					}
 					$this->User->updateLogin($user,$cookiToken);
-					$user->_id = $user->_id->__toString();//MongoDB\BSON\ObjectID fatal error session
+					$user->_id = (string) $user->_id;//MongoDB\BSON\ObjectID fatal error session
 					$link = Auth::getInstance()->setAuth($user);
 					EventManager::getInstance()->event('users.login',$this);
 					$this->Flash->set('bienvenu '.$user->login.'.',['class' => 'success']);
@@ -233,8 +229,9 @@ class UserController extends MasterController {
 				}
 			}
 			$this->Flash->set('invalide login or password',['class' => 'warning']);
+		}else{
+			Auth::getInstance()->setBackLink();
 		}
-		Auth::getInstance()->setBackLink();
 	}
 
 	public function logout(){

@@ -81,8 +81,6 @@ class Validator {
 				if(!$result){
 					$retour = false;
 					$data->setValidateMessage($field,$config['message']);
-					//$data->messageValidate[$field] = $config['message'];
-					debug($data);
 				}
 			}
 		}

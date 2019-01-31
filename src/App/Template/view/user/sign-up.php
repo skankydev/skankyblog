@@ -2,7 +2,7 @@
 <div class="layout-login">
 	<section id="Login">
 		<header><h1><?php echo _('Sign Up'); ?></h1></header>
-		<?php echo $this->Form->start($this->request->url(['action'=>'signUp'])); ?>
+		<?php echo $this->Form->start($user); ?>
 		<?php $cgu = 'J\'accepte les '.$this->link('Conditions Générales d\'Utilisation', ['controller'=>'page','action'=>'cgu']);?>
 		<section>
 			<?php echo $this->Form->fieldset([

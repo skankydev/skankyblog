@@ -42,7 +42,7 @@ class Request {
 	public $action;
 	public $params = [];
 	public $files = [];
-	public $data;
+	private $data;
 
 	public static function getInstance() {
 		if(is_null(self::$_instance)) {
@@ -179,10 +179,10 @@ class Request {
 		EventManager::getInstance()->event('request.redirect',$this);
 		Auth::getInstance()->notDirect();
 		$url ='';
-		if(is_string($link)){
-			$url = $this->url(Router::getInstance()->getRouteByName($link));			
-		}else{
-			$url = $this->url($link);
+		if(is_array($link)){
+			$url = UrlBuilder::_build($link);
+		}else if(is_string($link)){
+			$url ='/';
 		}
 		header('Location: '.$url);
 		exit();

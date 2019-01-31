@@ -13,9 +13,10 @@
 
 namespace SkankyDev\Utilities;
 
-use SkankyDev\Utilities\Session;
 use SkankyDev\Config\Config;
 use SkankyDev\Request;
+use SkankyDev\Routing\Router;
+use SkankyDev\Utilities\Session;
 
 /**
  * 
@@ -36,19 +37,17 @@ class Historique
 	 */
 	function updateHistorique(){
 		$request = Request::getInstance();
+		$current = Router::_getCurrentRoute();
 		$history = Session::get('skankydev.historique');
 		if(!$history){
 			$history = [];
 		}
-		$hData['url']                = $request->sheme.'://'.$request->host.$request->uri;
-		$hData['direct']             = true;
-		$hData['sheme']              = $request->sheme;
-		$hData['method']             = $request->method;
-		$hData['uri']                = $request->uri;
-		$hData['link']['namespace']  = $request->namespace;
-		$hData['link']['controller'] = $request->controller;
-		$hData['link']['action']     = $request->action;
-		$hData['link']['params']     = $request->params;
+		$hData['url']    = $request->sheme.'://'.$request->host.$request->uri;
+		$hData['direct'] = true;
+		$hData['sheme']  = $request->sheme;
+		$hData['method'] = $request->method;
+		$hData['uri']    = $request->uri;
+		$hData['link']   = $current->getLink() ;
 		$count = array_unshift($history, $hData);
 		$limit   = Config::get('historique.limit');
 		if($count>$limit){
@@ -77,6 +76,8 @@ class Historique
 	 * @return array the historique
 	 */
 	function comeFrom(){
+		$come = Session::get('skankydev.historique.1'); 
+		debug($come);
 		return Session::get('skankydev.historique.1');
 	}
 	/**

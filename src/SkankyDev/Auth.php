@@ -43,6 +43,7 @@ class Auth
 		Factory::loadFile(Config::get('Auth.userEntity'));
 		Factory::loadFile(Config::get('Auth.permissionEntity'));
 	}
+
 	public static function getAuth(){
 		return Session::get('skankydev.auth.user');
 	}
@@ -93,7 +94,7 @@ class Auth
 		self::$loged = true;
 		$link = Session::get('skankydev.backlink');
 		Session::delete('skankydev.backlink');
-		return $link['link'];
+		return $link['url'];
 	}
 
 	public function setPermission($perm){

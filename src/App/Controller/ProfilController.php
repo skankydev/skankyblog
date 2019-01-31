@@ -13,8 +13,9 @@
 
 namespace App\Controller;
 
-use SkankyDev\Controller\MasterController;
 use SkankyDev\Auth;
+use SkankyDev\Controller\MasterController;
+use SkankyDev\Exception\NotFoundException;
 
 class ProfilController extends MasterController {
 	
@@ -35,10 +36,12 @@ class ProfilController extends MasterController {
 			$profil->adresse = [];
 			unset($this->request->data->_id);
 		}
-		if($this->request->isPost() && ($this->request->data->user_email === $user->email)){
-			$adresse = $profil->adresse;
-			$profil = $this->Profil->createDocument($this->request->getData());
-			$profil->adresse = $adresse;
+		if($this->request->isPost()){
+			$data = $this->request->getData();
+			if($data['user_email'] !== $user->email){
+				throw new NotFoundException();
+			}
+			$profil = $this->Profil->patchDocument($profil,$data);
 			if($this->Profil->isValid($profil)){
 				if($this->Profil->save($profil)){
 					$this->Flash->set('ça marche',['class' => 'success']);
@@ -50,7 +53,6 @@ class ProfilController extends MasterController {
 				$this->Flash->set('ça marche pas',['class' => 'warning']);
 			}
 		}
-		$this->request->data = $profil;
 		$this->view->set(['user'=>$user,'profil'=>$profil]);
 	}
 
@@ -95,8 +97,7 @@ class ProfilController extends MasterController {
 				$this->Flash->set('ça marche pas',['class' => 'error']);
 			}
 		}
-		$this->request->data = (object)$profil->adresse[$key];
-		$this->view->set(['key'=>$key]);
+		$this->view->set(['key'=>$key,'profil'=>$profil]);
 
 	}
 

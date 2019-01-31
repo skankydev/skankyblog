@@ -13,7 +13,7 @@
 
 namespace SkankyDev\Utilities\Traits;
 
-use SkankyDev\Exception\UnknownMethodExeption;
+use SkankyDev\Exception\UnknownMethodException;
 
 
 trait Singleton {
@@ -41,7 +41,7 @@ trait Singleton {
 		if(method_exists(self::$_instance, $name)){
 			return call_user_func_array([self::$_instance,$name], $arguments);
 		}else{
-			throw new UnknownMethodExeption('Unknown method : '.$name.' in Class : '.get_called_class(),101);
+			throw new UnknownMethodException('Unknown method : '.$name.' in Class : '.get_called_class(),101);
 		}
 
 	}

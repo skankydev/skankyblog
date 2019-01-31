@@ -14,7 +14,7 @@ namespace SkankyDev\Model;
 
 use SkankyDev\Config\Config;
 use SkankyDev\EventManager;
-use SkankyDev\Exception\ModelExeption;
+use SkankyDev\Exception\ModelException;
 use SkankyDev\Factory;
 use SkankyDev\Model\Document\DocumentInterface;
 
@@ -110,7 +110,7 @@ class MasterModel
 
 			$oid = (string) $document->_id;
 			if($oid !== $data['_id']){
-				throw new ModelExeption('The posted id don\'t match with current id',301);
+				throw new ModelException('The posted id don\'t match with current id',301);
 			}
 			unset($data['_id']);
 		}

@@ -60,8 +60,6 @@ class PostController extends MasterController {
 			}else{
 				$this->Flash->set('pas valid',['class' => 'error']);
 			}
-			
-			$this->request->data = $post;
 		}
 
 		$tags = $this->_loadModel('taxonomie')->getList();
@@ -84,7 +82,6 @@ class PostController extends MasterController {
 				$this->Flash->set('ça marche pas',['class' => 'warning']);
 			}
 		}
-		$this->request->data = $post;
 		$tags = $this->_loadModel('taxonomie')->getList();
 		$this->view->set(['post' => $post,'tags'=>$tags]);
 	}
